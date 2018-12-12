@@ -1377,7 +1377,7 @@ section.search .search-result {
 }
 
 article figure {
-  height: 250px;
+  height: 315px;
   width: 100%;
   overflow: hidden;
   margin-bottom: 10px;
@@ -1393,7 +1393,7 @@ article .detail {
 }
 
 .article .inner {
-  box-shadow: 0 1px 2px #ddd;
+  box-shadow: 0 1px 20px 2px #d8d8d8;
 }
 .article .padding {
   padding: 15px;
@@ -1700,7 +1700,7 @@ article footer .btn-primary:focus {
   display: inline-block;
   width: 100%;
   position: relative;
-  height: 550px;
+  height: 300px !important;
   margin-bottom: 20px;
   overflow: hidden;
 }
