@@ -2,9 +2,10 @@
 
 @section('extra_style')
 {{-- <link href="{{ asset('assets/css/profile.css') }}" rel="stylesheet"> --}}
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+{{-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> --}}
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('assets/dist/starrr.css') }}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
 
 <style type="text/css">
@@ -35,7 +36,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-md-12 col-md-12">
-                        <img src="https://cdn.storial.co/book_front/26998-9f820fdcc293c6a2d38e01c237ae005164fe63d7.jpeg">
+                        <img src="{{ asset('/storage/app/'.$book->dn_cover) }}">
                     </div>
 
                     <div class="col-md-6">
@@ -43,19 +44,19 @@
                             <div class="text">{{ $book->dn_title }}</div>
                         </h5>
                         <table width="100%">
-                            <tr style="height: 60px">
+                            <tr style="height: 50px">
                                 <td valign="middle" width="30%" style="border-top:none;border-bottom:1px solid #dddddd">Status</td>
                                 <td valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">-</td>
                             </tr>
-                            <tr style="height: 60px" >
+                            <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
                                 <td style="border-bottom:1px solid #dddddd">-</td>
                             </tr>
-                            <tr style="height: 60px">
+                            <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Ditulis Oleh</td>
                                 <td style="border-bottom:1px solid #dddddd"><a href="{{ route('profile_frontend',['name'=>$book->name]) }}">{{ $book->name }}</a></td>
                             </tr>
-                            <tr style="height: 60px">
+                            <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
                                 <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , h.i',strtotime($book->dn_created_at)) }}</td>
                             </tr>
