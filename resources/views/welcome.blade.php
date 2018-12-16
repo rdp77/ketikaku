@@ -83,20 +83,21 @@
                             </div>
                         </div>
                         <div class="line">
-                            <div>Popular</div>
+                            <div>Latest News</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
-                                    <article class="article col-md-6">
+                                    @foreach ($data as $element)
+                                    <article class="article col-md-3">
                                         <div class="inner">
                                             <figure>
                                                 <a href="single.html">
-                                                    <img src="{{ asset('assets/images/news/111.jpeg') }}" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">
-                                                <h6><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate</a></h6>
+                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }}</a></h6>
                                                 <footer>
                                                     <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
                                                     <a class="btn btn-primary more" href="single.html">
@@ -107,93 +108,7 @@
                                             </div>
                                         </div>
                                     </article>
-                                    <article class="article col-md-6">
-                                        <div class="inner">
-                                            <figure>
-                                                <a href="single.html">
-                                                    <img src="{{ asset('assets/images/news/222.jpeg') }}" alt="Sample Article">
-                                                </a>
-                                            </figure>
-                                            <div class="padding">
-                                               
-                                                <h6><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate</a></h6>
-                                                <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
-                                                    <a class="btn btn-primary more" href="single.html">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
-                                                </footer>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="article col-md-6">
-                                        <div class="inner">
-                                            <figure>
-                                                <a href="single.html">
-                                                    <img src="{{ asset('assets/images/news/img06.jpg') }}" alt="Sample Article">
-                                                </a>
-                                            </figure>
-                                            <div class="padding">
-                                              
-                                                <h6><a href="single.html">Exercitation ullamco laboris nisi ut aliquip</a></h6>
-                                                <p>Maecenas accumsan tortor ut velit pharetra mollis. Proin eu nisl et arcu iaculis placerat sollicitudin ut est. In fringilla dui dui.</p>
-                                                <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>327</div></a>
-                                                    <a class="btn btn-primary more" href="single.html">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
-                                                </footer>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="row">
-                                    <article class="article col-md-6">
-                                        <div class="inner">
-                                            <figure>                                
-                                                <a href="single.html">
-                                                    <img src="{{ asset('assets/images/news/img05.jpg') }}" alt="Sample Article">
-                                                </a>
-                                            </figure>
-                                            <div class="padding">
-                                               
-                                                <h6><a href="single.html">Mauris elementum libero at pharetra auctor</a></h6>
-                                                
-                                                <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1083</div></a>
-                                                    <a class="btn btn-primary more" href="single.html">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
-                                                </footer>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="article col-md-6">
-                                        <div class="inner">
-                                            <figure>
-                                                <a href="single.html">
-                                                    <img src="{{ asset('assets/images/news/img07.jpg') }}" alt="Sample Article">
-                                                </a>
-                                            </figure>
-                                            <div class="padding">
-                                               
-                                                <h6><a href="single.html">Sed do eiusmod tempor incididunt ut labore</a></h6>
-                                               
-                                                <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>980</div></a>
-                                                    <a class="btn btn-primary more" href="single.html">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
-                                                </footer>
-                                            </div>
-                                        </div>
-                                    </article>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

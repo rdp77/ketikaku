@@ -5,7 +5,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="brand">
                                 <a href="index.html">
-                                    <img src="images/logo.png" alt="Magz Logo">
+                                    <img src="{{ asset('assets/images/logo.png')}}">
                                 </a>
                             </div>                      
                         </div>
@@ -32,10 +32,17 @@
                             </form>                             
                         </div>
                         <div class="col-md-3 col-sm-12 text-right">
-                            <ul class="nav-icons">
-                                <li><a href="{{ url('register') }}"><i class="ion-person-add"></i><div>Register</div></a></li>
-                                <li><a href="{{ url('login') }}"><i class="ion-person"></i><div>Login</div></a></li>
-                            </ul>
+                            @if(Auth::user() != null)
+                                <ul class="nav-icons">
+                                    <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="ion-person-add"></i><div>Profile</div></a></li>
+                                </ul>
+                            @else
+                                <ul class="nav-icons">
+                                    <li><a href="{{ url('register') }}"><i class="ion-person-add"></i><div>Register</div></a></li>
+                                    <li><a href="{{ url('login') }}"><i class="ion-person"></i><div>Login</div></a></li>
+                                </ul>
+                            @endauth
+                            
                         </div>
                     </div>
                 </div>
@@ -46,7 +53,7 @@
                 <div class="container">
                     <div class="brand">
                         <a href="#">
-                            <img src="images/logo.png" alt="Magz Logo">
+                            <img src="{{ asset('assets/images/logo.png') }}">
                         </a>
                     </div>
                     <div class="mobile-toggle">
@@ -157,7 +164,7 @@
                                                         <div class="inner">
                                                             <figure>
                                                                 <a href="single.html">
-                                                                    <img src="images/news/img10.jpg" alt="Sample Article">
+                                                                    <img src="{{ asset('assets/images/news/img10.jpg') }}" alt="Sample Article">
                                                                 </a>
                                                             </figure>
                                                             <div class="padding">
@@ -173,7 +180,7 @@
                                                         <div class="inner">
                                                             <figure>
                                                                 <a href="single.html">
-                                                                    <img src="images/news/img11.jpg" alt="Sample Article">
+                                                                    <img src="{{ asset('assets/images/news/img11.jpg') }}" alt="Sample Article">
                                                                 </a>
                                                             </figure>
                                                             <div class="padding">
@@ -189,7 +196,7 @@
                                                         <div class="inner">
                                                             <figure>
                                                                 <a href="single.html">
-                                                                    <img src="images/news/img14.jpg" alt="Sample Article">
+                                                                    <img src="{{ asset('assets/images/news/img14.jpg') }}" alt="Sample Article">
                                                                 </a>
                                                             </figure>
                                                             <div class="padding">

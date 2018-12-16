@@ -44,7 +44,7 @@
                             <!-- End User Profile-->
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="authentication-login1.html
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/') }}
                                    " aria-expanded="false">
                                 <i class="mdi mdi-directions"></i>
                                 <span class="hide-menu">Dashboard</span>
@@ -55,7 +55,7 @@
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="icon-Pen"></i>
 
-                                <span class="hide-menu"><?php date_default_timezone_set("Asia/Jakarta"); echo date('d/m/Y h:i:s') ?> Write</span>
+                                <span class="hide-menu"> Write</span>
                             </a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
