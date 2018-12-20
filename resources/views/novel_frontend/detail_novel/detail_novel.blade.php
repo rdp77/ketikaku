@@ -60,7 +60,14 @@
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
                                 <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , h.i',strtotime($book->dn_created_at)) }}</td>
                             </tr>
-                        </table>            
+                        </table>    
+                        <table width="100%">
+                            <tr style="height: 50px">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>        
                     </div>
 
                     <div class="col-md-3">
@@ -131,7 +138,7 @@
                               </span>
                             </div>
                             @else
-                                Anda Harus Login terlebih dahulu  <a href="" class="btn btn-primary btn-sm">Login</a>
+                                Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a>
                             @endif
                             </div>
                               {!! $book->dn_description !!}
@@ -182,7 +189,6 @@
 <script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
     
-    // $(document).ready( function () {
      $('#myTable').DataTable({
         info: false,
         lengthChange: false,
