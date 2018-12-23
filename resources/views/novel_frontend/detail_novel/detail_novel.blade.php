@@ -158,7 +158,7 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm"><i class="fa fa-book"></i> Baca</button>
+                                            <button class="btn btn-primary btn-sm baca" value="{{ $element->dnch_id }}" ><i class="fa fa-book"></i> Baca</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -207,7 +207,11 @@
       }
     });
 
-
+/*    $('.baca').on('click',function(){
+        alert($(this).val());
+        winow.location
+    })
+*/
 
 </script>
 @endsection

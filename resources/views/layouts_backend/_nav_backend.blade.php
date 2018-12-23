@@ -23,7 +23,7 @@
                             <!-- dark Logo text -->
                             <img src="{{ asset('assets_backend/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
                             <!-- Light Logo text -->
-                            <img src="{{ asset('assets_backend/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
+                            <img src="{{ asset('assets_backend/images/logo-light-text.png') }}" style="width: 130px" class="light-logo" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->
