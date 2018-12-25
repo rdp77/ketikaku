@@ -33,23 +33,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12 text-right">
                             @if(Auth::user() != null)
-                            <div id="menu-list">
-                                <ul class="nav-list">
-                                    {{-- <ul class="nav-icons"> --}}
-                                    {{-- <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="ion-person-add"></i><div>Profile</div></a></li> --}}
-                                    <li class="dropdown magz-dropdown"><a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
-                                            <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
-                                            <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li>
-                                            <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
-                                            <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <li><a href="{{ url('login') }}"><i class="ion-person"></i><div>hy ,{{ Auth::user()->name }}</div></a></li>
                             @else
                                 <ul class="nav-icons">
                                     <li><a href="{{ url('register') }}"><i class="ion-person-add"></i><div>Register</div></a></li>
@@ -232,19 +216,20 @@
                                 <li class="dropdown magz-dropdown">
                                     @if (Auth::User() != null) 
                                         <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
+                                            <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
+                                            <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li>
+                                            <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
+                                            <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
+                                        </ul>
                                     @else
-                                        <a href="#">sss <i class="ion-ios-arrow-right"></i></a>
+                                        {{-- <a href="#">  <i class="ion-ios-arrow-right"></i></a> --}}
                                     @endif
                                     
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
-                                        <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
-                                        <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li>
-                                        <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
-                                        <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
-                                    </ul>
+                                    
                                 </li>
                         </ul>
                     </div>
