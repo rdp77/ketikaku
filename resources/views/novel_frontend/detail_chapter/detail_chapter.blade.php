@@ -304,7 +304,9 @@
 <script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
 
-    
+    $( window ).load(function() {
+        alert('a');
+    });
 
 </script>
 @endsection

@@ -15,7 +15,7 @@ class write_chapterController extends Controller
     public function index()
     {
 
-        $data =  DB::Table('d_novel_chapter')->get();
+        $data =  DB::Table('d_novel_chapter')->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')->get();
         return view('write.chapter.index',compact('data'));
     }
     public function create()

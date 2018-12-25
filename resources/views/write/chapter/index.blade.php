@@ -54,6 +54,7 @@
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
+                                        <td>{{ $element->dn_title }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>{{ date('d F Y  -  h:i:s',strtotime($element->dnch_created_at)) }}</td>
                                         {{-- <td>{!! $element->dnch_description !!}</td> --}}
