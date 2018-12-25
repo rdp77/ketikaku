@@ -74,16 +74,21 @@
                         <div class="featured-author">
                                     <div class="featured-author-inner">
                                         <div class="featured-author-cover" style="background-image: url('{{ asset('assets/images/news/img15.jpg') }}');">
-                                            <div class="badges">
-                                                <div class="badge-item"><i class="ion-star"></i> Official</div>
-                                            </div>
+                                            @if ($book->u_status == 4)
+                                                <div class="badges">
+                                                    <div class="badge-item"><i class="ion-star"></i> Official</div>
+                                                </div>
+                                            @else
+                                            
+                                            @endif
+                                            
                                             <div class="featured-author-center">
                                                 <figure class="featured-author-picture">
-                                                    <img src="{{ asset('assets/images/img01.jpg"') }} alt="Sample Article">
+                                                    <img src="{{ asset('assets/images/img01.jpg') }}" alt="Sample Article">
                                                 </figure>
                                                 <div class="featured-author-info">
-                                                    <h2 class="name">John Doe</h2>
-                                                    <div class="desc">@JohnDoe</div>
+                                                    <h2 class="name">{{ $book->name }}</h2>
+                                                    <div class="desc">{{ $book->u_instagram }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,7 +97,7 @@
                                                 <div class="item">
                                                     <a href="#">
                                                         <div class="name">Follower </div>
-                                                        <div class="value">208</div>                                                        
+                                                        <div class="value">{{ $book->u_follower }}</div>                                                        
                                                     </a>
                                                 </div>
                                                 <div class="item">
@@ -102,7 +107,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="item">
-                                                    <a href="#">
+                                                    <a href="{{ route('profile_frontend',['name'=>$book->name]) }}">
                                                         <div class="icon">
                                                             <div>More</div>
                                                             <i class="ion-chevron-right"></i>
@@ -149,7 +154,7 @@
                                     <tr>
                                         <th>Index</th>
                                         <th>Judul Chapter</th>
-                                        <th>Action</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,7 +163,10 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm baca" value="{{ $element->dnch_id }}" ><i class="fa fa-book"></i> Baca</button>
+                                            <button class="btn btn-primary btn-sm baca" 
+                                            data-name1="{{ $book->dn_title }}" 
+                                            data-name="{{ $element->dnch_title }}" 
+                                            value="{{ $element->dnch_id }}" ><i class="fa fa-book"></i> Baca</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -195,7 +203,7 @@
         searching:false
 
      });
-    // } );
+
      $('.starrr').starrr({
       change: function(e, value){
         if (value) {
@@ -207,11 +215,14 @@
       }
     });
 
-/*    $('.baca').on('click',function(){
-        alert($(this).val());
-        winow.location
+    $('.baca').on('click',function(){
+        var datas = $(this).data('name');
+        var datass = $(this).data('name1');
+        var res1 = datas.replace(/\s/g,"-");
+        var res = datass.replace(/\s/g,"-");
+        window.location.href = baseUrl + '/chapter/'+res1;
     })
-*/
+
 
 </script>
 @endsection

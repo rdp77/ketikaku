@@ -26,6 +26,7 @@ class write_chapterController extends Controller
     public function save(Request $req)
     {
         // dd($req->all());
+        // return $input = $req->all();
         $data = DB::table('d_novel_chapter')->insert([
             'dnch_ref_id'=>$req->dnch_ref_id,
             'dnch_title'=>$req->dnch_title,
@@ -34,8 +35,8 @@ class write_chapterController extends Controller
             'dnch_created_by'=>Auth::user()->id,
         ]);
 
-        if ($data == true) {
-        	return response()->json(['status'=>'sukses']);
+        if ($data == true){
+        	return response()->json(['status'=>'sukses',]);
         }else{
         	return response()->json(['status'=>'gagal']);
         }

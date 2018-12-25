@@ -4,7 +4,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <div class="brand">
-                                <a href="index.html">
+                                <a href="{{ url('/') }}">
                                     <img src="{{ asset('assets/images/logo.png')}}">
                                 </a>
                             </div>                      
@@ -37,7 +37,7 @@
                                 <ul class="nav-list">
                                     {{-- <ul class="nav-icons"> --}}
                                     {{-- <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="ion-person-add"></i><div>Profile</div></a></li> --}}
-                                    <li class="dropdown magz-dropdown"><a href="#">hy ,{{-- {{ Auth::user()->username }} --}} <i class="ion-ios-arrow-right"></i></a>
+                                    <li class="dropdown magz-dropdown"><a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
                                             <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
@@ -229,7 +229,13 @@
                                 </div>
                             </li> --}}
                         
-                                <li class="dropdown magz-dropdown"><a href="#">hy ,{{-- {{ Auth::user()->name }} --}} <i class="ion-ios-arrow-right"></i></a>
+                                <li class="dropdown magz-dropdown">
+                                    @if (Auth::User() != null) 
+                                        <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
+                                    @else
+                                        <a href="#">sss <i class="ion-ios-arrow-right"></i></a>
+                                    @endif
+                                    
                                     <ul class="dropdown-menu">
                                         <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
                                         <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>

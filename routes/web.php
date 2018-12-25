@@ -35,12 +35,12 @@ Route::get('/write/write_chapter/update/{id}', 'write\write_chapterController@up
 Route::get('/write/write_chapter/delete/{id}', 'write\write_chapterController@delete')->name('setting_chapter_delete');
 
 //FRONT END
-Route::get('/profile/{name}', 'frontend_controller\profileController@profile')->name('profile_frontend');
+Route::get('/profile/{name}', 'novel_frontend\profileController@profile')->name('profile_frontend');
 // Route::get('/book/{name}', 'frontend_controller\bookController@profile')->name('frontend_book');
 
 // FRONT END NOVEL
 Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
-
+Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
 
 //BACKEND 
 Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');

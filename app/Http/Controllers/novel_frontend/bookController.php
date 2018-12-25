@@ -14,13 +14,15 @@ class bookController extends Controller
     {  
 
         $title = str_replace('-', ' ', $name);
+        
         $code = DB::table('d_novel')->where('dn_title',$title)->first();
 
         $book = DB::table('d_novel')->join('users','users.id','=','d_novel.dn_created_by')->where('dn_id',$code->dn_id)->first();
+
         $chapter = DB::table('d_novel_chapter')->where('dnch_ref_id',$code->dn_id)->get();
         
         $tags = DB::table('d_novel_tags')->where('dnt_ref_id',$code->dn_id)->get();
-        // return response()->json(['chapter'=>$chapter,'book'=>$book]);
+        // return response()->json(['chapter'=>$chapter,'book'=>$book,'tags'=>$tags,'code'=>$code]);
         return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags'));
     }
 }

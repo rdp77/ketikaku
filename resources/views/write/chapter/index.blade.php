@@ -46,7 +46,7 @@
                                     <th>Title</th>
                                     <th>Title Chapter</th>
                                     <th>Create Date</th>
-                                    <th>Photo</th>
+                                    {{-- <th>Photo</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,13 +54,13 @@
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $element->dn_title }}</td>
-                                        <td>{{ date('d F Y  -  h:i:s',strtotime($element->dn_created_at)) }}</td>
-                                        {{-- <td>{!! $element->dn_description !!}</td> --}}
-                                        <td><img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}"></td>
+                                        <td>{{ $element->dnch_title }}</td>
+                                        <td>{{ date('d F Y  -  h:i:s',strtotime($element->dnch_created_at)) }}</td>
+                                        {{-- <td>{!! $element->dnch_description !!}</td> --}}
+                                        {{-- <td><img width="30%" src="{{ asset('/storage/app/'.$element->dnch_cover) }}"></td> --}}
                                         <td>
-                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dn_id]) }}"><i class="fas fa-pencil-alt"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}" ><i class="fas fa-times"></i></button>
+                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-pencil-alt"></i></a>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" ><i class="fas fa-times"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach

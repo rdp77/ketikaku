@@ -10,3 +10,9 @@
 <script src="{{ asset('assets/scripts/toast/jquery.toast.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo.js') }}"></script>
 <script src="{{ asset('assets/js/e-magz.js') }}"></script>
+
+<script type="text/javascript">
+	
+	var baseUrl = ('{{ url('/') }}');
+
+</script>
