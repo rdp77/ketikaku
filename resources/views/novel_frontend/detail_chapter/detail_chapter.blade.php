@@ -303,34 +303,8 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
+
     
-     $('#myTable').DataTable({
-        info: false,
-        lengthChange: false,
-        searching:false
-
-     });
-
-     $('.starrr').starrr({
-      change: function(e, value){
-        if (value) {
-          $('.your-choice-was').show();
-          $('.choice').text(value);
-        } else {
-          $('.your-choice-was').hide();
-        }
-      }
-    });
-
-    $('.baca').on('click',function(){
-        $datas = $(this).data('name');
-        $datass = $(this).data('name1');
-        $res = $datas.replace(' ','_');
-        $res1 = $datass.replace(' ','_');
-        window.location.href = baseUrl + '/chapter/'+$res1+'/'+$res;
-        // window.location.assign();
-    })
-
 
 </script>
 @endsection

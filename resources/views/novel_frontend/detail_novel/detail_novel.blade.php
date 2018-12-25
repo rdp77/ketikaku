@@ -28,6 +28,9 @@
       cursor: pointer;
       color: #ffd119;
     }
+    ..best-of-the-week .article figure{
+        height: auto;
+    }
 </style>
 @endsection
 
@@ -69,7 +72,6 @@
                             </tr>
                         </table>        
                     </div>
-
                     <div class="col-md-3">
                         <div class="featured-author">
                                     <div class="featured-author-inner">
@@ -186,8 +188,35 @@
         <section class="best-of-the-week">
             <div class="container">
                 <h1><div class="text">Best Of The Week</div>
-                 
+                    
                 </h1>
+                <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    @foreach ($novel as $element)
+                                    <article class="article col-md-3">
+                                        <div class="inner">
+                                            <figure>
+                                                <a href="single.html">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" alt="Sample Article">
+                                                </a>
+                                            </figure>
+                                            <div class="padding">
+                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }}</a></h6>
+                                                <footer>
+                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
+                                                    <a class="btn btn-primary more" href="single.html">
+                                                        <div>More</div>
+                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
+                                                    </a>
+                                                </footer>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>  
             </div>
         </section>
 @endsection
