@@ -305,7 +305,10 @@
 <script type="text/javascript">
 
     $( window ).load(function() {
-        alert('a');
+        // alert('a');
+        $.ajax({
+            
+        })
     });
 
 </script>
