@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-3 col-sm-12 text-right">
                             @if(Auth::user() != null)
-                                    <li><a href="{{ url('login') }}"><i class="ion-person"></i><div>hy ,{{ Auth::user()->name }}</div></a></li>
+                                    {{-- <li><a href="{{ url('login') }}"><i class="ion-person-add"></i><div>hy ,{{ Auth::user()->name }}</div></a></li> --}}
                             @else
                                 <ul class="nav-icons">
                                     <li><a href="{{ url('register') }}"><i class="ion-person-add"></i><div>Register</div></a></li>

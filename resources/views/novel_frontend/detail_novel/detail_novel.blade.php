@@ -105,7 +105,7 @@
                                                 <div class="item">
                                                     <a href="#">
                                                         <div class="name">Book</div>
-                                                        <div class="value">3,729</div>                                                      
+                                                        <div class="value">{{ $total_book }}</div>                                                      
                                                     </a>
                                                 </div>
                                                 <div class="item">
@@ -118,7 +118,7 @@
                                                 </div>
                                             </div>
                                             <div class="featured-author-quote">
-                                                "Eur costrict mobsa undivani krusvuw blos andugus pu aklosah"
+                                                {{-- "{{ $a }}" --}}
                                             </div>
                                         </div>
                                     </div>
@@ -238,10 +238,45 @@
         if (value) {
           $('.your-choice-was').show();
           $('.choice').text(value);
+          $.ajax({
+            type: "get",
+            url:'{{ route('novel_rate_star') }}',
+            data: '&id='+('{{ $book->dn_id }}')+'&rate='+value,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            if (data.status == 'sukses') {
+                iziToast.success({
+                    icon: 'fa fa-save',
+                    position:'topRight',
+                    title: 'Success!',
+                    message: 'Data Berhasil Disimpan!',
+                });
+
+                {{-- location.href = '{{ route('write_chapter') }}' --}}
+            }else if (data.status == 'ada') {
+                iziToast.warning({
+                    icon: 'fa fa-save',
+                    position:'topRight',
+                    title: 'Error!',
+                    message:'Level Sudah Terpakai',
+                });
+
+            }
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: data.message,
+            });
+          }
+        });
         } else {
           $('.your-choice-was').hide();
         }
       }
+
     });
 
     $('.baca').on('click',function(){

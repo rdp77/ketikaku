@@ -37,8 +37,8 @@
                             <img src="{{ asset('assets_backend/images/users/2.jpg') }}" alt="user" width="60" class="rounded-circle">
                         </div>
                         <div>
-                            <h3 class="m-b-0">Welcome back!</h3>
-                            <span>Monday, 9 March 2019</span>
+                            <h3 >Welcome back <b>{{ Auth::user()->name }}</b> !</h3>
+                            <span><?php date_default_timezone_set('Asia/Jakarta'); echo date('l \, j F Y'); ?></span>
                         </div>
                     </div>
                 </div>

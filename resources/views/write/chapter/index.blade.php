@@ -34,9 +34,13 @@
                 <div class="card-header bg-success">
                     <h4 class="m-b-0 text-white">Card Title</h4></div>
                 <div class="card-body">
-                     <div class="text-right mb-3">
-                    <a href="{{ route('write_chapter_create') }}" class="btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus
-    "></i> Add Data</a>
+                <div class="container row">
+                    <div class="mb-3 col-sm-11">
+                    <a href="{{ route('write_novel') }}" class="btn waves-effect waves-light btn-md btn-danger"><i class="fas fa-arrow-circle-left"></i> Back</a>
+                    </div>
+                    <div  class="mb-3 text-right col-sm-1">
+                    <a href="{{ route('write_chapter_create',['id'=>$id]) }}" class=" btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus-circle"></i> Add Data</a>
+                    </div>
                 </div>
                    <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
@@ -60,8 +64,8 @@
                                         {{-- <td>{!! $element->dnch_description !!}</td> --}}
                                         {{-- <td><img width="30%" src="{{ asset('/storage/app/'.$element->dnch_cover) }}"></td> --}}
                                         <td>
-                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-pencil-alt"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" ><i class="fas fa-times"></i></button>
+                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" ><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -106,7 +110,7 @@
                             success:function(data){
                                 if (data.status == 'sukses') {
                                     iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
-                                    window.location=('{{ route('write_chapter') }}')
+                                    window.location=('{{ route('write_chapter',['id'=>'this_val']) }}')
                                 }else{
                                     iziToast.error({position: 'topRight',message: 'Error Check your data! '});
                                 }

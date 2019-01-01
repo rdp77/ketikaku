@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-	$data = DB::table('d_novel')->get();
-    return view('welcome',compact('data'));
-});
+// Route::get('/', function () {
+// 	$data = DB::table('d_novel')->get();
+//     return view('welcome',compact('data'));
+// });
+Route::get('/', 'welcomeController@data_all')->name('data_all');
 
 Auth::routes();
 
@@ -27,8 +28,9 @@ Route::get('/write/write_novel/edit/{id}', 'write\write_novelController@edit')->
 Route::get('/write/write_novel/update/{id}', 'write\write_novelController@update')->name('write_novel_update');
 Route::get('/write/write_novel/delete/{id}', 'write\write_novelController@delete')->name('setting_novel_delete');
 
-Route::get('/write/write_chapter', 'write\write_chapterController@index')->name('write_chapter');
-Route::get('/write/write_chapter/create', 'write\write_chapterController@create')->name('write_chapter_create');
+Route::get('/write/write_chapter/{id}', 'write\write_chapterController@index')->name('write_chapter');
+
+Route::get('/write/write_chapter/create/{id}', 'write\write_chapterController@create')->name('write_chapter_create');
 Route::get('/write/write_chapter/save', 'write\write_chapterController@save')->name('write_chapter_save');
 Route::get('/write/write_chapter/edit/{id}', 'write\write_chapterController@edit')->name('write_chapter_edit');
 Route::get('/write/write_chapter/update/{id}', 'write\write_chapterController@update')->name('write_chapter_update');
@@ -40,6 +42,7 @@ Route::get('/profile/{name}', 'novel_frontend\profileController@profile')->name(
 
 // FRONT END NOVEL
 Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
+Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
 Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
 
 //BACKEND 

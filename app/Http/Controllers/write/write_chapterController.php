@@ -12,11 +12,12 @@ use App\d_chapter;
 class write_chapterController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
-
-        $data =  DB::Table('d_novel_chapter')->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')->get();
-        return view('write.chapter.index',compact('data'));
+        // return $id;
+        $data =  DB::Table('d_novel_chapter')->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')->where('dnch_ref_id',$id)->get();
+        $id = $id;
+        return view('write.chapter.index',compact('data','id'));
     }
     public function create()
     {

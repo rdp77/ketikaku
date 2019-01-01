@@ -9,6 +9,6 @@
         <meta property="og:title" content="HTML5 & CSS3 magazine template is based on Bootstrap 3" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
-        <meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
-        <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
+        <meta property="og:image" content="{{ asset('assets_backend/images/Favicon.jpg') }}" />
+        <title>KETIKAKU</title>
     </head>

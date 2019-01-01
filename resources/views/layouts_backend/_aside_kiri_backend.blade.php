@@ -12,7 +12,7 @@
                                     <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="users" class="rounded-circle img-fluid" />
                                 </div>
                                 <div class="user-content hide-menu m-t-5">
-                                    <h5 class="m-b-5 user-name font-medium">{{ Auth::user()->name }}</h5>
+                                    <h5 class="m-b-5 user-name font-medium">@if (Auth::user() != null ) {{ Auth::user()->name }} @else @endif</h5>
                                     <a href="javascript:void(0)" class="btn btn-circle btn-sm m-r-5" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                         <i class="ti-settings"></i>
@@ -22,7 +22,7 @@
                                         <i class="ti-power-off"></i>
                                     </a>
                                     <div class="dropdown-menu animated flipInY" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="{{ route('profile_backend',[Auth::user()->id]) }}">
+                                        <a class="dropdown-item" @if (Auth::user() != null )  href="{{ route('profile_backend',[Auth::user()->id]) }}" @else @endif >
                                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                     {{--     <a class="dropdown-item" href="javascript:void(0)">
                                             <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
@@ -50,13 +50,13 @@
                                 <span class="hide-menu">Homepage</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                      {{--   <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('home') }}
                                    " aria-expanded="false">
                                 <i class="mdi mdi-directions"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <!-- User Profile-->
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
@@ -71,12 +71,12 @@
                                         <span class="hide-menu"> Novel</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item">
+                               {{--  <li class="sidebar-item">
                                     <a href="{{ route('write_chapter') }}" class="sidebar-link">
                                         <i class="icon-Record"></i>
                                         <span class="hide-menu"> Chapter</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                
                             </ul>
                         </li>

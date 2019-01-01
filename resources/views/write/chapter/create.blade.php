@@ -37,11 +37,7 @@
                                     <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Title Novel</label>
                                         <div class="col-10">
-                                            <select class="form-control" name="dnch_ref_id">
-                                                @foreach ($title as $element)
-                                                    <option value="{{ $element->dn_id }}">{{ $element->dn_title }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input class="form-control" value="" type="text" readonly="" name="dnch_ref_id">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -125,7 +121,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                            location.href = '{{ route('write_chapter') }}'
+                            {{-- location.href = '{{ route('write_chapter') }}' --}}
                         }else if (data.status == 'ada') {
                             iziToast.warning({
                                 icon: 'fa fa-save',

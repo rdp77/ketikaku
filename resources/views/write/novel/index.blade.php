@@ -36,7 +36,7 @@
                 <div class="card-body">
                      <div class="text-right mb-3">
                     <a href="{{ route('write_novel_create') }}" class="btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus
-    "></i> Add Data</a>
+    "></i> Create Novel</a>
                 </div>
                    <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
@@ -53,7 +53,7 @@
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $element->dn_title }}</td>
+                                        <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}">{{ $element->dn_title }}</a></td>
                                         <td>{{ date('d F Y  -  h:i:s',strtotime($element->dn_created_at)) }}</td>
                                         {{-- <td>{!! $element->dn_description !!}</td> --}}
                                         <td><img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}"></td>
