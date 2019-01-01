@@ -19,15 +19,14 @@ class write_chapterController extends Controller
         $id = $id;
         return view('write.chapter.index',compact('data','id'));
     }
-    public function create()
+    public function create($id)
     {
-        $title =  DB::Table('d_novel')->get();
+        $title =  DB::Table('d_novel')->where('dn_id',$id)->first();
         return view('write.chapter.create',compact('title'));
     }
     public function save(Request $req)
     {
         // dd($req->all());
-        // return $input = $req->all();
         $data = DB::table('d_novel_chapter')->insert([
             'dnch_ref_id'=>$req->dnch_ref_id,
             'dnch_title'=>$req->dnch_title,
@@ -45,27 +44,26 @@ class write_chapterController extends Controller
     }
     public function edit($id)
     {
-    	$data = DB::table('d_site')->where('s_id',$id)->first();
+    	$data = DB::table('d_novel_chapter')
+                ->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
+                ->where('dnch_id',$id)
+                ->first();
+                // return $data;
 
-        return view('write.write_site.edit',compact('data'));
+        return view('write.chapter.edit',compact('data'));
     }
-    public function update(Request $request)
+    public function update(Request $req)
     {
+        // dd($req->all());
     	//get all name/value
-        $input = $request->except('s_id');
-    	//check unique row , if exist == 1
-    	// $check = DB::table('d_site')->where('r_level',$request->r_level)->count();
-    	$check = DB::table('d_site')
-                        ->where('s_id',$request->s_id)
-                        ->first();
+        // return $data = DB::table('d_novel_chapter')->where('dnch_ref_id',$req->dnch_ref_id)->where('dnch_id',$req->dnch_id)->get();
+         $data = DB::table('d_novel_chapter')->where('dnch_ref_id',$req->dnch_ref_id)->where('dnch_id',$req->dnch_id)->update([
+            'dnch_title'=>$req->dnch_title,
+            'dnch_content'=>$req->dnch_content,
+            'dnch_updated_at'=>date('Y-m-y h:i:s'),
+            // 'dnch_updated_by'=>Auth::user()->id,
+        ]);
 
-        if ($check != null) {
-            if ($check->s_id != $request->s_id) {
-                return response()->json(['status'=>'ada']);
-            }
-        }
-    	//save data
-        $data = d_site::where('s_id', $request->s_id)->update($input);
         //return response 
         if ($data == true) {
         	return response()->json(['status'=>'sukses']);
@@ -73,9 +71,9 @@ class write_chapterController extends Controller
         	return response()->json(['status'=>'gagal']);
         }
     }
-    public function delete($id)
+    public function delete(Request $req,$id)
     {
-    	$check = DB::table('d_site')->where('s_id',$id)->delete();
+    	$check = DB::table('d_novel_chapter')->where('dnch_ref_id',$req->dnch_ref_id)->where('dnch_id',$id)->delete();
 
     	if ($check == true) {
     		return response()->json(['status'=>'sukses']);

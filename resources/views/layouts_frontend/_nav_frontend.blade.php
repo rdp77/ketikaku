@@ -66,6 +66,7 @@
                             <li class="for-tablet"><a href="login.html">Login</a></li>
                             <li class="for-tablet"><a href="register.html">Register</a></li>
                             <li><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ route('write_novel_create') }}">Tulis</a></li>
                                 <li class="dropdown magz-dropdown">
                                     @if (Auth::User() != null) 
                                         <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>

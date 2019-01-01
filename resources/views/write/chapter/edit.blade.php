@@ -37,19 +37,20 @@
                                     <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Title Novel</label>
                                         <div class="col-10">
-                                            <input type="hidden" name="">
-                                            <input class="form-control" value="{{ $data->dnch_ }}" type="text" readonly="" name="dnch_ref_id">
+                                            <input type="hidden" name="dnch_ref_id" id="dnch_ref_id" value="{{ $data->dn_id }}">
+                                            <input type="hidden" name="dnch_id" value="{{ $data->dnch_id }}">
+                                            <input class="form-control" value="{{ $data->dn_title }}" type="text" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="dnch_title" class="col-2 col-form-label">Title Chapter</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" name="dnch_title" id="dnch_title">
+                                            <input class="form-control" value="{{ $data->dnch_title }}" type="text" name="dnch_title" id="dnch_title">
                                         </div>
                                     </div>
                                     
                                     <br>
-                                    <textarea id="mymce" name="dnch_content"></textarea>
+                                    <textarea id="mymce" name="dnch_content">{{ $data->dnch_content }}</textarea>
                                     <br>
 
                                      <div class="text-right">
@@ -100,7 +101,7 @@
                 function (instance, toast) {
                   tinyMCE.triggerSave();
                   var comment = $("#mytextarea").val();
-
+                  var id = $("#dnch_ref_id").val()
                   $.ajaxSetup({
                       headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -109,7 +110,7 @@
 
                     $.ajax({
                         type: "get",
-                        url:'{{ route('write_chapter_update') }}',
+                        url:baseUrl+'/write'+'/write_chapter/update/'+id,
                         data: $('#save').serialize(),
                         processData: false,
                         contentType: false,
@@ -122,7 +123,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                            {{-- location.href = '{{ route('write_chapter') }}' --}}
+                        location.href = baseUrl+'/write'+'/write_chapter/'+id
                         }else if (data.status == 'ada') {
                             iziToast.warning({
                                 icon: 'fa fa-save',

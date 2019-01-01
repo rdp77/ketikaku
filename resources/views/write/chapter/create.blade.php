@@ -37,7 +37,8 @@
                                     <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Title Novel</label>
                                         <div class="col-10">
-                                            <input class="form-control" value="" type="text" readonly="" name="dnch_ref_id">
+                                            <input class="form-control" value="{{ $title->dn_id }}" type="hidden" readonly="" name="dnch_ref_id" id="dnch_ref_id">
+                                            <input class="form-control" value="{{ $title->dn_title }}" type="text" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -99,6 +100,7 @@
                 function (instance, toast) {
                   tinyMCE.triggerSave();
                   var comment = $("#mytextarea").val();
+                  var id = $("#dnch_ref_id").val();
 
                   $.ajaxSetup({
                       headers: {
@@ -108,10 +110,10 @@
 
                     $.ajax({
                         type: "get",
-                        url:'{{ route('write_chapter_save') }}',
+                        url: baseUrl+'/write'+'/write_chapter/save/'+id,
                         data: $('#save').serialize(),
-                        processData: false,
-                        contentType: false,
+                        // processData: false,
+                        // contentType: false,
                       success:function(data){
                         if (data.status == 'sukses') {
                             iziToast.success({
@@ -121,7 +123,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                            {{-- location.href = '{{ route('write_chapter') }}' --}}
+                        location.href = baseUrl+'/write'+'/write_chapter/'+id;
                         }else if (data.status == 'ada') {
                             iziToast.warning({
                                 icon: 'fa fa-save',

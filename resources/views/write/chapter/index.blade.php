@@ -65,7 +65,7 @@
                                         {{-- <td><img width="30%" src="{{ asset('/storage/app/'.$element->dnch_cover) }}"></td> --}}
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" ><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" ><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -88,6 +88,9 @@
         $('.delete').on('click', function () {
 
        var this_val = $(this).val();
+       var ref = $(this).data('ref');
+
+       console.log(ref);
 
        iziToast.question({
                 theme: 'dark',
@@ -106,11 +109,12 @@
 
                         $.ajax({
                             url  : baseUrl+'/write'+'/write_chapter/delete/'+this_val,
+                            data : '&dnch_ref_id='+ref,
                             type :'get',
                             success:function(data){
                                 if (data.status == 'sukses') {
                                     iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
-                                    window.location=('{{ route('write_chapter',['id'=>'this_val']) }}')
+                                    location.href = baseUrl+'/write'+'/write_chapter/'+id
                                 }else{
                                     iziToast.error({position: 'topRight',message: 'Error Check your data! '});
                                 }
