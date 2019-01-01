@@ -172,7 +172,10 @@
                             </div>
                         
                     </div>
-                    <div class="col-xs-6 col-md-3 sidebar" id="sidebar">
+                    
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3 sidebar" id="sidebar">
                         <div class="sidebar-title for-tablet">Sidebar</div>
                         
                         <aside>
@@ -326,8 +329,9 @@
                         </aside>
                         
                     </div>
-                </div>
-            </div>
+        </div>
+    </div>
+
         </section>
 @endsection
 

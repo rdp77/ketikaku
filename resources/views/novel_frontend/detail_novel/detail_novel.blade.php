@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-md-12 col-md-12">
-                        <img src="{{ asset('/storage/app/'.$book->dn_cover) }}">
+                        <img src="{{ asset('/storage/app/'.$book->dn_cover) }}" width="50px">
                     </div>
 
                     <div class="col-md-6">
