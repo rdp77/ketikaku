@@ -114,7 +114,8 @@
                             success:function(data){
                                 if (data.status == 'sukses') {
                                     iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
-                                    location.href = baseUrl+'/write'+'/write_chapter/'+id
+                                    // location.href = baseUrl+'/write'+'/write_chapter/'+id
+                                    location.reload();
                                 }else{
                                     iziToast.error({position: 'topRight',message: 'Error Check your data! '});
                                 }
