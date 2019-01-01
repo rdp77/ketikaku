@@ -42,7 +42,12 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img src="{{ asset('assets_backend/images/users/5.jpg') }}" class="rounded-circle" width="150" />
+                                <center class="m-t-30"> 
+                                    @if (Auth::user()->u_image == null)
+                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle" width="150" />
+                                    @else
+                                        <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle" width="150" />
+                                    @endif
                                     <h4 class="card-title m-t-10">{{ Auth::user()->name }}</h4>
                                     <h6 class="card-subtitle">{{ Auth::user()->u_desc_short }}</h6>
                                     <div class="row text-center justify-content-md-center">
@@ -82,6 +87,9 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">Setting</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#change_password" role="tab" aria-controls="pills-setting" aria-selected="false">Change Password</a>
                                 </li>
                             </ul>
                             <!-- Tabs -->
@@ -146,29 +154,11 @@
                                         </div>
                                         <hr>
                                         <p class="m-t-30">{!! Auth::user()->u_desc_full !!}
-                                      {{--   <h4 class="font-medium m-t-30">Skill Set</h4>
-                                        <hr>
-                                        <h5 class="m-t-30">Wordpress <span class="pull-right">80%</span></h5>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                                        </div>
-                                        <h5 class="m-t-30">HTML 5 <span class="pull-right">90%</span></h5>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                                        </div>
-                                        <h5 class="m-t-30">jQuery <span class="pull-right">50%</span></h5>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                                        </div>
-                                        <h5 class="m-t-30">Photoshop <span class="pull-right">70%</span></h5>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
                                     <div class="card-body">
-                                        <form class="form-horizontal form-material">
+                                        <form class="form-horizontal form-material" id="form_save">
                                             <div class="form-group">
                                                 <label class="col-md-12">Full Name <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
@@ -178,7 +168,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Name Alias <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_name }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->name }}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -187,12 +177,7 @@
                                                     <input type="email" value="{{ Auth::user()->email }}" class="form-control form-control-line" name="example-email" id="example-email">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Password</label>
-                                                <div class="col-md-12">
-                                                    <input type="password" class="form-control form-control-line">
-                                                </div>
-                                            </div>
+                                            
                                             <div class="form-group">
                                                 <label class="col-md-12">Phone <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
@@ -212,11 +197,43 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-12">Desc Full</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" value="{{ Auth::user()->u_desc_short }}" class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                            <div class="form-group preview_div">
+                                                <label class="col-md-12">Photo</label>
+                                                <div class="col-md-12">
+                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                                        <div class="file-upload upl_1" style="width: 100%;">
+                                                            <div class="file-select">
+                                                                <div class="file-select-button fileName" >Image</div>
+                                                                <div class="file-select-name noFile tag_image_1" >Cover Image</div> 
+                                                                <input type="file" class="chooseFile" name="dn_cover">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                                        <div class="preview_td">
+                                                            <img style="width: 30%;border:1px solid pink" class="output" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                            <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success">Update Profile</button>
+                                                    <button type="button" onclick="save()" class="btn btn-success">Update Profile</button>
                                                 </div>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div class="card-body">
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -235,6 +252,144 @@
     function readmore(argument) {
         alert(argument);
     }
+
+        $('.chooseFile').bind('change', function () {
+            var filename = $(this).val();
+            var fsize = $(this)[0].files[0].size;
+            if(fsize>1048576) //do something if file size more than 1 mb (1048576)
+            {
+              iziToast.warning({
+                icon: 'fa fa-times',
+                message: 'File Is To Big!',
+              });
+              return false;
+            }
+            var parent = $(this).parents(".preview_div");
+            if (/^\s*$/.test(filename)) {
+                $(parent).find('.file-upload').removeClass('active');
+                $(parent).find(".noFile").text("No file chosen..."); 
+            }
+            else {
+                $(parent).find('.file-upload').addClass('active');
+                $(parent).find(".noFile").text(filename.replace("C:\\fakepath\\", "")); 
+            }
+            load(parent,this);
+        });
+
+        function load(parent,file) {
+            var fsize = $(file)[0].files[0].size;
+            if(fsize>2048576) //do something if file size more than 1 mb (1048576)
+            {
+              iziToast.warning({
+                icon: 'fa fa-times',
+                message: 'File Is To Big!',
+              });
+              return false;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $(parent).find('.output').attr('src',e.target.result);
+            };
+            reader.readAsDataURL(file.files[0]);
+        }
+
+        // $(document).ready(function() {
+
+            if ($("#mymce").length > 0) {
+                tinymce.init({
+                    selector: "textarea#mymce",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+
+                });
+            }
+        // });
+
+        function save() {
+           iziToast.show({
+            overlay: true,
+            close: false,
+            timeout: 20000, 
+            color: 'dark',
+            icon: 'fas fa-question-circle',
+            title: 'Save Data!',
+            message: 'Apakah Anda Yakin ?!',
+            position: 'center',
+            progressBarColor: 'rgb(0, 255, 184)',
+            buttons: [
+            [
+                '<button style="background-color:#17a991;color:white;">Save</button>',
+                function (instance, toast) {
+                  tinyMCE.triggerSave();
+                  var comment = $("#mytextarea").val();
+
+                  $.ajaxSetup({
+                      headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var form = $('#save');
+                    var formdata = false;
+                    if (window.FormData){
+                        formdata = new FormData(form[0]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url:'{{ route('write_novel_save') }}',
+                        data: formdata ? formdata : form.serialize()+'&'+comment,
+                        processData: false,
+                        contentType: false,
+                      success:function(data){
+                        if (data.status == 'sukses') {
+                            iziToast.success({
+                                icon: 'fa fa-save',
+                                position:'topRight',
+                                title: 'Success!',
+                                message: 'Data Berhasil Disimpan!',
+                            });
+
+                            location.href = '{{ route('write_novel') }}'
+                        }else if (data.status == 'ada') {
+                            iziToast.warning({
+                                icon: 'fa fa-save',
+                                position:'topRight',
+                                title: 'Error!',
+                                message:'Level Sudah Terpakai',
+                            });
+
+                        }
+                      },error:function(){
+                        iziToast.error({
+                            icon: 'fa fa-info',
+                            position:'topRight',
+                            title: 'Error!',
+                            message: data.message,
+                        });
+                      }
+                    });
+                    instance.hide({
+                        transitionOut: 'fadeOutUp'
+                    }, toast);
+                }
+            ],
+            [
+                '<button style="background-color:#d83939;color:white;">Cancel</button>',
+                function (instance, toast) {
+                  instance.hide({
+                    transitionOut: 'fadeOutUp'
+                  }, toast);
+                }
+              ]
+            ]
+        });
+        }
 
 </script>
 

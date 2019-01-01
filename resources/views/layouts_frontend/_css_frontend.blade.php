@@ -14,4 +14,5 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/skins/all.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+<link href="{{ asset('assets_backend/libs/iziToast-master/dist/css/iziToast.css') }}" rel="stylesheet" type="text/css" >
   

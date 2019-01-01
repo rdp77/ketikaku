@@ -9,7 +9,12 @@
                             <!-- User Profile-->
                             <div class="user-profile dropdown m-t-5">
                                 <div class="user-pic">
-                                    <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="users" class="rounded-circle img-fluid" />
+                                    @if (Auth::user()->u_image == null)
+                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle img-fluid" {{-- width="150" --}} />
+                                    @else
+                                        <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle img-fluid" {{-- width="150" --}} />
+                                    @endif
+                                    {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="users" class="" /> --}}
                                 </div>
                                 <div class="user-content hide-menu m-t-5">
                                     <h5 class="m-b-5 user-name font-medium">@if (Auth::user() != null ) {{ Auth::user()->name }} @else @endif</h5>
@@ -24,18 +29,10 @@
                                     <div class="dropdown-menu animated flipInY" aria-labelledby="Userdd">
                                         <a class="dropdown-item" @if (Auth::user() != null )  href="{{ route('profile_backend',[Auth::user()->id]) }}" @else @endif >
                                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                    {{--     <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a> --}}
-                                        {{-- <div class="dropdown-divider"></div> --}}
-                                        <a class="dropdown-item" href="{{ route('login') }}"
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                        <form id="logout-form" action="{{ route('login') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </div>

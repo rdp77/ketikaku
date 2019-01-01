@@ -9,7 +9,7 @@
 
 
 <style type="text/css">
-    .nav-tabs>li.active>a:hover{color:#555;cursor:default;background-color:red;border-bottom-color:transparent}
+   /* .nav-tabs>li.active>a:hover{color:#555;cursor:default;background-color:red;border-bottom-color:transparent}
     .nav-tabs{
         border-bottom:none;
     }
@@ -19,7 +19,7 @@
         background-color: transparent !important;
         border-bottom: 0px solid #ddd !important;
         border-bottom-color: transparent !important;
-    }
+    }*/   
     .starrr { display: inline-block; }
 
     .starrr i {
@@ -28,8 +28,11 @@
       cursor: pointer;
       color: #ffd119;
     }
-    ..best-of-the-week .article figure{
+    .best-of-the-week .article figure{
         height: auto;
+    }
+    .comments textarea.form-control{
+        height: 100px;
     }
 </style>
 @endsection
@@ -126,29 +129,38 @@
                      
                     </div>
 
-                    <div class="col-md-12" style="background-color: #efefef;margin-top: 40px;padding: 20px 0px 0px 30px">
-                      <ul class="nav nav-tabs">
+                    <div class="col-md-12" style="/*background-color: #efefef;*/margin-top: 40px;padding: 20px 0px 0px 30px">
+                   {{--    <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">DESKRIPSI</a></li>
                         <li><a data-toggle="tab" href="#menu1">BAB CERITA</a></li>
                         <li><a data-toggle="tab" href="#menu2">ULASAN</a></li>
-                      </ul>
+                      </ul> --}}
+
+                      <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li class="active">
+                                <a href="#home" role="tab" data-toggle="tab">
+                                    {{-- <i class="ion-android-star-outline"></i> --}} DESKRIPSI
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#menu1" role="tab" data-toggle="tab">
+                                    {{-- <i class="ion-ios-chatboxes-outline"></i> --}} BAB CERITA
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#menu2" role="tab" data-toggle="tab">
+                                    {{-- <i class="ion-ios-chatboxes-outline"></i> --}} ULASAN
+                                </a>
+                            </li>
+                        </ul>
+
 
                       <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active" style="font-size: 15px;margin-top: 40px">
-                            <div class="col-md-offset-5">
-                            @if(Auth::user() != null)
-                            <h5>Click to rate:</h5>
-                            <div class="starrr"></div>
-                            <div>&nbsp;
-                              <span class='your-choice-was' style='display: none;'>
-                                Your rating was <span class='choice'></span>.
-                              </span>
-                            </div>
-                            @else
-                                Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a>
-                            @endif
-                            </div>
+                        <div id="home" class="tab-pane fade in active col-md-12" style="font-size: 15px;margin-top: 40px">
+                            
+                            <div class="col-md-12">
                               {!! $book->dn_description !!}
+                            </div>
                         </div>
                         <div id="menu1" class="tab-pane fade" style="margin-top: 40px">
                             <table class="table" style="width:100%" id="myTable">
@@ -176,7 +188,57 @@
                             </table>
                         </div>
                         <div id="menu2" class="tab-pane fade" style="margin-top: 40px">
-                          
+                            <div class="col-md-4 col-md-offset-3">
+                                @if(Auth::user() != null)
+                                <div class="comments">
+                                    <h4 class="title">{{-- 3 Responses  --}}</h4>
+                                    <div class="comment-list">
+                                        <form class="row">
+                                            <div class="col-md-12">
+                                                <h4 class="title">Rate This Novel :</h4>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-12">
+                                                <div class="starrr"></div>
+                                                <input type="hidden" class="choice">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="message">Response <span class="required"></span></label>
+                                                <textarea class="form-control" name="message" id="message" placeholder="Write your response ..."></textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <button type="button" class="btn btn-primary rate">Send Response</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                @else
+                                    Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a>
+                                @endif
+
+                                @foreach ($novel_rate as $element)
+                                <div class="item">
+                                    <div class="user">                                
+                                        <figure>
+                                            <img src="images/img01.jpg">
+                                        </figure>
+                                        <div class="details">
+                                            <h5 class="name">Mark Otto</h5>
+                                            <div class="time">24 Hours</div>
+                                            <div class="description">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore <a href="#">magna</a> aliqua. Ut enim ad minim veniam,
+                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+                                            </div>
+                                            <footer>
+                                                <a href="#">Reply</a>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -202,10 +264,10 @@
                                                 </a>
                                             </figure>
                                             <div class="padding">
-                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }}</a></h6>
+                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
                                                     <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
-                                                    <a class="btn btn-primary more" href="single.html">
+                                                    <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
                                                     </a>
@@ -215,6 +277,7 @@
                                     </article>
                                     @endforeach
                                 </div>
+
                             </div>
                         </div>  
             </div>
@@ -237,41 +300,8 @@
       change: function(e, value){
         if (value) {
           $('.your-choice-was').show();
-          $('.choice').text(value);
-          $.ajax({
-            type: "get",
-            url:'{{ route('novel_rate_star') }}',
-            data: '&id='+('{{ $book->dn_id }}')+'&rate='+value,
-            processData: false,
-            contentType: false,
-          success:function(data){
-            if (data.status == 'sukses') {
-                iziToast.success({
-                    icon: 'fa fa-save',
-                    position:'topRight',
-                    title: 'Success!',
-                    message: 'Data Berhasil Disimpan!',
-                });
-
-                {{-- location.href = '{{ route('write_chapter') }}' --}}
-            }else if (data.status == 'ada') {
-                iziToast.warning({
-                    icon: 'fa fa-save',
-                    position:'topRight',
-                    title: 'Error!',
-                    message:'Level Sudah Terpakai',
-                });
-
-            }
-          },error:function(){
-            iziToast.error({
-                icon: 'fa fa-info',
-                position:'topRight',
-                title: 'Error!',
-                message: data.message,
-            });
-          }
-        });
+          $('.choice').val(value);
+          
         } else {
           $('.your-choice-was').hide();
         }
@@ -285,6 +315,56 @@
         var res1 = datas.replace(/\s/g,"-");
         var res = datass.replace(/\s/g,"-");
         window.location.href = baseUrl + '/chapter/'+res1;
+    })
+
+    $('.rate').click(function(){
+        var message = $('#message').val();
+        var value = $('.choice').val();
+        if (value == '') {
+            iziToast.warning({
+                    icon: 'fa fa-info-circle',
+                    position:'topRight',
+                    title: 'Warning!',
+                    message: 'Rating Tidak Boleh Kosong!',
+                });
+            return false;
+        }
+        if (message == '') {
+            iziToast.warning({
+                    icon: 'fa fa-info-circle',
+                    position:'topRight',
+                    title: 'Warning!',
+                    message: 'Ulasan Tidak Boleh Kosong!',
+                });
+            return false;
+        }
+        
+        $.ajax({
+            type: "get",
+            url:'{{ route('novel_rate_star') }}',
+            data: '&id='+('{{ $book->dn_id }}')+'&rate='+value+'&message='+message,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            if (data.status == 'sukses') {
+                iziToast.success({
+                    icon: 'fa fa-save',
+                    position:'topRight',
+                    title: 'Success!',
+                    message: 'Message Berhasil Disimpan!',
+                });
+
+                {{-- location.href = '{{ route('write_chapter') }}' --}}
+            }
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
     })
 
 

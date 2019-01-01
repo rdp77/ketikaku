@@ -394,7 +394,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31">
+                                @if (Auth::user()->u_image == null)
+                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle" width="31" />
+                                @else
+                                    <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle" width="31" />
+                                @endif
+                                {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="" width="31"> --}}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                                 <span class="with-arrow">
@@ -402,7 +407,12 @@
                                 </span>
                                 <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
                                     <div class="">
-                                        <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="img-circle" width="60">
+                                        @if (Auth::user()->u_image == null)
+                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="img-circle" width="60" />
+                                        @else
+                                            <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="img-circle" width="60" />
+                                        @endif
+                                        {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="" width="60"> --}}
                                     </div>
                                     <div class="m-l-10">
                                         <h4 class="m-b-0">-</h4>

@@ -66,164 +66,23 @@
                             <li class="for-tablet"><a href="login.html">Login</a></li>
                             <li class="for-tablet"><a href="register.html">Register</a></li>
                             <li><a href="{{ url('/') }}">Home</a></li>
-                           {{--  <li class="dropdown magz-dropdown">
-                                <a href="category.html">Pages <i class="ion-ios-arrow-right"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li class="dropdown magz-dropdown">
-                                        <a href="#">Authentication <i class="ion-ios-arrow-right"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="register.html">Register</a></li>
-                                            <li><a href="forgot.html">Forgot Password</a></li>
-                                            <li><a href="reset.html">Reset Password</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="category.html">Category</a></li>
-                                    <li><a href="single.html">Single</a></li>
-                                    <li><a href="page.html">Page</a></li>
-                                    <li><a href="search.html">Search</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li class="dropdown magz-dropdown">
-                                        <a href="#">Error <i class="ion-ios-arrow-right"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="403.html">403</a></li>
-                                            <li><a href="404.html">404</a></li>
-                                            <li><a href="500.html">500</a></li>
-                                            <li><a href="503.html">503</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown magz-dropdown"><a href="#">Dropdown <i class="ion-ios-arrow-right"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="category.html">Internet</a></li>
-                                    <li class="dropdown magz-dropdown"><a href="category.html">Troubleshoot <i class="ion-ios-arrow-right"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="category.html">Software</a></li>
-                                            <li class="dropdown magz-dropdown"><a href="category.html">Hardware <i class="ion-ios-arrow-right"></i></a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="category.html">Main Board</a></li>
-                                                    <li><a href="category.html">RAM</a></li>
-                                                    <li><a href="category.html">Power Supply</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="category.html">Brainware</a>
-                                        </ul>
-                                    </li>
-                                    <li><a href="category.html">Office</a></li>
-                                    <li class="dropdown magz-dropdown"><a href="#">Programming <i class="ion-ios-arrow-right"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="category.html">Web</a></li>
-                                            <li class="dropdown magz-dropdown"><a href="category.html">Mobile <i class="ion-ios-arrow-right"></i></a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="dropdown magz-dropdown"><a href="category.html">Hybrid <i class="ion-ios-arrow-right"></i></a>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Ionic Framework 1</a></li>
-                                                            <li><a href="#">Ionic Framework 2</a></li>
-                                                            <li><a href="#">Ionic Framework 3</a></li>
-                                                            <li><a href="#">Framework 7</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="category.html">Native</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="category.html">Desktop</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown magz-dropdown magz-dropdown-megamenu"><a href="#">Mega Menu <i class="ion-ios-arrow-right"></i> <div class="badge">Hot</div></a>
-                                <div class="dropdown-menu megamenu">
-                                    <div class="megamenu-inner">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h2 class="megamenu-title">Trending</h2>
-                                                    </div>
-                                                </div>
-                                                <ul class="vertical-menu">
-                                                    <li><a href="#"><i class="ion-ios-circle-outline"></i> Mega menu is a new feature</a></li>
-                                                    <li><a href="#"><i class="ion-ios-circle-outline"></i> This is an example</a></li>
-                                                    <li><a href="#"><i class="ion-ios-circle-outline"></i> For a submenu item</a></li>
-                                                    <li><a href="#"><i class="ion-ios-circle-outline"></i> You can add</a></li>
-                                                    <li><a href="#"><i class="ion-ios-circle-outline"></i> Your own items</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h2 class="megamenu-title">Featured Posts</h2>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <article class="article col-md-4 mini">
-                                                        <div class="inner">
-                                                            <figure>
-                                                                <a href="single.html">
-                                                                    <img src="{{ asset('assets/images/news/img10.jpg') }}" alt="Sample Article">
-                                                                </a>
-                                                            </figure>
-                                                            <div class="padding">
-                                                                <div class="detail">
-                                                                    <div class="time">December 10, 2016</div>
-                                                                    <div class="category"><a href="category.html">Healthy</a></div>
-                                                                </div>
-                                                                <h2><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate</a></h2>
-                                                            </div>
-                                                        </div>
-                                                    </article>
-                                                    <article class="article col-md-4 mini">
-                                                        <div class="inner">
-                                                            <figure>
-                                                                <a href="single.html">
-                                                                    <img src="{{ asset('assets/images/news/img11.jpg') }}" alt="Sample Article">
-                                                                </a>
-                                                            </figure>
-                                                            <div class="padding">
-                                                                <div class="detail">
-                                                                    <div class="time">December 13, 2016</div>
-                                                                    <div class="category"><a href="category.html">Lifestyle</a></div>
-                                                                </div>
-                                                                <h2><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate</a></h2>
-                                                            </div>
-                                                        </div>
-                                                    </article>
-                                                    <article class="article col-md-4 mini">
-                                                        <div class="inner">
-                                                            <figure>
-                                                                <a href="single.html">
-                                                                    <img src="{{ asset('assets/images/news/img14.jpg') }}" alt="Sample Article">
-                                                                </a>
-                                                            </figure>
-                                                            <div class="padding">
-                                                                <div class="detail">
-                                                                    <div class="time">December 14, 2016</div>
-                                                                    <div class="category"><a href="category.html">Travel</a></div>
-                                                                </div>
-                                                                <h2><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate</a></h2>
-                                                            </div>
-                                                        </div>
-                                                    </article>
-                                                </div>
-                                            </div>
-                                        </div>                              
-                                    </div>
-                                </div>
-                            </li> --}}
-                        
                                 <li class="dropdown magz-dropdown">
                                     @if (Auth::User() != null) 
                                         <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#"><i class="icon ion-person"></i> My Account</a></li>
-                                            <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li>
-                                            <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li>
-                                            <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li>
-                                            <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
+                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="icon ion-person"></i> My Account</a></li>
+                                            {{-- <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li> --}}
+                                            {{-- <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li> --}}
+                                            {{-- <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li> --}}
+                                            {{-- <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li> --}}
+                                            {{-- <li class="divider"></li> --}}
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();" ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a></li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                            {{-- <li><a href="#"><i class=""></i> Logout</a></li> --}}
                                         </ul>
                                     @else
                                         {{-- <a href="#">  <i class="ion-ios-arrow-right"></i></a> --}}

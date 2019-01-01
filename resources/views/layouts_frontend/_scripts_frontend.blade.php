@@ -10,6 +10,7 @@
 <script src="{{ asset('assets/scripts/toast/jquery.toast.min.js') }}"></script>
 <script src="{{ asset('assets/js/demo.js') }}"></script>
 <script src="{{ asset('assets/js/e-magz.js') }}"></script>
+<script src="{{ asset('assets_backend/libs/iziToast-master/dist/js/iziToast.min.js') }}"></script>
 
 <script type="text/javascript">
 	
