@@ -56,7 +56,7 @@
                                         <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}">{{ $element->dn_title }}</a></td>
                                         <td>{{ date('d F Y  -  h:i:s',strtotime($element->dn_created_at)) }}</td>
                                         {{-- <td>{!! $element->dn_description !!}</td> --}}
-                                        <td><img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}"></td>
+                                        <td><img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}?{{ time() }}"></td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_novel_edit', ['id' => $element->dn_id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}" ><i class="fas fa-times"></i></button>
