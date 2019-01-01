@@ -107,7 +107,7 @@ class write_novelController extends Controller
     }
     public function delete($id)
     {
-    	$check = DB::table('d_novel')->where('s_id',$id)->delete();
+    	$check = DB::table('d_novel')->where('dn_id',$id)->delete();
 
     	if ($check == true) {
     		return response()->json(['status'=>'sukses']);

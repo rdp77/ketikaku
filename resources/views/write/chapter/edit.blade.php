@@ -7,7 +7,7 @@
    <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Dashboard</h4>
+                <h4 class="page-title">Create Novel</h4>
                 <div class="d-flex align-items-center">
 
                 </div>
@@ -19,7 +19,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">write_novel</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,29 +32,25 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Default Basic Forms</h4>
-                                <h5 class="card-subtitle"> All bootstrap element classies </h5>
                                 <br>
                                 <form id="save">
-
-                                    {{-- HIDDEN --}}
-
-                                    <input class="form-control" hidden="" type="text" name="r_id" value="{{ $data->r_id }}" id="r_id">
-
-
-                                    {{-- END HIDDEN --}}
                                     <div class="form-group row">
-                                        <label for="r_level" class="col-2 col-form-label">Level</label>
+                                        <label for="dn_title" class="col-2 col-form-label">Title Novel</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" name="r_level" value="{{ $data->r_level }}" id="r_level">
+                                            <input type="hidden" name="">
+                                            <input class="form-control" value="{{ $data->dnch_ }}" type="text" readonly="" name="dnch_ref_id">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="r_name" class="col-2 col-form-label">Name</label>
+                                        <label for="dnch_title" class="col-2 col-form-label">Title Chapter</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" name="r_name" value="{{ $data->r_name }}" id="r_name">
+                                            <input class="form-control" type="text" name="dnch_title" id="dnch_title">
                                         </div>
                                     </div>
+                                    
+                                    <br>
+                                    <textarea id="mymce" name="dnch_content"></textarea>
+                                    <br>
 
                                      <div class="text-right">
                                         <button class="btn btn-primary" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
@@ -67,11 +63,26 @@
     </div>
 @endsection
 
-@section('extra_scripts')
-
-
+@section('extra_scripts')    
     <script type="text/javascript">
-        
+            // $(document).ready(function() {
+
+            if ($("#mymce").length > 0) {
+                tinymce.init({
+                    selector: "textarea#mymce",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+
+                });
+            }
+        // });
+
         function save() {
            iziToast.show({
             overlay: true,
@@ -87,6 +98,8 @@
             [
                 '<button style="background-color:#17a991;color:white;">Save</button>',
                 function (instance, toast) {
+                  tinyMCE.triggerSave();
+                  var comment = $("#mytextarea").val();
 
                   $.ajaxSetup({
                       headers: {
@@ -96,7 +109,7 @@
 
                     $.ajax({
                         type: "get",
-                        url:'{{ route('master_role_update') }}',
+                        url:'{{ route('write_chapter_update') }}',
                         data: $('#save').serialize(),
                         processData: false,
                         contentType: false,
@@ -109,7 +122,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                            location.href = '{{ route('master_role') }}'
+                            {{-- location.href = '{{ route('write_chapter') }}' --}}
                         }else if (data.status == 'ada') {
                             iziToast.warning({
                                 icon: 'fa fa-save',
