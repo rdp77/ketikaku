@@ -34,7 +34,7 @@
                 <div class="card-header bg-success">
                     <h4 class="m-b-0 text-white">Card Title</h4></div>
                 <div class="card-body">
-                <div class="container row">
+                <div class="container-fluid row">
                     <div class="mb-3 col-sm-11">
                     <a href="{{ route('write_novel') }}" class="btn waves-effect waves-light btn-md btn-danger"><i class="fas fa-arrow-circle-left"></i> Back</a>
                     </div>
