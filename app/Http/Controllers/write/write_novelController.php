@@ -15,7 +15,7 @@ class write_novelController extends Controller
     public function index()
     {
 
-        $data =  DB::Table('d_novel')->get();
+        $data =  DB::Table('d_novel')->where('dn_created_by',Auth::user()->id)->get();
         return view('write.novel.index',compact('data'));
     }
     public function create()
