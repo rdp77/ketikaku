@@ -28,6 +28,7 @@ Route::get('/write/write_novel/edit/{id}', 'write\write_novelController@edit')->
 Route::post('/write/write_novel/update', 'write\write_novelController@update')->name('write_novel_update');
 Route::get('/write/write_novel/delete/{id}', 'write\write_novelController@delete')->name('setting_novel_delete');
 
+
 Route::get('/write/write_chapter/{id}', 'write\write_chapterController@index')->name('write_chapter');
 Route::get('/write/write_chapter/create/{id}', 'write\write_chapterController@create')->name('write_chapter_create');
 Route::get('/write/write_chapter/save/{id}', 'write\write_chapterController@save')->name('write_chapter_save');
@@ -42,6 +43,7 @@ Route::get('/profile/{name}', 'novel_frontend\profileController@profile')->name(
 // FRONT END NOVEL
 Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
 Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
+Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
 Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
 
 //BACKEND 

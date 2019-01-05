@@ -1,6 +1,10 @@
 @extends('layouts_backend._main_backend')
-
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/normalize.css') }}" /> --}}
 @section('extra_styles')
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/demo.css') }}" /> --}}
+
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/component.css') }}" /> --}}
+
 @endsection
 
 @section('content')
@@ -43,11 +47,39 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> 
-                                    @if (Auth::user()->u_image == null)
-                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle" width="150" />
-                                    @else
-                                        <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle" width="150" />
-                                    @endif
+                                <div class="form-group preview_div">
+                                    {{-- <label class="col-md-12">Photo </label> --}}
+                                        <div class="col-md-12">
+
+                                        @if (Auth::user()->u_image == null)
+                                        <div class="preview_td">
+                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="
+                                            output rounded-circle" width="150" height="145" />
+                                        </div>
+                                        @else
+                                        <div class="preview_td">
+                                            <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="output rounded-circle" width="150" height="145" />
+                                        </div>
+                                        @endif
+                                        
+                                            <br>
+                                            <div class="col-lg-8 col-md-8 col-sm-6">
+                                                <div class="file-upload upl_1" {{-- style="width: 100%;" --}}>
+                                                    <div class="file-select">
+                                                        <div class="file-select-button fileName" >chooseFile</div>
+                                                        <div class="file-select-name noFile tag_image_1" >Image</div> 
+                                                        <input type="file" class="chooseFile" name="dn_cover">
+                                                    </div>
+                                                    {{-- <button class="btn btn-secondary">Save</button> --}}
+                                                </div>
+                                                {{-- <div class="col-sm-2">                                              --}}
+                                                    {{-- <button class="btn btn-secondary">Save</button> --}}
+                                                {{-- </div> --}}
+                                            </div>
+                                            
+                                           
+                                        </div>
+                                    </div>
                                     <h4 class="card-title m-t-10">{{ Auth::user()->name }}</h4>
                                     <h6 class="card-subtitle">{{ Auth::user()->u_desc_short }}</h6>
                                     <div class="row text-center justify-content-md-center">
@@ -245,6 +277,9 @@
 
 @section('extra_scripts')
 
+{{-- <script type="text/javascript" src="{{ asset('design_frontend/input_file/js/custom-file-input.js') }}"></script> --}}
+{{-- <script type="text/javascript" src="{{ asset('design_frontend/input_file/js/jquery.custom-file-input.js') }}"></script> --}}
+{{-- <script type="text/javascript" src="{{ asset('design_frontend/input_file/js/jquery-v1.min.js') }}"></script> --}}
 
 <script type="text/javascript">
     

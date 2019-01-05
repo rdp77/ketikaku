@@ -19,8 +19,13 @@ class write_novelController extends Controller
         return view('write.novel.index',compact('data'));
     }
     public function create()
-    {
-        return view('write.novel.create');
+    {   
+
+        if (Auth::user() == null) {
+            return view('auth.login');
+        }else{
+            return view('write.novel.create');
+        }
     }
     public function save(Request $req)
     {

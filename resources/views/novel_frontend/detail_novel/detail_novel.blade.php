@@ -34,6 +34,10 @@
     .comments textarea.form-control{
         height: 100px;
     }
+    .kuning{
+
+      color: #ffd119;
+    }
 </style>
 @endsection
 
@@ -42,7 +46,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-md-12 col-md-12">
-                        <img src="{{ asset('/storage/app/'.$book->dn_cover) }}" width="50px">
+                        <img src="{{ asset('/storage/app/'.$book->dn_cover) }}" width="200px" height="280px">
                     </div>
 
                     <div class="col-md-6">
@@ -58,13 +62,23 @@
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
                                 <td style="border-bottom:1px solid #dddddd">-</td>
                             </tr>
+                           <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v3.2';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>  
+<div class="fb-share-button" data-href="http://ketikaku.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fketikaku.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Bagikan</a></div>
+
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Ditulis Oleh</td>
                                 <td style="border-bottom:1px solid #dddddd"><a href="{{ route('profile_frontend',['name'=>$book->name]) }}">{{ $book->name }}</a></td>
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
-                                <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , h.i',strtotime($book->dn_created_at)) }}</td>
+                                <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , h:i:s',strtotime($book->dn_created_at)) }}</td>
                             </tr>
                         </table>    
                         <table width="100%">
@@ -157,9 +171,10 @@
 
                       <div class="tab-content">
                         <div id="home" class="tab-pane fade in active col-md-12" style="font-size: 15px;margin-top: 40px">
-                            
+                                
                             <div class="col-md-12">
                               {!! $book->dn_description !!}
+                              
                             </div>
                         </div>
                         <div id="menu1" class="tab-pane fade" style="margin-top: 40px">
@@ -187,57 +202,129 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="menu2" class="tab-pane fade" style="margin-top: 40px">
-                            <div class="col-md-4 col-md-offset-3">
+                        <div id="menu2" class="tab-pane fade" style="margin-top: 10px">
+                            <div class="col-md-4 col-md-offset-4">
                                 @if(Auth::user() != null)
-                                <div class="comments">
-                                    <h4 class="title">{{-- 3 Responses  --}}</h4>
-                                    <div class="comment-list">
-                                        <form class="row">
-                                            <div class="col-md-12">
-                                                <h4 class="title">Rate This Novel :</h4>
+                                        <input type="hidden" name="" value="{{ Auth::user()->id }}" class="dr_rated_by">
+                                    @if (Auth::user()->id != $book->dn_created_by)
+                                        <div class="comments">
+                                            <h4 class="title">{{-- 3 Responses  --}}</h4>
+                                            <div class="comment-list">
+                                                <form class="row">
+                                                    <div class="col-md-12">
+                                                        <h4 class="title">Rate This Novel :</h4>
+                                                    </div>
+                                                    
+                                                    <div class="form-group col-md-12">
+                                                        <div class="starrr"></div>
+                                                        <input type="hidden" class="choice">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label for="message">Response <span class="required"></span></label>
+                                                        <textarea class="form-control" name="message" id="message" placeholder="Write your response ..."></textarea>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <button type="button" class="btn btn-primary rate">Send Response</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            
-                                            <div class="form-group col-md-12">
-                                                <div class="starrr"></div>
-                                                <input type="hidden" class="choice">
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label for="message">Response <span class="required"></span></label>
-                                                <textarea class="form-control" name="message" id="message" placeholder="Write your response ..."></textarea>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <button type="button" class="btn btn-primary rate">Send Response</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                        </div>
+                                    @endif
                                 @else
                                     Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a>
                                 @endif
+                            </div>
+                            <div class="col-md-12">
+                              <div class="comments">
+                                <div class="comment-list drop_here">
+                                    @foreach ($novel_rate as $element)
+                                        <div class="item">
+                                            <div class="user">                                
+                                                <figure>
+                                                    @if ($element->u_image != null)
+                                                        <img src="{{ asset('assets/images/img01.jpg') }}">
+                                                    @else
+                                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
+                                                    @endif
+                                                </figure>
+                                                <div class="details">
+                                                    <h5 class="name">{{ $element->name }}  
+                                                        @if ($element->dr_rate == 1)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 2)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 3)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 4)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 5)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                        @endif
+                                                    </h5>
+                                                    <div class="time">{{ date('d F Y',strtotime($element->dr_created_at)) }} <small>{{ date('h:i:s A',strtotime($element->dr_created_at)) }}</small></div>
+                                                    <div class="description">
+                                                        {{ $element->dr_message }}
+                                                    </div>
+                                                    <footer>
 
-                                @foreach ($novel_rate as $element)
-                                <div class="item">
-                                    <div class="user">                                
-                                        <figure>
-                                            <img src="images/img01.jpg">
-                                        </figure>
-                                        <div class="details">
-                                            <h5 class="name">Mark Otto</h5>
-                                            <div class="time">24 Hours</div>
-                                            <div class="description">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore <a href="#">magna</a> aliqua. Ut enim ad minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+                                                        <br>
+                                                        <button type="button" class="btn btn-sm btn-primary reply_{{ $element->dr_id }}" onclick="reply({{ $element->dr_id }})"><i class="fas fa-share"></i> Reply</button>
+                                                        {{-- <a href="#">Reply</a> --}}
+                                                    </footer>
+                                                </div>
+                                            @foreach ($novel_reply as $gg)
+                                            @if ($gg->drdt_ref_rate_id == $element->dr_id)
+                                            <div class="reply-list">
+                                                <div class="item">
+                                                    <div class="user">                                
+                                                        <figure>
+                                                            @if ($element->u_image != null)
+                                                                <img src="{{ asset('assets/images/img01.jpg') }}">
+                                                            @else
+                                                                <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
+                                                            @endif
+                                                        </figure>
+                                                        <div class="details">
+                                                            <h5 class="name">{{ $gg->name }}</h5>
+                                                            <div class="time">{{ date('d F Y',strtotime($gg->drdt_created_at)) }} <small>{{ date('h:i:s A',strtotime($gg->drdt_created_at)) }}</small></div>
+                                                            <div class="description">
+                                                                {{ $gg->drdt_message }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <footer>
-                                                <a href="#">Reply</a>
-                                            </footer>
+                                            @else
+                                            @endif
+                                            @endforeach
+                                            <div class="drop_reply_{{ $element->dr_id }}">
+                                                
+                                            </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
-
+                            </div>
                             </div>
                         </div>
                       </div>
@@ -249,7 +336,7 @@
 
         <section class="best-of-the-week">
             <div class="container">
-                <h1><div class="text">Best Of The Week</div>
+                <h1><div class="text">Write by {{ $book->name }}</div>
                     
                 </h1>
                 <div class="row">
@@ -317,9 +404,52 @@
         window.location.href = baseUrl + '/chapter/'+res1;
     })
 
+    function reply(argument) {
+        // console.log(argument);
+        $('.drop_reply_'+argument).html(
+        '<br>'+
+        '<textarea class="form-control" name="drdt_message_'+argument+'" id="drdt_message_'+argument+'" placeholder="Write your response ..."></textarea>'+
+        '<br>'+
+        '<button type="button" class="btn btn-sm btn-primary reply_comment_'+argument+'" onclick="reply_data('+argument+')"><i class="fas fa-share"></i> Reply</button>');  
+    }
+
+    function reply_data(argument) {
+        var message = $('#drdt_message_'+argument).val();
+        var dr_rated_by = $('.dr_rated_by').val();
+        // alert(argument);
+        if (message == '') {
+            iziToast.warning({
+                    icon: 'fa fa-info-circle',
+                    position:'topRight',
+                    title: 'Warning!',
+                    message: 'Response Tidak Boleh Kosong!',
+                });
+            return false;
+        }
+        $.ajax({
+            type: "get",
+            url:'{{ route('novel_rate_reply') }}',
+            data: '&id='+('{{ $book->dn_id }}')+'&message='+message+'&drdt_reply_by='+dr_rated_by+'&drdt_ref_rate_id='+argument,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+
+
     $('.rate').click(function(){
         var message = $('#message').val();
         var value = $('.choice').val();
+        var dr_rated_by = $('.dr_rated_by').val();
         if (value == '') {
             iziToast.warning({
                     icon: 'fa fa-info-circle',
@@ -338,24 +468,15 @@
                 });
             return false;
         }
-        
+
         $.ajax({
             type: "get",
             url:'{{ route('novel_rate_star') }}',
-            data: '&id='+('{{ $book->dn_id }}')+'&rate='+value+'&message='+message,
+            data: '&id='+('{{ $book->dn_id }}')+'&rate='+value+'&message='+message+'&dr_rated_by='+dr_rated_by,
             processData: false,
             contentType: false,
           success:function(data){
-            if (data.status == 'sukses') {
-                iziToast.success({
-                    icon: 'fa fa-save',
-                    position:'topRight',
-                    title: 'Success!',
-                    message: 'Message Berhasil Disimpan!',
-                });
-
-                {{-- location.href = '{{ route('write_chapter') }}' --}}
-            }
+            $('.drop_here').html(data);
           },error:function(){
             iziToast.error({
                 icon: 'fa fa-info',

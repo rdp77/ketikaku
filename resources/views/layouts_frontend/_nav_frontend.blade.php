@@ -66,30 +66,22 @@
                             <li class="for-tablet"><a href="login.html">Login</a></li>
                             <li class="for-tablet"><a href="register.html">Register</a></li>
                             <li><a href="{{ url('/') }}">Home</a></li>
+
                             <li><a href="{{ route('write_novel_create') }}">Tulis</a></li>
                                 <li class="dropdown magz-dropdown">
                                     @if (Auth::User() != null) 
                                         <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="icon ion-person"></i> My Account</a></li>
-                                            {{-- <li><a href="#"><i class="icon ion-heart"></i> Favorite</a></li> --}}
-                                            {{-- <li><a href="#"><i class="icon ion-chatbox"></i> Comments</a></li> --}}
-                                            {{-- <li><a href="#"><i class="icon ion-key"></i> Change Password</a></li> --}}
-                                            {{-- <li><a href="#"><i class="icon ion-settings"></i> Settings</a></li> --}}
-                                            {{-- <li class="divider"></li> --}}
                                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a></li>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
                                             </form>
-                                            {{-- <li><a href="#"><i class=""></i> Logout</a></li> --}}
                                         </ul>
                                     @else
-                                        {{-- <a href="#">  <i class="ion-ios-arrow-right"></i></a> --}}
                                     @endif
-                                    
-                                    
                                 </li>
                         </ul>
                     </div>
