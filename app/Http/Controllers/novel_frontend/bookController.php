@@ -20,10 +20,12 @@ class bookController extends Controller
         // return json_encode($code->dn_id);
         $novel = DB::table('d_novel')
                     ->where('dn_created_by','=',$code->dn_created_by)
-                    ->where('dn_title','!=',$title)
+                    ->where('dn_title','=',$title)
+                    // ->where('dn_status',1)
                     ->get();
+
         $book = DB::table('d_novel')
-                    ->join('users','users.id','=','d_novel.dn_created_by')
+                    ->join('d_mem','m_id','=','dn_created_by')
                     ->where('dn_id',$code->dn_id)
                     ->first();
         $q_total_book = DB::table('d_novel')
@@ -31,18 +33,26 @@ class bookController extends Controller
         
         $total_book = count($q_total_book);
 
-        $chapter = DB::table('d_novel_chapter')
+        if ($code->dn_type_novel == 1) {
+            $chapter = DB::table('d_novel_chapter')
+                    ->where('dnch_ref_id',$code->dn_id)
+                    ->where('dnch_status',1)
+                    ->get();
+        }else{
+            $chapter = DB::table('d_novel_chapter')
                     ->where('dnch_ref_id',$code->dn_id)
                     ->get();
+        }
+
         $novel_rate = DB::table('d_novel_rate')
-                    ->join('users','id','dr_rated_by')
+                    ->join('d_mem','m_id','dr_rated_by')
                     ->where('dr_ref_id',$code->dn_id)
                     ->orderBy('dr_id','DESC')
                     ->get();
 
         for ($i=0; $i <count($novel_rate) ; $i++) { 
             $novel_reply = DB::table('d_novel_rate_dt')
-                    ->join('users','id','drdt_reply_by')
+                    ->join('d_mem','m_id','drdt_reply_by')
                     ->where('drdt_ref_id',$code->dn_id)
                     // ->orWhere('drdt_ref_rate_id',$novel_rate[$i]->dr_id)
                     ->orderBy('drdt_id','ASC')
@@ -90,12 +100,12 @@ class bookController extends Controller
                     ]);
         }
         $novel_rate = DB::table('d_novel_rate')
-                    ->join('users','id','dr_rated_by')
+                    ->join('d_mem','m_id','dr_rated_by')
                     ->where('dr_ref_id',$request->id)
                     ->orderBy('dr_id','DESC')
                     ->get();
         $novel_reply = DB::table('d_novel_rate_dt')
-                    ->join('users','id','drdt_reply_by')
+                    ->join('d_mem','m_id','drdt_reply_by')
                     ->where('drdt_ref_id',$request->id)
                     ->orderBy('drdt_id','ASC')
                     ->get();
@@ -115,12 +125,12 @@ class bookController extends Controller
                         'drdt_created_at'=>date('Y-m-d h:i:s')
                     ]);
         $novel_rate = DB::table('d_novel_rate')
-                    ->join('users','id','dr_rated_by')
+                    ->join('d_mem','m_id','dr_rated_by')
                     ->where('dr_ref_id',$request->id)
                     ->orderBy('dr_id','DESC')
                     ->get();
         $novel_reply = DB::table('d_novel_rate_dt')
-                    ->join('users','id','drdt_reply_by')
+                    ->join('d_mem','m_id','drdt_reply_by')
                     ->where('drdt_ref_id',$request->id)
                     ->orderBy('drdt_id','ASC')
                     ->get();

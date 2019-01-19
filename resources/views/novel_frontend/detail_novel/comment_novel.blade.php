@@ -2,14 +2,14 @@
                                         <div class="item">
                                             <div class="user">                                
                                                 <figure>
-                                                    @if ($element->u_image != null)
+                                                    @if ($element->m_image != null)
                                                         <img src="{{ asset('assets/images/img01.jpg') }}">
                                                     @else
                                                         <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                     @endif
                                                 </figure>
                                                 <div class="details">
-                                                    <h5 class="name">{{ $element->name }}  
+                                                    <h5 class="name">{{ $element->m_username }}  
                                                         @if ($element->dr_rate == 1)
                                                             <i class="fas fa-star kuning"></i>
                                                             <i class="far fa-star kuning"></i>
@@ -59,14 +59,14 @@
                                                 <div class="item">
                                                     <div class="user">                                
                                                         <figure>
-                                                            @if ($element->u_image != null)
+                                                            @if ($element->m_image != null)
                                                                 <img src="{{ asset('assets/images/img01.jpg') }}">
                                                             @else
                                                                 <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                             @endif
                                                         </figure>
                                                         <div class="details">
-                                                            <h5 class="name">{{ $gg->name }}</h5>
+                                                            <h5 class="name">{{ $gg->m_username }}</h5>
                                                             <div class="time">{{ date('d F Y',strtotime($gg->drdt_created_at)) }} <small>{{ date('h:i:s A',strtotime($gg->drdt_created_at)) }}</small></div>
                                                             <div class="description">
                                                                 {{ $gg->drdt_message }}

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'd_mem',
     ],
 
     /*
@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\d_mem::class,
         ],
 
         // 'users' => [
@@ -93,7 +93,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'd_mem',
             'table' => 'password_resets',
             'expire' => 60,
         ],

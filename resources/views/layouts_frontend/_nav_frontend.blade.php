@@ -20,14 +20,14 @@
                                     </div>
                                 </div>
                                 <div class="help-block">
-                                    <div>Popular:</div>
+                                    {{-- <div>Popular:</div>
                                     <ul>
                                         <li><a href="#">HTML5</a></li>
                                         <li><a href="#">CSS3</a></li>
                                         <li><a href="#">Bootstrap 3</a></li>
                                         <li><a href="#">jQuery</a></li>
                                         <li><a href="#">AnguarJS</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                             </form>                             
                         </div>
@@ -63,16 +63,17 @@
                     <div id="menu-list">
                         <ul class="nav-list">
                             <li class="for-tablet nav-title"><a>Menu</a></li>
-                            <li class="for-tablet"><a href="login.html">Login</a></li>
-                            <li class="for-tablet"><a href="register.html">Register</a></li>
+                            <li class="for-tablet"><a href="{{ url('/login') }}">Login</a></li>
+                            <li class="for-tablet"><a href="{{ url('/register') }}">Register</a></li>
                             <li><a href="{{ url('/') }}">Home</a></li>
 
                             <li><a href="{{ route('write_novel_create') }}">Tulis</a></li>
                                 <li class="dropdown magz-dropdown">
                                     @if (Auth::User() != null) 
-                                        <a href="#">hy ,{{ Auth::user()->name }} <i class="ion-ios-arrow-right"></i></a>
+                                        <a href="#">hy ,{{ Auth::user()->m_username }} <i class="ion-ios-arrow-right"></i></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->id]) }}"><i class="icon ion-person"></i> My Account</a></li>
+                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}"><i class="icon ion-person"></i> My Account</a></li>
+                                            <li><a href="{{ url('/home') }}"><i class="icon ion-person"></i> Dashboard</a></li>
                                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a></li>

@@ -47,7 +47,7 @@
                                             <div>
                                                 <h1><a href="{{ route('frontend_chapter',[str_replace(" ","-",$element->dnch_title)]) }}" class="baca">{{ $element->dnch_title }}</a></h1>
                                                 <div class="detail">
-                                                    <div class="category"><a href="category.html">Lifestyle</a></div>
+                                                    {{-- <div class="category"><a href="category.html">Lifestyle</a></div> --}}
                                                     <div class="time">{{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</div>
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                                             <div>
                                                 <h1><a href="{{ route('frontend_chapter',[str_replace(" ","-",$element->dnch_title)]) }}" class="baca">{{ $element->dnch_title }}</a></h1>
                                                 <div class="detail">
-                                                    <div class="category"><a href="category.html">Lifestyle</a></div>
+                                                    {{-- <div class="category"><a href="category.html">Lifestyle</a></div> --}}
                                                     <div class="time">{{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</div>
                                                 </div>
                                             </div>
@@ -82,12 +82,12 @@
                                 <h1>{{ $chapter->dnch_title }}</h1>
                                 <ul class="details">
                                     <li>Posted on {{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</li>
-                                    <li>
+                                    {{-- <li> --}}
                                         {{-- @foreach ($array as $element) --}}
-                                            <a>Film</a>
+                                            {{-- <a>Film</a> --}}
                                         {{-- @endforeach --}}
-                                    </li>
-                                    <li>By <a href="#">{{ $chapter->name }}</a></li>
+                                    {{-- </li> --}}
+                                    <li>By <a href="#">{{ $chapter->m_username }}</a></li>
                                 </ul>
                             </header>
                             <div class="main">
@@ -95,7 +95,7 @@
                                    {!! $chapter->dnch_content !!}
                                </p>
                             </div>
-                            <footer>
+                           {{--  <footer>
                                 <div class="col">
                                     <ul class="tags">
                                         <li><a href="#">Free Themes</a></li>
@@ -109,9 +109,9 @@
                                 <div class="col">
                                     <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1220</div></a>
                                 </div>
-                            </footer>
+                            </footer> --}}
                         </article>
-                        <div class="sharing">
+                        {{-- <div class="sharing">
                         <div class="title"><i class="ion-android-share-alt"></i> Sharing is caring</div>
                             <ul class="social">
                                 <li>
@@ -139,7 +139,7 @@
                                     <div>Shares</div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class="line">
                             <div>Author</div>
                         </div>
@@ -148,9 +148,9 @@
                                 <img src="{{ asset('assets/images/img01.jpg') }}">
                             </figure>
                             <div class="details">
-                                <div class="job">{{ $chapter->u_instagram }}</div>
-                                <h3 class="name">{{ $chapter->name }}</h3>
-                                <p>{!! $chapter->u_desc_short !!}</p>
+                                <div class="job">{{ $chapter->m_instagram }}</div>
+                                <h3 class="name">{{ $chapter->m_username }}</h3>
+                                <p>{!! $chapter->m_desc_short !!}</p>
                                 <ul class="social trp sm">
                                     <li>
                                         <a href="#" class="facebook">

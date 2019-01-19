@@ -27,7 +27,7 @@
                                         <i class="ti-power-off"></i>
                                     </a>
                                     <div class="dropdown-menu animated flipInY" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" @if (Auth::user() != null )  href="{{ route('profile_backend',[Auth::user()->id]) }}" @else @endif >
+                                        <a class="dropdown-item" href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}" >
                                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -55,28 +55,64 @@
                             </a>
                         </li> --}}
                         <!-- User Profile-->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="icon-Pen"></i>
+                        @if (Auth::user()->m_isactive == 'Y')
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="icon-Pen"></i>
 
-                                <span class="hide-menu"> Write</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item">
-                                    <a href="{{ route('write_novel') }}" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Novel</span>
-                                    </a>
-                                </li>
-                               {{--  <li class="sidebar-item">
-                                    <a href="{{ route('write_chapter') }}" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Chapter</span>
-                                    </a>
-                                </li> --}}
-                               
-                            </ul>
-                        </li>
+                                    <span class="hide-menu"> Write</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('write_novel') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Novel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="icon-Pen"></i>
+
+                                    <span class="hide-menu"> Control User</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('master_user') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Writer Data</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        @endif
+                        @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="icon-Pen"></i>
+
+                                    <span class="hide-menu"> Control Story</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('approve_novel') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Story Data</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('approve_chapter') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Chapter Data</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     </nav>
             </div>
             <!-- End Sidebar scroll-->

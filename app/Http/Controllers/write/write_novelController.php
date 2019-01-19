@@ -15,7 +15,7 @@ class write_novelController extends Controller
     public function index()
     {
 
-        $data =  DB::Table('d_novel')->where('dn_created_by',Auth::user()->id)->get();
+        $data =  DB::Table('d_novel')->where('dn_created_by',Auth::user()->m_id)->get();
         return view('write.novel.index',compact('data'));
     }
     public function create()
@@ -23,6 +23,8 @@ class write_novelController extends Controller
 
         if (Auth::user() == null) {
             return view('auth.login');
+        }elseif (Auth::user()->m_isactive == 'N') {
+            return view('page.error-401');
         }else{
             return view('write.novel.create');
         }
@@ -54,7 +56,7 @@ class write_novelController extends Controller
                 'dn_title'=>$req->dn_title,
                 'dn_description'=>$req->dn_description,
                 'dn_created_at'=>date('Y-m-d h:i:s'),
-                'dn_created_by'=>Auth::user()->id,
+                'dn_created_by'=>Auth::user()->m_id,
         ]);
 
         if ($data == true) {
@@ -92,14 +94,14 @@ class write_novelController extends Controller
                 'dn_title'=>$request->dn_title,
                 'dn_description'=>$request->dn_description,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
-                'dn_updated_by'=>Auth::user()->id,
+                'dn_updated_by'=>Auth::user()->m_id,
             ]);
         }else{
             $data = DB::table('d_novel')->where('dn_id',$request->dn_id)->update([
                 'dn_title'=>$request->dn_title,
                 'dn_description'=>$request->dn_description,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
-                'dn_updated_by'=>Auth::user()->id,
+                'dn_updated_by'=>Auth::user()->m_id,
             ]);
         }
         

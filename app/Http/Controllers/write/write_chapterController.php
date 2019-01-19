@@ -32,7 +32,7 @@ class write_chapterController extends Controller
             'dnch_title'=>$req->dnch_title,
             'dnch_content'=>$req->dnch_content,
             'dnch_created_at'=>date('Y-m-y h:i:s'),
-            'dnch_created_by'=>Auth::user()->id,
+            'dnch_created_by'=>Auth::user()->m_id,
         ]);
 
         if ($data == true){
@@ -61,7 +61,7 @@ class write_chapterController extends Controller
             'dnch_title'=>$req->dnch_title,
             'dnch_content'=>$req->dnch_content,
             'dnch_updated_at'=>date('Y-m-y h:i:s'),
-            // 'dnch_updated_by'=>Auth::user()->id,
+            // 'dnch_updated_by'=>Auth::user()->m_id,
         ]);
 
         //return response 

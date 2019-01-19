@@ -17,8 +17,8 @@
     <div class="auth-box">
         <div id="loginform">
             <div class="logo">
-                <span class="db"><img src="{{ asset('assets_backend/images/logo-icon.png') }}" alt="logo" /></span>
-                <h5 class="font-medium m-b-20">Sign In to Admin</h5>
+                <span class="db"><img src="{{ asset('assets_backend/images/logo-text.png') }}" width="120px" alt="logo" /></span>
+                <h5 class="font-medium m-b-20">&nbsp;{{-- Sign In to Admin --}}</h5>
             </div>
             <!-- Form -->
             <div class="row">
@@ -30,25 +30,13 @@
                                 <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
                             </div>
 
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-control-lg" name="email" placeholder="email" value="{{ old('email') }}" autofocus aria-label="email" aria-describedby="basic-addon1">
-
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
+                            <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} form-control-lg" name="username" placeholder="E-mail" value="{{ old('username') }}" autofocus aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
                             </div>
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} form-control-lg" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
@@ -86,7 +74,7 @@
             <div class="logo">
                 <span class="db"><img src="{{ asset('assets_backend/images/logo-icon.png') }}" alt="logo" /></span>
                 <h5 class="font-medium m-b-20">Recover Password</h5>
-                <span>Enter your email and instructions will be sent to you!</span>
+                <span>Enter your Email and instructions will be sent to you!</span>
             </div>
             <div class="row m-t-20">
                 <!-- Form -->

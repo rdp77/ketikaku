@@ -64,26 +64,34 @@
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Ditulis Oleh</td>
-                                <td style="border-bottom:1px solid #dddddd"><a href="{{ route('profile_frontend',['name'=>$book->name]) }}">{{ $book->name }}</a></td>
+                                <td style="border-bottom:1px solid #dddddd"><a href="{{ route('profile_frontend',['name'=>$book->m_username]) }}">{{ $book->m_username }}</a></td>
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
-                                <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , h:i:s',strtotime($book->dn_created_at)) }}</td>
+                                <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , H:i A',strtotime($book->dn_created_at)) }}</td>
                             </tr>
-                        </table>    
+                        </table> 
                         <table width="100%">
-                            <tr style="height: 50px">
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr style="height: 50px;text-align: center;">
+                                <td><button class="btn btn-primary btn-sm subscribe"><i class="fas fa-bell"></i> Subscribe</button></td>
+                              {{--   <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
+                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
+                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td> --}}
                             </tr>
-                        </table>        
+                        </table>     
+                       {{--  <table width="100%">
+                            <tr style="height: 50px;text-align: center;">
+                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
+                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
+                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
+                            </tr>
+                        </table>  --}}       
                     </div>
                     <div class="col-md-3">
                         <div class="featured-author">
                                     <div class="featured-author-inner">
                                         <div class="featured-author-cover" style="background-image: url('{{ asset('assets/images/news/img15.jpg') }}');">
-                                            @if ($book->u_status == 4)
+                                            @if ($book->m_role == 4)
                                                 <div class="badges">
                                                     <div class="badge-item"><i class="ion-star"></i> Official</div>
                                                 </div>
@@ -96,8 +104,8 @@
                                                     <img src="{{ asset('assets/images/img01.jpg') }}" alt="Sample Article">
                                                 </figure>
                                                 <div class="featured-author-info">
-                                                    <h2 class="name">{{ $book->name }}</h2>
-                                                    <div class="desc">{{ $book->u_instagram }}</div>
+                                                    <h2 class="name">{{ $book->m_username }}</h2>
+                                                    <div class="desc">{{ $book->m_instagram }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +114,7 @@
                                                 <div class="item">
                                                     <a href="#">
                                                         <div class="name">Follower </div>
-                                                        <div class="value">{{ $book->u_follower }}</div>                                                        
+                                                        <div class="value">{{ $book->m_follower }}</div>                                                        
                                                     </a>
                                                 </div>
                                                 <div class="item">
@@ -116,7 +124,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="item">
-                                                    <a href="{{ route('profile_frontend',['name'=>$book->name]) }}">
+                                                    <a href="{{ route('profile_frontend',['name'=>$book->m_username]) }}">
                                                         <div class="icon">
                                                             <div>More</div>
                                                             <i class="ion-chevron-right"></i>
@@ -195,8 +203,8 @@
                         <div id="menu2" class="tab-pane fade" style="margin-top: 10px">
                             <div class="col-md-4 col-md-offset-4">
                                 @if(Auth::user() != null)
-                                        <input type="hidden" name="" value="{{ Auth::user()->id }}" class="dr_rated_by">
-                                    @if (Auth::user()->id != $book->dn_created_by)
+                                        <input type="hidden" name="" value="{{ Auth::user()->m_id }}" class="dr_rated_by">
+                                    @if (Auth::user()->m_id != $book->dn_created_by)
                                         <div class="comments">
                                             <h4 class="title">{{-- 3 Responses  --}}</h4>
                                             <div class="comment-list">
@@ -231,14 +239,14 @@
                                         <div class="item">
                                             <div class="user">                                
                                                 <figure>
-                                                    @if ($element->u_image != null)
+                                                    @if ($element->m_image != null)
                                                         <img src="{{ asset('assets/images/img01.jpg') }}">
                                                     @else
                                                         <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                     @endif
                                                 </figure>
                                                 <div class="details">
-                                                    <h5 class="name">{{ $element->name }}  
+                                                    <h5 class="name">{{ $element->m_username }}  
                                                         @if ($element->dr_rate == 1)
                                                             <i class="fas fa-star kuning"></i>
                                                             <i class="far fa-star kuning"></i>
@@ -288,14 +296,14 @@
                                                 <div class="item">
                                                     <div class="user">                                
                                                         <figure>
-                                                            @if ($element->u_image != null)
+                                                            @if ($element->m_image != null)
                                                                 <img src="{{ asset('assets/images/img01.jpg') }}">
                                                             @else
                                                                 <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                             @endif
                                                         </figure>
                                                         <div class="details">
-                                                            <h5 class="name">{{ $gg->name }}</h5>
+                                                            <h5 class="name">{{ $gg->m_username }}</h5>
                                                             <div class="time">{{ date('d F Y',strtotime($gg->drdt_created_at)) }} <small>{{ date('h:i:s A',strtotime($gg->drdt_created_at)) }}</small></div>
                                                             <div class="description">
                                                                 {{ $gg->drdt_message }}
@@ -326,7 +334,7 @@
 
         <section class="best-of-the-week">
             <div class="container">
-                <h1><div class="text">Write by {{ $book->name }}</div>
+                <h1><div class="text">Write by {{ $book->m_username }}</div>
                     
                 </h1>
                 <div class="row">
@@ -365,6 +373,14 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
+
+    (function update() {
+        $.ajax({
+
+        }).then(function() {           // on completion, restart
+           setTimeout(update, 30000);  // function refers to itself
+        });
+    })();  
     
      $('#myTable').DataTable({
         info: false,
@@ -420,6 +436,26 @@
             type: "get",
             url:'{{ route('novel_rate_reply') }}',
             data: '&id='+('{{ $book->dn_id }}')+'&message='+message+'&drdt_reply_by='+dr_rated_by+'&drdt_ref_rate_id='+argument,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+
+    function reply_data(argument) {
+        $.ajax({
+            type: "get",
+            url:'',
+            data: '&id='+('{{ $book->dn_id }}')+'&drdt_reply_by='+dr_rated_by+'&drdt_ref_rate_id='+argument,
             processData: false,
             contentType: false,
           success:function(data){

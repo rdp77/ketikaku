@@ -419,7 +419,7 @@
                                         <p class=" m-b-0">varun@gmail.com</p>
                                     </div>
                                 </div>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}">
                                     <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>

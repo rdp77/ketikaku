@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use DB;
-use Auth;
+
 class d_mem extends Authenticatable
 {
     protected $table = 'd_mem';
@@ -14,25 +13,14 @@ class d_mem extends Authenticatable
     const CREATED_AT = 'm_created_at';
     const UPDATED_AT = 'm_updated_at';
 
-    protected $fillable = ['m_id','m_code','m_username','m_password','m_name','m_email','m_birth_date','m_address','m_img','m_lastlogin','m_lastlogout','m_created_at','m_updated_at','m_birth_place', 'm_gender', 'm_status', 'm_site', 'm_unit', 'm_access'];
-
-
-    public function akses($fitur,$aksi){
-          $cek = DB::table('d_mem')
-            ->join('d_role_menu', 'role_id', '=', 'm_access')
-            ->where('menu_id', '=', $fitur)
-            ->where($aksi, '=', 'aktif') 
-            ->where('m_id', '=', Auth::user()->m_id)             
-            ->get();
-          // return $cek;
-        
-        if(count($cek) != 0)
-            return true;
-            // return 'aktif';
-        else
-            return false;
-            // return 'b';
-    }
-    
+    protected $fillable = ['m_id','m_name','m_email',
+    					   'm_code','m_address','m_iamge',
+    					   'm_tempat_lahir','m_kel','m_isactive',
+    					   'm_role','m_token','m_username',
+    					   'm_password', 'm_lastlogin', 'm_lastlogout',
+    					   'm_instagram', 'm_gender', 'm_phone',
+    					   'm_instagram_link', 'm_follower', 'm_desc_full',
+    					   'm_facebook', 'm_desc_short','m_facebook_link', 
+    					   'm_created_at', 'm_updated_at'];
 
 }
