@@ -24,7 +24,7 @@
    Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
    Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
-   Route::get('/subsibe/', 'novel_frontend\chapterController@chapter')->name('subsibe_novel');
+   Route::get('/subscribe/', 'novel_frontend\chapterController@subscribe')->name('subscribe_novel');
    //BACKEND 
 
  // });

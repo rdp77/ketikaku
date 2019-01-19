@@ -51,12 +51,23 @@
 
                     <div class="col-md-6">
                         <h5>
-                            <div class="text">{{ $book->dn_title }}</div>
+                            <div class="text">{{ $book->dn_title }} 
+
+                            </div>
                         </h5>
+
                         <table width="100%">
                             <tr style="height: 50px">
                                 <td valign="middle" width="30%" style="border-top:none;border-bottom:1px solid #dddddd">Status</td>
-                                <td valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">-</td>
+                                <td valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">
+                                    @if ($book->dn_type_novel == 1)
+                                        <div class="badges">
+                                            <div class="badge-item"><i class="ion-star"></i> Official</div>
+                                        </div>
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                             </tr>
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
@@ -73,7 +84,15 @@
                         </table> 
                         <table width="100%">
                             <tr style="height: 50px;text-align: center;">
-                                <td><button class="btn btn-primary btn-sm subscribe"><i class="fas fa-bell"></i> Subscribe</button></td>
+                                @if (Auth::user()->m_id != $book->dn_created_by)
+                                    <td>
+                                        @if ($subscriber > 0)
+                                            <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                        @else
+                                            <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                        @endif
+                                    </td>
+                                @endif
                               {{--   <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
                                 <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
                                 <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td> --}}
@@ -451,15 +470,15 @@
         });
     }
 
-    function reply_data(argument) {
+    $('.subscribe').click(function(){
         $.ajax({
             type: "get",
-            url:'',
-            data: '&id='+('{{ $book->dn_id }}')+'&drdt_reply_by='+dr_rated_by+'&drdt_ref_rate_id='+argument,
+            url:'{{ route('subscribe_novel') }}',
+            data: '&id='+('{{ $book->dn_id }}'),
             processData: false,
             contentType: false,
           success:function(data){
-            $('.drop_here').html(data);
+            $('.drop_here_subscribe').text('<i class="far fa-bell"></i>'+' Subscribe '+data.total_subscribe);
           },error:function(){
             iziToast.error({
                 icon: 'fa fa-info',
@@ -469,7 +488,9 @@
             });
           }
         });
-    }
+    });
+
+
 
 
     $('.rate').click(function(){

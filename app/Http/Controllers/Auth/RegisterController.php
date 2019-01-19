@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Mail;
+use mail;
 use DB;
 
 class RegisterController extends Controller
@@ -100,7 +100,7 @@ class RegisterController extends Controller
                             ->subject('Verify Your Email');
                     });
 
-        return d_mem::create([
+        $user = d_mem::create([
             'm_code'     => $code,
             'm_email'    => $data['m_email'],
             'm_username' => $data['m_username'],
@@ -109,6 +109,8 @@ class RegisterController extends Controller
             'm_isactive' =>'N',
             'm_role'=>5
         ]);
+
+        return $user;
 
     }
 }

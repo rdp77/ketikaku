@@ -59,7 +59,14 @@ class bookController extends Controller
                     ->get();
         }
         // return $novel_reply;
+        $total_subscribe = DB::table('d_novel_subscribe')
+                            ->where('dns_ref_id',$code->dn_id)
+                            ->count();
 
+        $subscriber = DB::table('d_novel_subscribe')
+                            ->where('dns_ref_id',$code->dn_id)
+                            ->where('dns_subscribe_by',Auth::user()->m_id)
+                            ->count();
         
         // return response()->json([$novel_reply,$novel_rate]);
         $tags = DB::table('d_novel_tags')
@@ -67,7 +74,7 @@ class bookController extends Controller
                     ->get();
 
         // return response()->json(['chapter'=>$chapter,'book'=>$book,'tags'=>$tags,'code'=>$code,'novel'=>$novel]);
-        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_book','novel_rate','novel_reply'));
+        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_book','novel_rate','novel_reply','total_subscribe','subscriber'));
     }
     public function novel_rate_star(Request $request)
     {
