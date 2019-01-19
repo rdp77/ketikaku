@@ -110,7 +110,7 @@ class RegisterController extends Controller
             'm_role'=>5
         ]);
 
-        return $user;
+        return view('home');
 
     }
 }
