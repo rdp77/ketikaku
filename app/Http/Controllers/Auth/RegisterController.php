@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\d_mem;
 use App\Http\Controllers\Controller;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use mail;
 use DB;
 
 class RegisterController extends Controller
@@ -90,15 +90,15 @@ class RegisterController extends Controller
         // dd($data['email']);
         $username = $data['m_username'];
         $code = "KTK-".date('ymd')."-".$kd;
-        Mail::send('mail.mail_verification', 
-                    ['username' => $username,
-                     'token' => $token,
-                     'code' => $code
-                    ], function($message) use ($data,$username,$token,$code){
-                        $message->from('system@ketikaku.com', 'KETIKAKU')
-                            ->to($data['m_email'])
-                            ->subject('Verify Your Email');
-                    });
+        // Mail::send('mail.mail_verification', 
+        //             ['username' => $username,
+        //              'token' => $token,
+        //              'code' => $code
+        //             ], function($message) use ($data,$username,$token,$code){
+        //                 $message->from('system@ketikaku.com', 'KETIKAKU')
+        //                     ->to($data['m_email'])
+        //                     ->subject('Verify Your Email');
+        //             });
 
         $user = d_mem::create([
             'm_code'     => $code,
