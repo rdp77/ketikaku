@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Validator;
 use DB; 
 use Mail;
+use App\d_mem;
 use Storage;
 class verify_emailController extends Controller
 {
@@ -30,7 +31,7 @@ class verify_emailController extends Controller
 
   		return response()->json(['status'=>'sukses']);
     }
-    public function verified_email()
+    public function verified_email($token,$id)
     {
     		
         $user = d_mem::where('m_token',$token)->where('m_code',$id)->firstOrFail();
