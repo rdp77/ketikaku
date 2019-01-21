@@ -33,10 +33,13 @@ class LoginController extends Controller
      
 
         $user = d_mem::where(DB::raw('BINARY m_username'),$req->username)->first();
+        $email = d_mem::where(DB::raw('BINARY m_email'),$req->username)->first();
 
         if ($user && $user->m_password == sha1(md5('لا إله إلاّ الله') . $req->password)) {
-
             Auth::login($user);
+            return redirect(url('/home'));
+        }elseif ($email && $email->m_password == sha1(md5('لا إله إلاّ الله') . $req->password)) {
+            Auth::login($email);
             return redirect(url('/home'));
         }else{
             return Redirect::back()->withErrors(['Wrong Username / Password !']);
