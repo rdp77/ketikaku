@@ -36,6 +36,7 @@ Auth::routes();
 //HOME
    Route::get('/home', 'HomeController@index')->name('home');
    Route::get('/verify/{token}/{id}', 'mail\verify_emailController@verify_email')->name('verify_email');
+   Route::get('/verified/{token}/{id}', 'mail\verify_emailController@verified_email')->name('verified_email');
    Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
 
 

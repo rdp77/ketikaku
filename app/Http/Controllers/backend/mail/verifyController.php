@@ -12,12 +12,5 @@ use App\d_mem;
 
 class verifyController extends Controller
 {
-    public function verify($token,$id)
-    {
-    		
-        // $user = d_mem::where('m_token',$token)->where('m_code',$id)->firstOrFail();
-        // $user->update(['m_isactive'=>'Y']);
-        // return redirect()->route('home')->with('succes','Selamat Akun anda sudah terverifikasi');
-
-    }
+    
 }

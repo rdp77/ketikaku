@@ -30,4 +30,12 @@ class verify_emailController extends Controller
 
   		return response()->json(['status'=>'sukses']);
     }
+    public function verified_email()
+    {
+    		
+        $user = d_mem::where('m_token',$token)->where('m_code',$id)->firstOrFail();
+        $user->update(['m_isactive'=>'Y']);
+        return redirect()->route('home')->with('succes','Selamat Akun anda sudah terverifikasi');
+
+    }
 }
