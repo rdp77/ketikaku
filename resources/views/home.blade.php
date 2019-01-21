@@ -23,7 +23,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
                         <h3 class="text-warning"><i class="fa fa-info-circle"></i> Peringatan</h3> Verifikasi email     diperlukan agar mendapatkan akses untuk menulis. email verifikasi akan membutuhkan beberapa waktu. <a href="#" onclick="verify()"> <b><strong> Verify</strong></b></a>
                         <br>
-                        <b>Setting email untuk mendapatkan Verifikasi Email  <strong>( IMAP access -> Enable IMAP )</strong>. <a {{-- class="btn btn-success btn-sm" --}} href="https://mail.google.com/mail/u/0/#settings/fwdandpop" target="_blank"> <strong>Klik Disini</strong></a> Untuk Membuka Setting dari Gmail </b>
+                        {{-- <b>Setting email untuk mendapatkan Verifikasi Email  <strong>( IMAP access -> Enable IMAP )</strong>. <a  href="https://mail.google.com/mail/u/0/#settings/fwdandpop" target="_blank"> <strong>Klik Disini</strong></a> Untuk Membuka Setting dari Gmail </b> --}}
                 </div>
             </div>
         @endif
