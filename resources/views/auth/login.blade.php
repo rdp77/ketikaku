@@ -30,7 +30,7 @@
                                 <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
                             </div>
 
-                            <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} form-control-lg" name="username" placeholder="E-mail" value="{{ old('username') }}" autofocus aria-label="Username" aria-describedby="basic-addon1">
+                            <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} form-control-lg" name="username" placeholder="Username" value="{{ old('username') }}" autofocus aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -40,11 +40,16 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
+                                @if($errors->any())
+                                        <h5 class="text-center" style="color: #ed5565">{{$errors->first()}}</h5>
+                                    @endif
                                 <div class="custom-control custom-checkbox">
+                                    
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     {{-- <input type="checkbox" class="custom-control-input" id="customCheck1"> --}}
                                     <label class="custom-control-label" for="remember">Remember me</label>
                                     <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+
                                 </div>
                             </div>
                         </div>

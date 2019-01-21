@@ -90,15 +90,15 @@ class RegisterController extends Controller
         // dd($data['email']);
         $username = $data['m_username'];
         $code = "KTK-".date('ymd')."-".$kd;
-        // Mail::send('mail.mail_verification', 
-        //             ['username' => $username,
-        //              'token' => $token,
-        //              'code' => $code
-        //             ], function($message) use ($data,$username,$token,$code){
-        //                 $message->from('system@ketikaku.com', 'KETIKAKU')
-        //                     ->to($data['m_email'])
-        //                     ->subject('Verify Your Email');
-        //             });
+        Mail::send('mail.mail_verification', 
+                    ['username' => $username,
+                     'token' => $token,
+                     'code' => $code
+                    ], function($message) use ($data,$username,$token,$code){
+                        $message->from('system@ketikaku.com', 'KETIKAKU')
+                            ->to($data['m_email'])
+                            ->subject('Verify Your Email');
+                    });
 
         return $user = d_mem::create([
             'm_code'     => $code,
