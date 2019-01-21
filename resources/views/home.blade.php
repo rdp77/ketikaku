@@ -199,7 +199,15 @@
                 processData: false,
                 contentType: false,
               success:function(data){
-
+                if (data.status == 'sukses') {
+                            iziToast.success({
+                                icon: 'fa fa-save',
+                                position:'topRight',
+                                title: 'Success!',
+                                message: 'Email Telah Terkirim',
+                            });
+                }
+                    $('.preloader').hide();
               },error:function(){
                 iziToast.error({
                     icon: 'fa fa-info',
