@@ -35,7 +35,7 @@ Auth::routes();
 // Route::group(['middleware' => 'auth'], function () {
 //HOME
    Route::get('/home', 'HomeController@index')->name('home');
-   Route::get('/verify/{token}/{id}', 'backend\mail\verifyController@verify');
+   Route::get('/verify/{token}/{id}', 'mail\verify_emailController@verify_email')->name('verify_email');
    Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
 
 

@@ -21,7 +21,9 @@
             <div class="bg-light no-card-border">
                 <div class="alert alert-warning">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                        <h3 class="text-warning"><i class="fa fa-info-circle"></i> Peringatan</h3> Verifikasi email     diperlukan agar mendapatkan akses untuk menulis. email verifikasi akan membutuhkan beberapa waktu.
+                        <h3 class="text-warning"><i class="fa fa-info-circle"></i> Peringatan</h3> Verifikasi email     diperlukan agar mendapatkan akses untuk menulis. email verifikasi akan membutuhkan beberapa waktu. <a href="#" onclick="verify()"> <b><strong> Verify</strong></b></a>
+                        <br>
+                        <b>Setting email untuk mendapatkan Verifikasi Email  <strong>( IMAP access -> Enable IMAP )</strong>. <a {{-- class="btn btn-success btn-sm" --}} href="https://mail.google.com/mail/u/0/#settings/fwdandpop" target="_blank"> <strong>Klik Disini</strong></a> Untuk Membuka Setting dari Gmail </b>
                 </div>
             </div>
         @endif
@@ -181,6 +183,32 @@
 
 @section('extra_scripts')
 <script type="text/javascript">
+
+
+    function verify() {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+                type: "get",
+                url:baseUrl+'/verify/'+'{{ Auth::user()->m_token }}'+'/'+'{{ Auth::user()->m_code }}',
+                processData: false,
+                contentType: false,
+              success:function(data){
+
+              },error:function(){
+                iziToast.error({
+                    icon: 'fa fa-info',
+                    position:'topRight',
+                    title: 'Error!',
+                    message: 'Try Again Later!',
+                });
+              }
+            });
+    }
 
 
 </script>

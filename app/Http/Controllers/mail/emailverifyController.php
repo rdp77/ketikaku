@@ -21,6 +21,7 @@ class emailverifyController extends Controller
         return redirect()->route('home')->with('succes','Account verified');
 
     }
+    
 
 
 
