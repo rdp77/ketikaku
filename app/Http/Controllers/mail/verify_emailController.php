@@ -28,9 +28,6 @@ class verify_emailController extends Controller
                             ->subject('Verify Your Email');
                     });
 
-    	if ($mail == true) {
-    		return response()->json(['status'=>'sukses']);
-    	}
-
+  		return response()->json(['status'=>'sukses']);
     }
 }
