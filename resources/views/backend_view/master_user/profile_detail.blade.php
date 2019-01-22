@@ -51,7 +51,7 @@
                                     {{-- <label class="col-md-12">Photo </label> --}}
                                         <div class="col-md-12">
 
-                                        @if (Auth::user()->u_image == null)
+                                        @if (Auth::user()->m_image == null)
                                         <div class="preview_td">
                                             <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="
                                             output rounded-circle" width="150" height="145" />
@@ -63,27 +63,27 @@
                                         @endif
                                         
                                             <br>
-                                            <div class="col-lg-8 col-md-8 col-sm-6">
-                                                <div class="file-upload upl_1" {{-- style="width: 100%;" --}}>
-                                                    <div class="file-select">
-                                                        <div class="file-select-button fileName" >chooseFile</div>
-                                                        <div class="file-select-name noFile tag_image_1" >Image</div> 
-                                                        <input type="file" class="chooseFile" name="dn_cover">
+                                            <form class="save_image">
+                                                <div class="col-lg-8 col-md-8 col-sm-6">
+                                                    <div class="file-upload upl_1" {{-- style="width: 100%;" --}}>
+                                                        <div class="file-select">
+                                                            <div class="file-select-button fileName" >chooseFile</div>
+                                                            <div class="file-select-name noFile tag_image_1" >Image</div> 
+                                                            <input type="file" class="chooseFile" name="dn_cover">
+                                                        </div>
                                                     </div>
-                                                    {{-- <button class="btn btn-secondary">Save</button> --}}
+                                                    {{-- <div class="col-sm-2">                                              --}}
+                                                        {{-- <button class="btn btn-secondary">Save</button> --}}
+                                                    {{-- </div> --}}
                                                 </div>
-                                                {{-- <div class="col-sm-2">                                              --}}
-                                                    {{-- <button class="btn btn-secondary">Save</button> --}}
-                                                {{-- </div> --}}
-                                            </div>
-                                            
+                                            </form>
                                            
                                         </div>
                                     </div>
                                     <h4 class="card-title m-t-10">{{ Auth::user()->name }}</h4>
-                                    <h6 class="card-subtitle">{{ Auth::user()->u_desc_short }}</h6>
+                                    <h6 class="card-subtitle">{{ Auth::user()->m_desc_short }}</h6>
                                     <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-user"></i> <font class="font-medium">{{ Auth::user()->u_follower }}</font></a></div>
+                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-user"></i> <font class="font-medium">{{ Auth::user()->m_follower }}</font></a></div>
                                         <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-book"></i> <font class="font-medium">{{ $total_book }}</font></a></div>
                                     </div>
                                 </center>
@@ -92,13 +92,9 @@
                                 <hr> </div>
                             <div class="card-body"> 
                                 <small class="text-muted">Email address </small>
-                                <h6>{{ Auth::user()->email }}</h6> 
-                                <small class="text-muted p-t-30 db">Phone</small>
-                                <h6>{{ Auth::user()->u_phone }}</h6> 
-                                <small class="text-muted p-t-30 db">Address</small>
-                                <h6>{{ Auth::user()->u_address }}</h6>
+                                <h6>{{ Auth::user()->m_email }}</h6> 
                                 <small class="text-muted p-t-30 db">Social Profile</small>
-                                <br/>   
+                                <br>   
                                 <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
                                 <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
                                 <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
@@ -129,12 +125,15 @@
                                 <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
                                     <div class="card-body">
                                         <div class="profiletimeline m-t-0">
+                                           @if (count($novel) == 0)
+                                                <p>History kosong</p>
+                                           @endif
                                            @foreach ($novel as $element)
                                             <hr>
                                             <div class="sl-item">
                                                 <div class="sl-left"> <img src="{{ asset('assets_backend/images/users/2.jpg') }}" alt="user" class="rounded-circle" /> </div>
                                                 <div class="sl-right">
-                                                    <div> <a href="javascript:void(0)" class="link">{{ Auth::user()->u_fullname }} <small>aka {{ Auth::user()->name }}</small></a> <span class="sl-date">{{ date('d F Y h:i:s',strtotime($element->dn_created_at)) }}</span>
+                                                    <div> <a href="javascript:void(0)" class="link">{{ Auth::user()->m_fullname }} <small>aka {{ Auth::user()->name }}</small></a> <span class="sl-date">{{ date('d F Y h:i:s',strtotime($element->dn_created_at)) }}</span>
                                                         <div class="m-t-20 row">
                                                             <div class="col-md-3 col-xs-12"><img src="{{ asset('/storage/app/'.$element->dn_cover) }}" width="100px" height="400px" alt="user" class="img-fluid rounded" /></div>
                                                             <div class="col-md-9 col-xs-12">
@@ -158,7 +157,7 @@
                                             </div>
                                             <hr>
                                             @if (count($novel) > 5)
-                                                <a href="javascript:void(0)" class="btn btn-success"> Design weblayout</a>
+                                                <a href="javascript:void(0)" class="btn btn-success"> More</a>
                                             @endif
                                            @endforeach
                                         </div>
@@ -169,23 +168,15 @@
                                         <div class="row">
                                             <div class="col-md-6 col-xs-6 b-r"> <strong>Full Name</strong>
                                                 <br>
-                                                <p class="text-muted">{{ Auth::user()->u_fullname }}</p>
-                                            </div>
-                                            <div class="col-md-6 col-xs-6 b-r"> <strong>Mobile</strong>
-                                                <br>
-                                                <p class="text-muted">{{ Auth::user()->u_phone }}</p>
+                                                <p class="text-muted">{{ Auth::user()->m_fullname }}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6 b-r"> <strong>Email</strong>
                                                 <br>
-                                                <p class="text-muted">{{ Auth::user()->email }}</p>
-                                            </div>
-                                            <div class="col-md-6 col-xs-6"> <strong>Adress</strong>
-                                                <br>
-                                                <p class="text-muted">{{ Auth::user()->u_address }}</p>
+                                                <p class="text-muted">{{ Auth::user()->m_email }}</p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <p class="m-t-30">{!! Auth::user()->u_desc_full !!}
+                                        <p class="m-t-30">{!! Auth::user()->m_desc_full !!}
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
@@ -194,31 +185,25 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Full Name <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_fullname }}" class="form-control form-control-line">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Name Alias <span class="text-danger">*</span></label>
-                                                <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_name }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->m_fullname }}" class="form-control form-control-line" name="m_fullname">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">Email <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="email" value="{{ Auth::user()->m_email }}" class="form-control form-control-line" name="example-email" id="example-email">
+                                                    <input type="email" value="{{ Auth::user()->m_email }}" class="form-control form-control-line" name="m_email" id="m_email">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Desc Short</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_desc_short }}" class="form-control form-control-line">
+                                                    <textarea  class="form-control form-control-line" rows="5" name="m_desc_short">{{ Auth::user()->m_desc_short }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Desc Full</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_desc_short }}" class="form-control form-control-line">
+                                                    <textarea  class="form-control form-control-line" rows="8" name="m_desc_full">{{ Auth::user()->m_desc_full }}</textarea>
                                                 </div>
                                             </div>
 
@@ -274,6 +259,34 @@
             else {
                 $(parent).find('.file-upload').addClass('active');
                 $(parent).find(".noFile").text(filename.replace("C:\\fakepath\\", "")); 
+                
+                var form  = $('.save_image');
+                formdata = new FormData(form[0]);
+
+                $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "post",
+                    url:'{{ route('master_user_image_update') }}',
+                    data: formdata ? formdata : form.serialize(),
+                    processData: false,
+                    contentType: false,
+                    success:function(data){
+                    if (data.status == 'sukses') {
+                        iziToast.success({
+                            icon: 'fa fa-save',
+                            position:'topRight',
+                            title: 'Success!',
+                            message: 'Data Berhasil Disimpan!',
+                        });
+
+                    // location.reload();
+                    }
+                  }
+                });
             }
             load(parent,this);
         });
@@ -339,7 +352,7 @@
                     var form = $('#form_save');
 
                     $.ajax({
-                        type: "POST",
+                        type: "get",
                         url:'{{ route('master_user_update') }}',
                         data: form.serialize(),
                         processData: false,
@@ -353,7 +366,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                        location.reload();
+                        // location.reload();
                         }
                       },error:function(){
                         iziToast.error({

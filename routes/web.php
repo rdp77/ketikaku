@@ -41,6 +41,7 @@ Auth::routes();
 //MASTER
    Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
    Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
+   Route::post('/master/master_user/update_image', 'backend\master\master_userController@update_image')->name('master_user_image_update');
 
    Route::get('/editor/approve_novel', 'backend\editor\approve_novelController@index')->name('approve_novel');
    Route::get('/editor/approve_novel/edit/{id}', 'backend\editor\approve_novelController@edit')->name('approve_novel_edit');
