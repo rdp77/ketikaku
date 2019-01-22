@@ -28,6 +28,7 @@ class bookController extends Controller
                     ->join('d_mem','m_id','=','dn_created_by')
                     ->where('dn_id',$code->dn_id)
                     ->first();
+
         $q_total_book = DB::table('d_novel')
                     ->get();
         
@@ -62,11 +63,11 @@ class bookController extends Controller
         $total_subscribe = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$code->dn_id)
                             ->count();
-
         $subscriber = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$code->dn_id)
-                            ->where('dns_subscribe_by',Auth::user()->m_id)
                             ->count();
+
+        
         
         // return response()->json([$novel_reply,$novel_rate]);
         $tags = DB::table('d_novel_tags')

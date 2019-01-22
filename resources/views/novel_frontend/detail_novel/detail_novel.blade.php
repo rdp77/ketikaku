@@ -478,7 +478,7 @@
             processData: false,
             contentType: false,
           success:function(data){
-            $('.drop_here_subscribe').text('<i class="far fa-bell"></i>'+' Subscribe '+data.total_subscribe);
+            $('.drop_here_subscribe').html('<i class="far fa-bell"></i>'+' Subscribe '+data.total_subscribe);
           },error:function(){
             iziToast.error({
                 icon: 'fa fa-info',

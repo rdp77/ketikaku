@@ -41,6 +41,7 @@
                                             <input class="form-control" value="{{ $title->dn_title }}" type="text" readonly="">
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group row">
                                         <label for="dnch_title" class="col-2 col-form-label">Title Chapter</label>
                                         <div class="col-10">

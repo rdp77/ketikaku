@@ -194,67 +194,34 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Full Name <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_fullname }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->m_fullname }}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Name Alias <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->name }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->m_name }}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">Email <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="email" value="{{ Auth::user()->email }}" class="form-control form-control-line" name="example-email" id="example-email">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-md-12">Phone <span class="text-danger">*</span></label>
-                                                <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_phone }}" class="form-control form-control-line">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Address</label>
-                                                <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_address }}" class="form-control form-control-line">
+                                                    <input type="email" value="{{ Auth::user()->m_email }}" class="form-control form-control-line" name="example-email" id="example-email">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Desc Short</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_desc_short }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->m_desc_short }}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Desc Full</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->u_desc_short }}" class="form-control form-control-line">
+                                                    <input type="text" value="{{ Auth::user()->m_desc_short }}" class="form-control form-control-line">
                                                 </div>
                                             </div>
-                                            <div class="form-group preview_div">
-                                                <label class="col-md-12">Photo</label>
-                                                <div class="col-md-12">
-                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                        <div class="file-upload upl_1" style="width: 100%;">
-                                                            <div class="file-select">
-                                                                <div class="file-select-button fileName" >Image</div>
-                                                                <div class="file-select-name noFile tag_image_1" >Cover Image</div> 
-                                                                <input type="file" class="chooseFile" name="dn_cover">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                        <div class="preview_td">
-                                                            <img style="width: 30%;border:1px solid pink" class="output" >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                          
+
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <button type="button" onclick="save()" class="btn btn-success">Update Profile</button>
@@ -369,16 +336,12 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    var form = $('#save');
-                    var formdata = false;
-                    if (window.FormData){
-                        formdata = new FormData(form[0]);
-                    }
+                    var form = $('#form_save');
 
                     $.ajax({
                         type: "POST",
-                        url:'{{ route('write_novel_save') }}',
-                        data: formdata ? formdata : form.serialize()+'&'+comment,
+                        url:'{{ route('master_user_update') }}',
+                        data: form.serialize(),
                         processData: false,
                         contentType: false,
                       success:function(data){
@@ -390,15 +353,7 @@
                                 message: 'Data Berhasil Disimpan!',
                             });
 
-                            location.href = '{{ route('write_novel') }}'
-                        }else if (data.status == 'ada') {
-                            iziToast.warning({
-                                icon: 'fa fa-save',
-                                position:'topRight',
-                                title: 'Error!',
-                                message:'Level Sudah Terpakai',
-                            });
-
+                        location.reload();
                         }
                       },error:function(){
                         iziToast.error({

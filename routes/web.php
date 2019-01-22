@@ -25,7 +25,7 @@
    Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    
-   // Route::get('/subscribe/', 'novel_frontend\chapterController@subscribe')->name('subscribe_novel');
+   Route::get('/subscribe/', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
    //BACKEND 
 
  // });
@@ -37,16 +37,10 @@ Auth::routes();
    Route::get('/home', 'HomeController@index')->name('home');
    Route::get('/verify/{token}/{id}', 'mail\verify_emailController@verify_email')->name('verify_email');
    Route::get('/verified/{token}/{id}', 'mail\verify_emailController@verified_email')->name('verified_email');
-   Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
-
 
 //MASTER
-   Route::get('/master/master_user', 'backend\master\master_userController@index')->name('master_user');
-   Route::get('/master/master_user/create', 'backend\master\master_userController@create')->name('master_user_create');
-   Route::get('/master/master_user/save', 'backend\master\master_userController@save')->name('master_user_save');
-   Route::get('/master/master_user/edit/{id}', 'backend\master\master_userController@edit')->name('master_user_edit');
-   Route::get('/master/master_user/update/{id}', 'backend\master\master_userController@update')->name('master_user_update');
-   Route::get('/master/master_user/delete/{id}', 'backend\master\master_userController@delete')->name('master_user_delete');
+   Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
+   Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
 
    Route::get('/editor/approve_novel', 'backend\editor\approve_novelController@index')->name('approve_novel');
    Route::get('/editor/approve_novel/edit/{id}', 'backend\editor\approve_novelController@edit')->name('approve_novel_edit');
