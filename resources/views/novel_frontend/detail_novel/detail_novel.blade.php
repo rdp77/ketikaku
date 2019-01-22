@@ -84,14 +84,16 @@
                         </table> 
                         <table width="100%">
                             <tr style="height: 50px;text-align: center;">
-                                @if (Auth::user()->m_id != $book->dn_created_by)
-                                    <td>
-                                        @if ($subscriber > 0)
-                                            <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
-                                        @else
-                                            <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
-                                        @endif
-                                    </td>
+                                @if (Auth::user() != null)
+                                    @if (Auth::user()->m_id != $book->dn_created_by)
+                                        <td>
+                                            @if ($subscriber > 0)
+                                                <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                            @else
+                                                <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                            @endif
+                                        </td>
+                                    @endif
                                 @endif
                               {{--   <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
                                 <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
