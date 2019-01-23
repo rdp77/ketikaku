@@ -31,7 +31,8 @@ class master_userController extends Controller
     {
     	// dd($request->all());
         $check = array_values(array_filter($request->file('dn_cover')));
-        $filename = 'file/'.'Profile'.Auth::user()->m_name.'.pdf';
+        return $check;
+        $filename = 'file/'.'Profile'.Auth::user()->m_name'.pdf';
         Storage::put($filename,file_get_contents($file));
 
         $data = d_mem::where('m_id',Auth::user()->m_id)->update($input);

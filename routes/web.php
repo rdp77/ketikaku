@@ -18,7 +18,6 @@
    //FRONT END
    Route::get('/profile/{name}', 'novel_frontend\profileController@profile')->name('profile_frontend');
    // Route::get('/book/{name}', 'frontend_controller\bookController@profile')->name('frontend_book');
-
    // FRONT END NOVEL
    Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
    Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
