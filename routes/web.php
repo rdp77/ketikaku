@@ -57,7 +57,7 @@ Auth::routes();
    Route::get('/write/write_novel/create', 'write\write_novelController@create')->name('write_novel_create');
    Route::post('/write/write_novel/save', 'write\write_novelController@save')->name('write_novel_save');
    Route::get('/write/write_novel/edit/{id}', 'write\write_novelController@edit')->name('write_novel_edit');
-   Route::post('/write/write_novel/update/{id}', 'write\write_novelController@update')->name('write_novel_update');
+   Route::post('/write/write_novel/update', 'write\write_novelController@update')->name('write_novel_update');
    Route::get('/write/write_novel/delete/{id}', 'write\write_novelController@delete')->name('setting_novel_delete');
 
    Route::get('/write/write_chapter/{id}', 'write\write_chapterController@index')->name('write_chapter');
