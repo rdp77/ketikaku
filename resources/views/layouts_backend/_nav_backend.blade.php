@@ -50,144 +50,7 @@
                                 <i class="sl-icon-menu font-20"></i>
                             </a>
                         </li>
-                        <!-- ============================================================== -->
-                        <!-- mega menu -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-gift font-20"></i>
-                            </a>
-                            <div class="dropdown-menu animated bounceInDown">
-                                <div class="mega-dropdown-menu row">
-                                    <div class="col-lg-3 col-xlg-2 m-b-30">
-                                        <h5 class="m-b-20">Carousel</h5>
-                                        <!-- CAROUSEL -->
-                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner" role="listbox">
-                                                <div class="carousel-item active">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets_backend/images/big/img1.jpg') }}" alt="First slide">
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets_backend/images/big/img2.jpg') }}" alt="Second slide">
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets_backend/images/big/img3.jpg') }}" alt="Third slide">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                        <!-- End CAROUSEL -->
-                                    </div>
-                                    <div class="col-lg-3 m-b-30">
-                                        <h5 class="m-b-20">Accordion</h5>
-                                        <!-- Accordian -->
-                                        <div id="accordion">
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            Collapsible Group Item #1
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingTwo">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                            Collapsible Group Item #2
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingThree">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                            Collapsible Group Item #3
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3  m-b-30">
-                                        <h5 class="m-b-20">Contact Us</h5>
-                                        <!-- Contact -->
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Submit</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-lg-3 col-xlg-4 m-b-30">
-                                        <h5 class="m-b-20">List style</h5>
-                                        <!-- List style -->
-                                        <ul class="list-style-none">
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> You can give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Another Give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Forth link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Another fifth link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- End mega menu -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
+                       
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bell font-20"></i>
@@ -355,40 +218,6 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
                         <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        {{-- <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <i class="ti-search font-16"></i>
-                            </a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                <a class="srh-btn">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="flag-icon flag-icon-us font-18"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right  animated bounceInDown" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-us"></i> English</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-fr"></i> French</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-es"></i> Spanish</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-de"></i> German</a>
-                            </div>
-                        </li> --}}
-
-                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -415,17 +244,17 @@
                                         {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="" width="60"> --}}
                                     </div>
                                     <div class="m-l-10">
-                                        <h4 class="m-b-0">-</h4>
-                                        <p class=" m-b-0">varun@gmail.com</p>
+                                        <h4 class="m-b-0">{{ Auth::user()->m_username }}</h4>
+                                        <p class=" m-b-0">{{ Auth::user()->m_email }}</p>
                                     </div>
                                 </div>
                                 <a class="dropdown-item" href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}">
                                     <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                <div class="dropdown-divider"></div>
+                                    {{-- <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a> --}}
+                                {{-- <a class="dropdown-item" href="javascript:void(0)"> --}}
+                                    {{-- <i class="ti-email m-r-5 m-l-5"></i> Inbox</a> --}}
+                                {{-- <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div>
@@ -438,9 +267,9 @@
                                 {{-- <a class="dropdown-item" href="javascript:void(0)"> --}}
                                     {{-- <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a> --}}
                                 <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                                </div>
+                                {{-- <div class="p-l-30 p-10"> --}}
+                                    {{-- <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a> --}}
+                                {{-- </div> --}}
                             </div>
                         </li>
                         <!-- ============================================================== -->

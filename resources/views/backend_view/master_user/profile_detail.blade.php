@@ -80,7 +80,7 @@
                                            
                                         </div>
                                     </div>
-                                    <h4 class="card-title m-t-10">{{ Auth::user()->name }}</h4>
+                                    <h4 class="card-title m-t-10">{{ Auth::user()->m_name }}</h4>
                                     <h6 class="card-subtitle">{{ Auth::user()->m_desc_short }}</h6>
                                     <div class="row text-center justify-content-md-center">
                                         <div class="col-4"><a href="javascript:void(0)" class="link"><i class="fas fa-user"></i> <font class="font-medium">{{ Auth::user()->m_follower }}</font></a></div>
@@ -133,7 +133,7 @@
                                             <div class="sl-item">
                                                 <div class="sl-left"> <img src="{{ asset('assets_backend/images/users/2.jpg') }}" alt="user" class="rounded-circle" /> </div>
                                                 <div class="sl-right">
-                                                    <div> <a href="javascript:void(0)" class="link">{{ Auth::user()->m_fullname }} <small>aka {{ Auth::user()->name }}</small></a> <span class="sl-date">{{ date('d F Y h:i:s',strtotime($element->dn_created_at)) }}</span>
+                                                    <div> <a href="javascript:void(0)" class="link">{{ Auth::user()->m_username }} <small>aka {{ Auth::user()->m_name }}</small></a> <span class="sl-date">{{ date('d F Y h:i:s',strtotime($element->dn_created_at)) }}</span>
                                                         <div class="m-t-20 row">
                                                             <div class="col-md-3 col-xs-12"><img src="{{ asset('/storage/app/'.$element->dn_cover) }}" width="100px" height="400px" alt="user" class="img-fluid rounded" /></div>
                                                             <div class="col-md-9 col-xs-12">
@@ -166,9 +166,9 @@
                                 <div class="tab-pane fade" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-6 col-xs-6 b-r"> <strong>Full Name</strong>
+                                            <div class="col-md-6 col-xs-6 b-r"> <strong>Name</strong>
                                                 <br>
-                                                <p class="text-muted">{{ Auth::user()->m_fullname }}</p>
+                                                <p class="text-muted">{{ Auth::user()->m_name }}</p>
                                             </div>
                                             <div class="col-md-6 col-xs-6 b-r"> <strong>Email</strong>
                                                 <br>
@@ -183,9 +183,9 @@
                                     <div class="card-body">
                                         <form class="form-horizontal form-material" id="form_save">
                                             <div class="form-group">
-                                                <label class="col-md-12">Full Name <span class="text-danger">*</span></label>
+                                                <label class="col-md-12">Name <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_fullname }}" class="form-control form-control-line" name="m_fullname">
+                                                    <input type="text" value="{{ Auth::user()->m_name }}" class="form-control form-control-line" name="m_fullname">
                                                 </div>
                                             </div>
                                             <div class="form-group">
