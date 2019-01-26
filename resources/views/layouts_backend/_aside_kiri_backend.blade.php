@@ -59,7 +59,6 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                     <i class="icon-Pen"></i>
-
                                     <span class="hide-menu"> Write</span>
                                 </a>
                                 <ul aria-expanded="false" class="collapse  first-level">
@@ -76,7 +75,6 @@
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                     <i class="icon-Pen"></i>
-
                                     <span class="hide-menu"> Control User</span>
                                 </a>
                                 <ul aria-expanded="false" class="collapse  first-level">
@@ -87,7 +85,6 @@
                                         </a>
                                     </li>
                                 </ul>
-
                             </li>
                         @endif
                         @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
