@@ -185,7 +185,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Name <span class="text-danger">*</span></label>
                                                 <div class="col-md-12">
-                                                    <input type="text" value="{{ Auth::user()->m_name }}" class="form-control form-control-line" name="m_fullname">
+                                                    <input type="text" value="{{ Auth::user()->m_name }}" class="form-control form-control-line" name="m_name">
                                                 </div>
                                             </div>
                                             <div class="form-group">
