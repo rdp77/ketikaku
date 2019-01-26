@@ -365,7 +365,7 @@
                                     <article class="article col-md-3">
                                         <div class="inner">
                                             <figure>
-                                                <a href="single.html">
+                                                <a href="{{ asset('storage/app/'.$element->dn_cover ) }}">
                                                     <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" alt="Sample Article">
                                                 </a>
                                             </figure>
@@ -476,7 +476,7 @@
         $.ajax({
             type: "get",
             url:'{{ route('subscribe_novel') }}',
-            data: '&id='+('{{ $book->dn_id }}'),
+            data: '&id='+('{{ $book->dn_id }}')+'&creator='+('{{ $book->dn_created_by }}'),
             processData: false,
             contentType: false,
           success:function(data){

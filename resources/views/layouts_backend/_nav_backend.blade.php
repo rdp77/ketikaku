@@ -52,7 +52,7 @@
                         </li>
                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_bell()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ti-bell font-20"></i>
 
                             </a>
@@ -63,61 +63,31 @@
                                 <ul class="list-style-none">
                                     <li>
                                         <div class="drop-title bg-primary text-white">
-                                            <h4 class="m-b-0 m-t-5">4 New</h4>
-                                            <span class="font-light">Notifications</span>
+                                            <div class="drop_header">
+                                                {{-- <sh4 class="m-b-0 m-t-5">4 New</h4>
+                                                <span class="font-light">Notifications</span> --}}
+                                            </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="message-center notifications">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-danger btn-circle">
-                                                    <i class="fa fa-link"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Luanch Admin</h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-success btn-circle">
-                                                    <i class="ti-calendar"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Event today</h5>
-                                                    <span class="mail-desc">Just a reminder that you have event</span>
-                                                    <span class="time">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-info btn-circle">
-                                                    <i class="ti-settings"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Settings</h5>
-                                                    <span class="mail-desc">You can customize this template as you want</span>
-                                                    <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-primary btn-circle">
-                                                    <i class="ti-user"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
+                                        <div class="drop_notif">
+{{--                                             <div class="message-center notifications">
+                                                <a href="javascript:void(0)" class="message-item">
+                                                    <span class="btn btn-danger btn-circle">
+                                                        <i class="fa fa-link"></i>
+                                                    </span>
+                                                    <div class="mail-contnet">
+                                                        <h5 class="message-title">Luanch Admin</h5>
+                                                        <span class="mail-desc">Just see the my new admin!</span>
+                                                        <span class="time">9:30 AM</span>
+                                                    </div>
+                                                </a>
+                                            </div> --}}
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-center m-b-5" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
+                                        <a class="nav-link text-center m-b-5 check_all" href="javascript:void(0);">
+                                            <strong style="color: black">Check all notifications</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </li>
@@ -200,7 +170,7 @@
                                     </li>
                                     <li>
                                         <a class="nav-link text-center link" href="javascript:void(0);">
-                                            <b>See all e-Mails</b>
+                                            <b style="color: black">See all e-Mails</b>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </li>
@@ -279,3 +249,55 @@
                 </div>
             </nav>
         </header>
+<script type="text/javascript">
+    
+
+    function check_bell() {
+        $('.drop_notif').empty();
+        $.ajax({
+            type: "get",
+            url:'{{ route('notif_bell') }}',
+            success:function(data){
+                if (data.status == 'sukses') {
+                    $('.check_all').css('display','block');
+                    $('.drop_header').html(data.header);
+                    var key = 1;
+                    Object.keys(data.notif).forEach(function(){
+                        $('.drop_notif').append(
+
+                            '<div class="message-center notifications">'+
+                                '<a href="javascript:void(0)" class="message-item">'+
+                                    '<span class="btn btn-danger btn-circle">'+
+                                        '<i class="fa fa-link"></i>'+
+                                    '</span>'+
+                                    '<div class="mail-contnet">'+
+                                        '<h5 class="message-title">'+data.notif[key-1].m_username+' Has Subsribed</h5>'+
+                                        '<span class="mail-desc">Subsribed this '+data.notif[key-1].dn_title+'</span>'+
+                                        '<span class="time"></span>'+
+                                    '</div>'+
+                                '</a>'+
+                            '</div>'
+
+                        );
+                    key++;
+                    });
+
+                }else if(data.status == 'kosong'){
+                    $('.check_all').css('display','none');
+                    // $('.drop_header').ht ml(data.header);
+                    $('.drop_notif').html('<div class="drop-title bg-primary text-white">'+data.notif+'</div>');
+                }
+
+            },error:function(){
+              iziToast.error({
+                 icon: 'fa fa-info',
+                 position:'topRight',
+                 title: 'Error!',
+                 message: 'Call Admin To resolve!',
+              });
+          }
+        });
+    }
+
+
+</script>

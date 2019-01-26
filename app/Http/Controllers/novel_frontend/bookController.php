@@ -30,6 +30,7 @@ class bookController extends Controller
                     ->first();
 
         $q_total_book = DB::table('d_novel')
+                    ->where('dn_created_by',Auth::user()->m_id)
                     ->get();
         
         $total_book = count($q_total_book);

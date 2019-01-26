@@ -17,7 +17,7 @@
                                     {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="users" class="" /> --}}
                                 </div>
                                 <div class="user-content hide-menu m-t-5">
-                                    <h5 class="m-b-5 user-name font-medium">@if (Auth::user() != null ) {{ Auth::user()->name }} @else @endif</h5>
+                                    <h5 class="m-b-5 user-name font-medium">@if (Auth::user() != null ) {{ Auth::user()->m_username }} @else @endif</h5>
                                     <a href="javascript:void(0)" class="btn btn-circle btn-sm m-r-5" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                         <i class="ti-settings"></i>

@@ -23,7 +23,8 @@ class subscribeController extends Controller
             $insert =  DB::table('d_novel_subscribe')
                         ->insert([
                             'dns_ref_id'=>$request->id,
-                            'dns_subscribe_by'=>Auth::user()->m_id,
+                            'dns_creator'=>$request->creator,
+                            'dns_subscribe_by'=>Auth::user()->m_id, 
                             'dns_created_at'=>date('Y-m-d H:i:s')
                         ]);
         }else{
