@@ -82,7 +82,7 @@
                      
                         <div class="line thin"></div>
                         @if(Auth::user() != null)
-                            <input type="hidden" name="" value="{{ Auth::user()->m_id }}" class="dr_rated_by">
+                            <input type="hidden" value="{{ Auth::user()->m_id }}" class="dmc_comment_by">
                                 <div class="comments">
                                     {{-- <h4 class="title">3 Responses </h4> --}}
                                     <div class="comment-list">
@@ -123,10 +123,11 @@
     });
 
     function follow(argument) {
+        var dmc_comment_by = $('.dmc_comment_by').val();
         $.ajax({
             type: "get",
             url:'{{ route('follow_frontend') }}',
-            data: '&dmf_followed='+('{{ $profile->m_id }}')+'&dmf_follow_by='+('{{ Auth::user()->m_id  }}'),
+            data: '&dmf_followed='+('{{ $profile->m_id }}')+'&dmf_follow_by='+dmc_comment_by,
             processData: false,
             contentType: false,
           success:function(data){
@@ -158,6 +159,7 @@
 
     function reply_data(argument) {
         var message = $('#dmc_message_'+argument).val();
+        var dmc_comment_by = $('.dmc_comment_by').val();
 
         if (message == '') {
             iziToast.warning({
@@ -171,7 +173,7 @@
         $.ajax({
             type: "get",
             url:'{{ route('comment_frontend') }}',
-            data: '&dmc_commended='+('{{ $profile->m_id }}')+'&message='+message+'&dmc_comment_by='+('{{ Auth::user()->m_id  }}'),
+            data: '&dmc_commended='+('{{ $profile->m_id }}')+'&message='+message+'&dmc_comment_by='+dmc_comment_by,
             processData: false,
             contentType: false,
           success:function(data){
