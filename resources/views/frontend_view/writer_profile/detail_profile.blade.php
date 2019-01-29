@@ -84,7 +84,7 @@
                         @if(Auth::user() != null)
                             <input type="hidden" name="" value="{{ Auth::user()->m_id }}" class="dr_rated_by">
                                 <div class="comments">
-                                    <h4 class="title">3 Responses </h4>
+                                    {{-- <h4 class="title">3 Responses </h4> --}}
                                     <div class="comment-list">
                                         <form class="row">
                                             <div class="col-md-12">
