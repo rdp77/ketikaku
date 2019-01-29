@@ -46,10 +46,17 @@
                     <div class="line thin"></div>
                     <div class="col-md-2 sidebar" id="sidebar">
                         <aside>
-                            
-                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;">
+                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 100%;">
                             <br>
-
+                            <br>
+                            <p class="drop_here_follower"><i class="fas fa-users"></i> &nbsp;{{ $profile->m_follower }} Followers</p>
+                            <p ><i class="fas fa-user-friends"></i> &nbsp;{{ $following }} Following</p>
+                            @if (Auth::user() != null)
+                                @if ($profile->m_id != Auth::user()->m_id)
+                                    <button class="btn-sm btn btn-primary drop_here_button_follower" onclick="follow()"><i class="fas fa-user-plus"></i> Follow</button>
+                                @endif
+                            @else
+                            @endif
                         </aside>
                     </div>
                     <div class="col-md-10">
@@ -59,12 +66,11 @@
                                 <p>
                                     {!! $profile->m_desc_short !!}
                                 </p>
-                            </header>
-                            <div class="main">
+                                <br>
                                 <h6>
                                     {{  $profile->m_desc_full }}
                                 </h6>
-                            </div>
+                            </header>
                         </article>
                     </div>
                     <div class="col-md-12">
@@ -111,9 +117,33 @@
         })
     });
 
+    function follow(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('follow_frontend') }}',
+            data: '&dmf_followed='+('{{ $profile->m_id }}')+'&dmf_follow_by='+('{{ Auth::user()->m_id  }}'),
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here_follower').html('<i class="fas fa-users"></i> &nbsp;'+data.follow+' Followers');
+            if (data.check == 'plus') {
+                $('.drop_here_button_follower').html('<i class="fas fa-user-check"></i> &nbsp; Follow');
+            }else{
+                $('.drop_here_button_follower').html('<i class="fas fa-user-plus"></i> &nbsp; Follow');
+            }
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+
 
     function reply(argument) {
-        // console.log(argument);
         $('.drop_reply_'+argument).html(
         '<br>'+
         '<textarea class="form-control" name="drdt_message_'+argument+'" id="drdt_message_'+argument+'" placeholder="Write your response ..."></textarea>'+
@@ -123,7 +153,7 @@
 
     function reply_data(argument) {
         var message = $('#dmc_message_'+argument).val();
-        // alert(argument);
+
         if (message == '') {
             iziToast.warning({
                     icon: 'fa fa-info-circle',
