@@ -397,7 +397,6 @@
 
     (function update() {
         $.ajax({
-
         }).then(function() {           // on completion, restart
            setTimeout(update, 30000);  // function refers to itself
         });

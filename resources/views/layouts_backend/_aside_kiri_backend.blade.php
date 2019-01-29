@@ -9,12 +9,11 @@
                             <!-- User Profile-->
                             <div class="user-profile dropdown m-t-5">
                                 <div class="user-pic">
-                                    @if (Auth::user()->u_image == null)
-                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle img-fluid" {{-- width="150" --}} />
+                                    @if (Auth::user()->m_image == null)
+                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle img-fluid" {{-- style="width: 60px !important;height: 60px !important" --}} />
                                     @else
-                                        <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle img-fluid" {{-- width="150" --}} />
+                                        <img src="{{ asset('/storage/app/'.Auth::user()->m_image) }}?{{ time() }}" class="rounded-circle img-fluid" {{-- style="width: 60px !important;height: 60px !important" --}} />
                                     @endif
-                                    {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="users" class="" /> --}}
                                 </div>
                                 <div class="user-content hide-menu m-t-5">
                                     <h5 class="m-b-5 user-name font-medium">@if (Auth::user() != null ) {{ Auth::user()->m_username }} @else @endif</h5>
@@ -47,13 +46,7 @@
                                 <span class="hide-menu">Homepage</span>
                             </a>
                         </li>
-                      {{--   <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('home') }}
-                                   " aria-expanded="false">
-                                <i class="mdi mdi-directions"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li> --}}
+                    
                         <!-- User Profile-->
                         @if (Auth::user()->m_isactive == 'Y')
                             <li class="sidebar-item">

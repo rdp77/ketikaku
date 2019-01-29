@@ -58,7 +58,7 @@
                                         </div>
                                         @else
                                         <div class="preview_td">
-                                            <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="output rounded-circle" width="150" height="145" />
+                                            <img src="{{ asset('/storage/app/'.Auth::user()->m_image) }}?{{ time() }}" class="output rounded-circle" width="150" height="145" />
                                         </div>
                                         @endif
                                         

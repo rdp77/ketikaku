@@ -30,12 +30,11 @@ class master_userController extends Controller
     public function update_image(Request $request)
     {
     	// dd($request->all());
-        $check = array_values(array_filter($request->file('dn_cover')));
-        return $check;
-        $filename = 'file/'.'Profile'.Auth::user()->m_name.'.png';
-        Storage::put($filename,file_get_contents($file));
-
-        $data = d_mem::where('m_id',Auth::user()->m_id)->update($input);
+        $check = $request->file('dn_cover');
+        // return $check;
+        $filename = 'photo_profile/'.'Profile_'.Auth::user()->m_username.'.png';
+        Storage::put($filename,file_get_contents($check));
+        $data = d_mem::where('m_id',Auth::user()->m_id)->update(['m_image'=>$filename]);
 
     }
 }

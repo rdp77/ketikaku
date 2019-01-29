@@ -13,7 +13,7 @@
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            {{-- <img src="{{ asset('assets_backend/images/logo-icon.png') }}" alt="homepage" class="dark-logo" /> --}}
+                            <img src="{{ asset('assets_backend/images/Favicon.jpg') }}" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
                             {{-- <img src="{{ asset('assets_backend/images/logo-light-icon.png') }}" alt="homepage" class="light-logo" /> --}}
                         </b>
@@ -193,10 +193,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                @if (Auth::user()->u_image == null)
-                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle" width="31" />
+                                @if (Auth::user()->m_image == null)
+                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="rounded-circle" width="31" height="31" />
                                 @else
-                                    <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="rounded-circle" width="31" />
+                                    <img src="{{ asset('storage/app/'.Auth::user()->m_image) }}?{{ time() }}" class="rounded-circle" width="31" height="31" />
                                 @endif
                                 {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="" width="31"> --}}
                             </a>
@@ -206,10 +206,10 @@
                                 </span>
                                 <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
                                     <div class="">
-                                        @if (Auth::user()->u_image == null)
-                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="img-circle" width="60" />
+                                        @if (Auth::user()->m_image == null)
+                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="img-circle" width="60" height="60"/>
                                         @else
-                                            <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" class="img-circle" width="60" />
+                                            <img src="{{ asset('storage/app/'.Auth::user()->m_image) }}?{{ time() }}" class="img-circle" width="60" height="60"/>
                                         @endif
                                         {{-- <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="" width="60"> --}}
                                     </div>

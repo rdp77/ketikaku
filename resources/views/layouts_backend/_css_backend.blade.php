@@ -10,6 +10,7 @@
 
 <link href="{{ asset('assets_backend/libs/dragula/dist/dragula.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets_backend/libs/iziToast-master/dist/css/iziToast.css') }}" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" href="{{ asset('node_modules/croppie/croppie.css') }}" />
 
 <style type="text/css">
 	.file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}

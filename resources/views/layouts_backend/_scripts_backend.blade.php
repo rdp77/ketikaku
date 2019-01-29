@@ -33,6 +33,7 @@
 <script src="{{ asset('assets_backend/libs/dragula/dist/dragula.min.js') }}"></script>
 <script src="{{ asset('assets_backend/libs/iziToast-master/dist/js/iziToast.min.js') }}"></script>
 
+<script src="{{ asset('node_modules/croppie/croppie.js')}}"></script>
 
 <script type="text/javascript">
     $(".preloader").fadeOut();

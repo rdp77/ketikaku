@@ -16,8 +16,10 @@
    Route::get('/', 'welcomeController@data_all')->name('data_all');
    Route::post('login', 'Auth\loginController@authenticate');
    //FRONT END
-   Route::get('/profile/{name}', 'novel_frontend\profileController@profile')->name('profile_frontend');
-   // Route::get('/book/{name}', 'frontend_controller\bookController@profile')->name('frontend_book');
+   Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');
+   Route::get('/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
+   Route::get('/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
+
    // FRONT END NOVEL
    Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
    Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
@@ -39,7 +41,7 @@ Auth::routes();
    Route::get('/verified/{token}/{id}', 'mail\verify_emailController@verified_email')->name('verified_email');
 
 //MASTER
-   Route::get('/profile_detail/{id}', 'backend_controller\profileController@profile')->name('profile_backend');
+   Route::get('/profile_detail/{id}', 'backend\profile\profileController@profile')->name('profile_backend');
    Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
    Route::post('/master/master_user/update_image', 'backend\master\master_userController@update_image')->name('master_user_image_update');
 
