@@ -53,8 +53,7 @@
 
                                         @if (Auth::user()->m_image == null)
                                         <div class="preview_td">
-                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="
-                                            output rounded-circle" width="150" height="145" />
+                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" class="output rounded-circle" width="150" height="145" />
                                         </div>
                                         @else
                                         <div class="preview_td">

@@ -46,7 +46,11 @@
                     <div class="line thin"></div>
                     <div class="col-md-2 sidebar" id="sidebar">
                         <aside>
-                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 100%;">
+                            @if ($profile->m_image == null)
+                                <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" style="border-radius: 50%;width: 100%;" />
+                            @else
+                                <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 100%;">
+                            @endif
                             <br>
                             <br>
                             <p class="drop_here_follower"><i class="fas fa-users"></i> &nbsp;{{ $profile->m_follower }} Followers</p>
@@ -56,6 +60,7 @@
                                     <button class="btn-sm btn btn-primary drop_here_button_follower" onclick="follow()"><i class="fas fa-user-plus"></i> Follow</button>
                                 @endif
                             @else
+                                    <button class="btn-sm btn btn-primary" disabled=""><i class="fas fa-user-plus"></i> Follow</button>
                             @endif
                         </aside>
                     </div>
