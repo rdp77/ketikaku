@@ -60,7 +60,7 @@
                                     <button class="btn-sm btn btn-primary drop_here_button_follower" onclick="follow()"><i class="fas fa-user-plus"></i> Follow</button>
                                 @endif
                             @else
-                                    <button class="btn-sm btn btn-primary" disabled=""><i class="fas fa-user-plus"></i> Follow</button>
+                                    <button class="btn-sm btn btn-secondary" disabled=""><i class="fas fa-user-plus"></i> Follow</button>
                             @endif
                         </aside>
                     </div>
