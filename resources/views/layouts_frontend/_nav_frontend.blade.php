@@ -60,6 +60,9 @@
                     <div class="mobile-toggle">
                         <a href="#" data-toggle="sidebar" data-target="#sidebar"><i class="ion-ios-arrow-left"></i></a>
                     </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                     <div id="menu-list">
                         <ul class="nav-list">
                             <li class="for-tablet nav-title"><a>Menu</a></li>
@@ -72,14 +75,13 @@
                                     @if (Auth::User() != null) 
                                         <a href="#">hy ,{{ Auth::user()->m_username }} <i class="ion-ios-arrow-right"></i></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}"><i class="icon ion-person"></i> My Account</a></li>
-                                            <li><a href="{{ url('/home') }}"><i class="icon ion-person"></i> Dashboard</a></li>
-                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();" ><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a></li>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
+                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}"> My Profile</a></li>
+                                            <li><a href="{{ route('profile_backend',['id'=>Auth::user()->m_id]) }}">{{-- <i class="icon ion-person"></i> --}} My Account</a></li>
+                                            <li><a href="{{ url('/home') }}"><i class="icon-ID-3"></i> Dashboard</a></li>
+                                            <li><a href="{{ route('logout') }}"                                            
+                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
+                                            {{-- <i class="icon ion-log-out"> --}}</i> Logout</a></li>
+                                            
                                         </ul>
                                     @else
                                     @endif

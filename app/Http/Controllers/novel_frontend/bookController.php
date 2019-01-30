@@ -65,10 +65,13 @@ class bookController extends Controller
         $total_subscribe = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$code->dn_id)
                             ->count();
-        $subscriber = DB::table('d_novel_subscribe')
+        if (Auth::user() != null) {
+            $subscriber = DB::table('d_novel_subscribe')
+                            ->where('dns_subscribe_by',Auth::user()->m_id)
                             ->where('dns_ref_id',$code->dn_id)
                             ->count();
-
+        }
+        // return $subscriber;
         
         
         // return response()->json([$novel_reply,$novel_rate]);

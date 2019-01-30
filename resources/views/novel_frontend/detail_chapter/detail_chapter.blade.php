@@ -145,7 +145,11 @@
                         </div>
                         <div class="author">
                             <figure>
-                                <img src="{{ asset('assets/images/img01.jpg') }}">
+                                @if ($chapter->m_image == null)
+                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
+                                @else
+                                    <img src="{{ asset('/storage/app/'.$chapter->m_image) }}?{{ time() }}" />
+                                @endif
                             </figure>
                             <div class="details">
                                 <div class="job">{{ $chapter->m_instagram }}</div>

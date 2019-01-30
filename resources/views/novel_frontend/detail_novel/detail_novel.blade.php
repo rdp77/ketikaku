@@ -81,6 +81,10 @@
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
                                 <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , H:i A',strtotime($book->dn_created_at)) }}</td>
                             </tr>
+                            <tr style="height: 50px" >
+                                <td valign="middle" style="border-bottom:1px solid #dddddd">Subscriber</td>
+                                <td style="border-bottom:1px solid #dddddd" class="drop_here_total_subscribe">{{ $total_subscribe }}</td>
+                            </tr>
                         </table> 
                         <table width="100%">
                             <tr style="height: 50px;text-align: center;">
@@ -88,16 +92,15 @@
                                     @if (Auth::user()->m_id != $book->dn_created_by)
                                         <td>
                                             @if ($subscriber > 0)
-                                                <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                                <button class="btn btn-secondary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribed </button>
                                             @else
-                                                <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe {{ $total_subscribe }} </button>
+                                                <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe </button>
                                             @endif
                                         </td>
                                     @endif
+                                @else 
+                                    <td>Login To Subscribe</td>
                                 @endif
-                              {{--   <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
-                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td>
-                                <td><button class="btn btn-primary btn-sm"><i class="fas fa-bell"></i> Follow</button></td> --}}
                             </tr>
                         </table>     
                        {{--  <table width="100%">
@@ -122,7 +125,11 @@
                                             
                                             <div class="featured-author-center">
                                                 <figure class="featured-author-picture">
-                                                    <img src="{{ asset('assets/images/img01.jpg') }}" alt="Sample Article">
+                                                    @if ($book->m_image == null)
+                                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
+                                                    @else
+                                                        <img src="{{ asset('/storage/app/'.$book->m_image) }}?{{ time() }}" />
+                                                    @endif
                                                 </figure>
                                                 <div class="featured-author-info">
                                                     <h2 class="name">{{ $book->m_username }}</h2>
@@ -479,7 +486,16 @@
             processData: false,
             contentType: false,
           success:function(data){
-            $('.drop_here_subscribe').html('<i class="far fa-bell"></i>'+' Subscribe '+data.total_subscribe);
+            if (data.check == 'plus') {
+                $('.drop_here_subscribe').html('<i class="far fa-bell"></i>'+' Subscribed');
+                $('.drop_here_subscribe').removeClass('btn-primary');
+                $('.drop_here_subscribe').addClass('btn-secondary');
+            }else{
+                $('.drop_here_subscribe').html('<i class="fas fa-bell"></i>'+' Subscribe');
+                $('.drop_here_subscribe').addClass('btn-primary');
+                $('.drop_here_subscribe').removeClass('btn-secondary');
+            }
+            $('.drop_here_total_subscribe').html(data.total_subscribe);
           },error:function(){
             iziToast.error({
                 icon: 'fa fa-info',
