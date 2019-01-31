@@ -71,6 +71,11 @@
                                 Don't have an account? <a href="{{ url('register') }}" class="text-info m-l-5"><b>Sign Up</b></a>
                             </div>
                         </div>
+                        <div class="form-group m-b-0 m-t-10">
+                            <div class="col-sm-12 text-center">
+                                <a href="{{ url('/') }}" class="text-info m-l-5"><b>Back to Homepage</b></a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

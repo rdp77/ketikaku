@@ -8,7 +8,7 @@
 <script src="{{ asset('assets/scripts/easescroll/jquery.easeScroll.js') }}"></script>
 <script src="{{ asset('assets/scripts/sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{ asset('assets/scripts/toast/jquery.toast.min.js') }}"></script>
-<script src="{{ asset('assets/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
 <script src="{{ asset('assets/js/e-magz.js') }}"></script>
 <script src="{{ asset('assets_backend/libs/iziToast-master/dist/js/iziToast.min.js') }}"></script>
 

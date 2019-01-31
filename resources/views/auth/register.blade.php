@@ -108,6 +108,11 @@
                                         Already have an account? <a href="{{ route('login') }}" class="text-info m-l-5 "><b>Sign In</b></a>
                                     </div>
                                 </div>
+                                <div class="form-group m-b-0 m-t-10">
+                                    <div class="col-sm-12 text-center">
+                                        <a href="{{ url('/') }}" class="text-info m-l-5"><b>Back to Homepage</b></a>
+                                    </div>
+                                </div>                                
                             </form>
                         </div>
                     </div>
