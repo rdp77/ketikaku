@@ -93,7 +93,7 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="416px" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="400px" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">
@@ -123,7 +123,7 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="416px" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="400px" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">
@@ -152,7 +152,7 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="416px" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="400px" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">
