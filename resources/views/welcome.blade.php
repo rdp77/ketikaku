@@ -86,14 +86,14 @@
                             <div>POPULAR</div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-6 col-xs-6">
                                 <div class="row">
                                     @foreach ($data_popular as $element)
                                     <article class="article col-md-3">
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="380px" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">
@@ -123,7 +123,7 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" width="199px" height="380px" alt="Sample Article">
+                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" alt="Sample Article">
                                                 </a>
                                             </figure>
                                             <div class="padding">

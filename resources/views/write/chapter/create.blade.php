@@ -110,7 +110,7 @@
                     });
 
                     $.ajax({
-                        type: "get",
+                        type: "post",
                         url: baseUrl+'/write'+'/write_chapter/save/'+id,
                         data: $('#save').serialize(),
                         // processData: false,
