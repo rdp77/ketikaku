@@ -22,9 +22,9 @@
    //FRONT END
    // profile front end
    Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');
-   Route::get('/profile/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
-   Route::get('/profile/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
-   Route::get('/profile/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
+   Route::get('/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
+   Route::get('/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
+   Route::get('/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
 
    // FRONT END NOVEL
    // book
