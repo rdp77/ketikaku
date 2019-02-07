@@ -7,4 +7,4 @@
 <meta name="author" content="">
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
-<title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+<title>KETIKAKU</title>
