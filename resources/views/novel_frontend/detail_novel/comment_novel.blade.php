@@ -3,7 +3,7 @@
                                             <div class="user">                                
                                                 <figure>
                                                     @if ($element->m_image != null)
-                                                        <img src="{{ asset('assets/images/img01.jpg') }}">
+                                                        <img src="{{ asset('storage/app/'.$element->m_image) }}?{{ time() }}">
                                                     @else
                                                         <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                     @endif
