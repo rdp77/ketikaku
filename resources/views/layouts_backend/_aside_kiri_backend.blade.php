@@ -46,7 +46,28 @@
                                 <span class="hide-menu">Homepage</span>
                             </a>
                         </li>
-                    
+                        @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="icon-Pen"></i>
+                                    <span class="hide-menu"> Master</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('master_user') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Master User</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="{{ route('master_category') }}" class="sidebar-link">
+                                            <i class="icon-Record"></i>
+                                            <span class="hide-menu"> Master Category</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         <!-- User Profile-->
                         @if (Auth::user()->m_isactive == 'Y')
                             <li class="sidebar-item">
@@ -64,22 +85,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
-                            <li class="sidebar-item">
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                    <i class="icon-Pen"></i>
-                                    <span class="hide-menu"> Control User</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item">
-                                        <a href="{{-- {{ route('master_user') }} --}}" class="sidebar-link">
-                                            <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Writer Data</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
+                        
                         @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">

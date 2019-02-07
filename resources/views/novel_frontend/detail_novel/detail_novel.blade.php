@@ -5,7 +5,6 @@
 {{-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> --}}
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('assets/dist/starrr.css') }}">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
 
 <style type="text/css">
@@ -59,7 +58,7 @@
                         <table width="100%">
                             <tr style="height: 50px">
                                 <td valign="middle" width="30%" style="border-top:none;border-bottom:1px solid #dddddd">Status</td>
-                                <td valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">
+                                <td colspan="3" valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">
                                     @if ($book->dn_type_novel == 1)
                                         <div class="badges">
                                             <div class="badge-item"><i class="ion-star"></i> Official</div>
@@ -72,6 +71,8 @@
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
                                 <td style="border-bottom:1px solid #dddddd">-</td>
+                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
+                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Ditulis Oleh</td>
@@ -79,23 +80,43 @@
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Diterbitkan</td>
-                                <td style="border-bottom:1px solid #dddddd">{{ date('d F Y , H:i A',strtotime($book->dn_created_at)) }}</td>
+                                <td colspan="3" style="border-bottom:1px solid #dddddd">{{ date('d F Y , H:i A',strtotime($book->dn_created_at)) }}</td>
                             </tr>
                             <tr style="height: 50px" >
-                                <td valign="middle" style="border-bottom:1px solid #dddddd">Subscriber</td>
-                                <td style="border-bottom:1px solid #dddddd" class="drop_here_total_subscribe">{{ $total_subscribe }}</td>
+                                <td valign="middle" style="border-bottom:1px solid #dddddd"><i class="fas fa-users"></i>
+                                    <span class="drop_here_total_subscribe">{{ $total_subscribe }}</span> 
+                                &nbsp;Subscribed</td>
+                                <td valign="middle" style="border-bottom:1px solid #dddddd"><i class="fas fa-heart"></i>
+                                    <span class="drop_here_total_like">{{ $total_like }}</span> 
+                                &nbsp;liked</td>
+                                <td valign="middle" style="border-bottom:1px solid #dddddd"><i class="fas fa-eye"></i>
+                                    <span class="drop_here_total_view"></span> 
+                                &nbsp;Viewer</td>
+                                {{-- <td style="border-bottom:1px solid #dddddd" >Like</td> --}}
+                                {{-- <td valign="middle" style="border-bottom:1px solid #dddddd"></td> --}}
+                                {{-- <td style="border-bottom:1px solid #dddddd" class="drop_here_total_like">{{ $total_like }}</td> --}}
                             </tr>
                         </table> 
                         <table width="100%">
-                            <tr style="height: 50px;text-align: center;">
+                            <tr style="height: 50px;text-align: left;">
                                 @if (Auth::user() != null)
                                     @if (Auth::user()->m_id != $book->dn_created_by)
-                                        <td>
+                                        <td width="30%">
                                             @if ($subscriber > 0)
                                                 <button class="btn btn-secondary btn-sm subscribe drop_here_subscribe"><i class="far fa-bell"></i> Subscribed </button>
                                             @else
                                                 <button class="btn btn-primary btn-sm subscribe drop_here_subscribe"><i class="fas fa-bell"></i> Subscribe </button>
                                             @endif
+                                        </td>
+                                        <td>
+                                            @if ($liker > 0)
+                                                <button class="btn btn-secondary btn-sm like drop_here_like"><i class="far fa-heart"></i> Liked </button>
+                                            @else
+                                                <button class="btn btn-primary btn-sm like drop_here_like"><i class="fas fa-heart"></i> Like </button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            
                                         </td>
                                     @endif
                                 @else 
@@ -268,7 +289,7 @@
                                             <div class="user">                                
                                                 <figure>
                                                     @if ($element->m_image != null)
-                                                        <img src="{{ asset('assets/images/img01.jpg') }}">
+                                                        <img src="{{ asset('/storage/app/'.$element->m_image) }}?{{ time() }}">
                                                     @else
                                                         <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                     @endif
@@ -324,8 +345,8 @@
                                                 <div class="item">
                                                     <div class="user">                                
                                                         <figure>
-                                                            @if ($element->m_image != null)
-                                                                <img src="{{ asset('assets/images/img01.jpg') }}">
+                                                            @if ($gg->m_image != null)
+                                                                <img src="{{ asset('/storage/app/'.$gg->m_image) }}?{{ time() }}">
                                                             @else
                                                                 <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
                                                             @endif
@@ -496,6 +517,36 @@
                 $('.drop_here_subscribe').removeClass('btn-secondary');
             }
             $('.drop_here_total_subscribe').html(data.total_subscribe);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    });
+
+
+    $('.like').click(function(){
+        $.ajax({
+            type: "get",
+            url:'{{ route('like_novel') }}',
+            data: '&id='+('{{ $book->dn_id }}')+'&creator='+('{{ $book->dn_created_by }}'),
+            processData: false,
+            contentType: false,
+          success:function(data){
+            if (data.check == 'plus') {
+                $('.drop_here_like').html('<i class="far fa-heart"></i>'+' liked');
+                $('.drop_here_like').removeClass('btn-primary');
+                $('.drop_here_like').addClass('btn-secondary');
+            }else{
+                $('.drop_here_like').html('<i class="fas fa-heart"></i>'+' like');
+                $('.drop_here_like').addClass('btn-primary');
+                $('.drop_here_like').removeClass('btn-secondary');
+            }
+            $('.drop_here_total_like').html(data.total_like);
           },error:function(){
             iziToast.error({
                 icon: 'fa fa-info',

@@ -12,22 +12,29 @@
 */
 
 
-// Route::group(['middleware' => 'guest'], function () {
-   Route::get('/', 'welcomeController@data_all')->name('data_all');
    Route::post('login', 'Auth\loginController@authenticate');
+
+// Route::group(['middleware' => 'guest'], function () {
+   // homw front end welcome
+   Route::get('/', 'welcomeController@data_all')->name('data_all');
+   Route::get('/welcome/comment_ajax', 'welcomeController@comment_ajax')->name('welcome_comment_ajax');
+
    //FRONT END
+   // profile front end
    Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');
-   Route::get('/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
-   Route::get('/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
-   Route::get('/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
+   Route::get('/profile/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
+   Route::get('/profile/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
+   Route::get('/profile/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
 
    // FRONT END NOVEL
+   // book
    Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
-   Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
-   Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
+   Route::get('/book/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
+   Route::get('/book/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
+   Route::get('/book/subscribe', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
+   Route::get('/book/like', 'novel_frontend\likeController@like')->name('like_novel');
+   // chapter
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
-   
-   Route::get('/subscribe/', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
    //BACKEND 
 
  // });
@@ -71,6 +78,23 @@ Auth::routes();
    Route::get('/write/write_chapter/update/{id}', 'write\write_chapterController@update')->name('write_chapter_update');
    Route::get('/write/write_chapter/delete/{id}', 'write\write_chapterController@delete')->name('setting_chapter_delete');
 // });
+
+
+   // MASTERRR
+   // user
+   Route::get('/master/master_user', 'backend\master\master_userController@index')->name('master_user');
+   Route::get('/master/master_user/create', 'backend\master\master_userController@create')->name('master_user_create');
+   Route::get('/master/master_user/edit/{id}', 'backend\master\master_userController@edit')->name('master_user_edit');
+   Route::post('/master/master_user/save', 'backend\master\master_userController@save')->name('master_user_save');
+   Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
+   Route::post('/master/master_user/delete', 'backend\master\master_userController@delete')->name('master_user_delete');
+   // category
+   Route::get('/master/master_category', 'backend\master\master_categoryController@index')->name('master_category');
+   Route::get('/master/master_category/create', 'backend\master\master_categoryController@create')->name('master_category_create');
+   Route::get('/master/master_category/edit/{id}', 'backend\master\master_categoryController@edit')->name('master_category_edit');
+   Route::post('/master/master_category/save', 'backend\master\master_categoryController@save')->name('master_category_save');
+   Route::get('/master/master_category/update/{id}', 'backend\master\master_categoryController@update')->name('master_category_update');
+   Route::post('/master/master_category/delete', 'backend\master\master_categoryController@delete')->name('master_category_delete');
 
 
 

@@ -11,6 +11,16 @@ class welcomeController extends Controller
         $data_latest = DB::table('d_novel')->get();
         $data_popular = DB::table('d_novel')->get();
         $data_like = DB::table('d_novel')->get();
-        return view('welcome',compact('data_latest','data_popular','data_like'));
+        $review = DB::table('d_novel')->get();
+        $review = DB::table('d_novel_rate')
+                    ->join('d_mem','m_id','dr_rated_by')
+                    ->orderBy('dr_created_at','DESC')
+                    ->limit(7)
+                    ->get();
+        return view('welcome',compact('data_latest','data_popular','data_like','review'));
+    }
+    public function comment_ajax()
+    {
+    	
     }
 }

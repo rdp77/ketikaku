@@ -1,6 +1,12 @@
 @extends('layouts_frontend._main_frontend')
 
 @section('extra_style')
+<style type="text/css">
+    .kuning{
+      color: #ffd119;
+      font-size: 15px;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -97,9 +103,10 @@
                                                 </a>
                                             </figure>
                                             <div class="padding">
-                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
+                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
+                                                    <span class="love active"><i class="ion-android-favorite"></i> <div>1263</div></span>
+                                                    {{-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a> --}}
                                                     <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -129,7 +136,7 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
+                                                    <a href="#" class="love active"><i class="ion-android-favorite"></i> <div>1263</div></a>
                                                     <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -181,18 +188,18 @@
                         <aside>
                             <ul class="nav nav-tabs nav-justified" role="tablist">
                                 <li class="active">
-                                    <a href="#recomended" aria-controls="recomended" role="tab" data-toggle="tab">
-                                        <i class="ion-android-star-outline"></i> Recomended
+                                    <a href="#popular_writter" aria-controls="popular_writter" role="tab" data-toggle="tab">
+                                        {{-- <i class="ion-android-star-outline"></i> --}} Popular Writer
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
-                                        <i class="ion-ios-chatboxes-outline"></i> Comments
+                                    <a href="#active_writter" aria-controls="active_writter" role="tab" data-toggle="tab">
+                                        {{-- <i class="ion-ios-chatboxes-outline"></i> --}} Active Writer
                                     </a>
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="recomended">
+                                <div class="tab-pane active" id="popular_writter">
                                     <article class="article-fw">
                                         <div class="inner">
                                             <figure>
@@ -262,7 +269,7 @@
                                         </div>
                                     </article>
                                 </div>
-                                <div class="tab-pane comments" id="comments">
+                                <div class="tab-pane active_writter" id="active_writter">
                                     <div class="comment-list sm">
                                         <div class="item">
                                             <div class="user">                                
@@ -310,6 +317,103 @@
                                 </div>
                             </div>
                         </aside>
+
+
+                        <aside>
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li class="active">
+                                    <a href="#review" aria-controls="review" role="tab" data-toggle="tab">
+                                        <i class="ion-android-star-outline"></i> Review
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
+                                        <i class="ion-ios-chatboxes-outline"></i> Comments
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active comments" id="review">
+                                    <div class="comment-list sm">
+                                        @foreach ($review as $element)
+                                        <div class="item">
+                                            <div class="user">                                
+                                                <figure>
+                                                    @if ($element->m_image != null)
+                                                        <img src="{{ asset('/storage/app/'.$element->m_image) }}?{{ time() }}">
+                                                    @else
+                                                        <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" >
+                                                    @endif
+                                                </figure>
+                                                <div class="details">
+                                                    <h5 class="name">{{ $element->m_username }}
+                                                        
+                                                    </h5>
+                                                    <p>
+                                                        @if ($element->dr_rate == 1)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 2)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 3)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 4)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 5)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                        @endif
+                                                    </p>
+                                                    <div class="time">{{ date('d F Y',strtotime($element->dr_created_at)) }} <small>{{ date('h:i A',strtotime($element->dr_created_at)) }}</small></div>
+                                                    <div class="description">
+                                                        {{ $element->dr_message }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="tab-pane comments" id="comments">
+                                    <div class="comment-list sm">
+                                        <div class="item">
+                                            <div class="user">                                
+                                                <figure>
+                                                    <img src="{{ asset('assets/images/img01.jpg"') }} alt="User Picture">
+                                                </figure>
+                                                <div class="details">
+                                                    <h5 class="name">Mark Otto</h5>
+                                                    <div class="time">24 Hours</div>
+                                                    <div class="description">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+
                         <aside>
                             <div class="aside-body">
                                 <form class="newsletter">
@@ -343,6 +447,24 @@
     function link(argument) {
         window.location.assign('www.esensicreative.com');
     }
+
+    function fetchdata(){
+     $.ajax({
+      url: 'fetch_details.php',
+      type: 'post',
+      success: function(data){
+       // Perform operation on return value
+       alert(data);
+      },
+      complete:function(data){
+       setTimeout(fetchdata,5000);
+      }
+     });
+    }
+
+    $(document).ready(function(){
+     setTimeout(fetchdata,5000);
+    });
 
 </script>
 

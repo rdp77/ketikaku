@@ -12,30 +12,30 @@ class bookController extends Controller
 {
     public function book($name)
     {  
-
+        // TITLE LINK
         $title = str_replace('-', ' ', $name);
+        // CARI DATA BEDASARKAN NAMA
         $code = DB::table('d_novel')
                     ->where('dn_title',$title)
                     ->first();
-        // return json_encode($code);
-        // return json_encode($code->dn_id);
+
         $novel = DB::table('d_novel')
                     ->where('dn_created_by','=',$code->dn_created_by)
                     ->where('dn_title','=',$title)
                     // ->where('dn_status',1)
                     ->get();
-
+        // CARI NOVEL DENGAN KONDISI PENULIS
         $book = DB::table('d_novel')
                     ->join('d_mem','m_id','=','dn_created_by')
                     ->where('dn_id',$code->dn_id)
                     ->first();
-
+        // CARI NOVEL DENGAN KONDISI PENULIS
         $q_total_book = DB::table('d_novel')
                     ->where('dn_created_by',$code->dn_created_by)
                     ->get();
-        
+        // MENGHITUNG TOTAL NOVEL
         $total_book = count($q_total_book);
-
+        // JIKA TIPE NOVEL = 1 MAKA CARI STATUS YG 1
         if ($code->dn_type_novel == 1) {
             $chapter = DB::table('d_novel_chapter')
                     ->where('dnch_ref_id',$code->dn_id)
@@ -46,13 +46,13 @@ class bookController extends Controller
                     ->where('dnch_ref_id',$code->dn_id)
                     ->get();
         }
-
+        // RATING NOVEL
         $novel_rate = DB::table('d_novel_rate')
                     ->join('d_mem','m_id','dr_rated_by')
                     ->where('dr_ref_id',$code->dn_id)
                     ->orderBy('dr_id','DESC')
                     ->get();
-
+        //LOAD COMMENT NOVEL
         for ($i=0; $i <count($novel_rate) ; $i++) { 
             $novel_reply = DB::table('d_novel_rate_dt')
                     ->join('d_mem','m_id','drdt_reply_by')
@@ -61,26 +61,34 @@ class bookController extends Controller
                     ->orderBy('drdt_id','ASC')
                     ->get();
         }
-        // return $novel_reply;
+        //TOTAL SUBSRIBE
         $total_subscribe = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$code->dn_id)
                             ->count();
+
+        // TOTAL LIKE 
+        $total_like = DB::table('d_novel_like')
+                            ->where('dnl_ref_id',$code->dn_id)
+                            ->count();
+
         if (Auth::user() != null) {
             $subscriber = DB::table('d_novel_subscribe')
                             ->where('dns_subscribe_by',Auth::user()->m_id)
                             ->where('dns_ref_id',$code->dn_id)
                             ->count();
+
+            $liker = DB::table('d_novel_like')
+                            ->where('dnl_like_by',Auth::user()->m_id)
+                            ->where('dnl_ref_id',$code->dn_id)
+                            ->count();
         }
-        // return $subscriber;
-        
-        
         // return response()->json([$novel_reply,$novel_rate]);
         $tags = DB::table('d_novel_tags')
                     ->where('dnt_ref_id',$code->dn_id)
                     ->get();
 
         // return response()->json(['chapter'=>$chapter,'book'=>$book,'tags'=>$tags,'code'=>$code,'novel'=>$novel]);
-        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_book','novel_rate','novel_reply','total_subscribe','subscriber'));
+        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_book','novel_rate','novel_reply','total_subscribe','subscriber','liker','total_like'));
     }
     public function novel_rate_star(Request $request)
     {
