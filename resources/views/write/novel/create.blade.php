@@ -40,6 +40,12 @@
                                             <input class="form-control" type="text" name="dn_title" id="dn_title">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="dn_title" class="col-2 col-form-label">Category</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" name="dn_title" id="dn_title">
+                                        </div>
+                                    </div>
                                     <div class="row clearfix preview_div">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label class="form-control-label" for="caption_by">Photo</label>

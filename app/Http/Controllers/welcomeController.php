@@ -8,7 +8,7 @@ class welcomeController extends Controller
 {
     public function data_all()
     {
-        $data_latest = DB::table('d_novel')->where('dn_created_at','DESC')->limit(8)->get();
+        $data_latest = DB::table('d_novel')->orderBy('dn_id','DESC')->limit(8)->get();
         $data_popular = DB::table('d_novel')->limit(8)->get();
         $data_like = DB::table('d_novel')->limit(8)->get();
         $review = DB::table('d_novel')->get();
