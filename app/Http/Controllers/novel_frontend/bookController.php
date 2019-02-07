@@ -12,6 +12,7 @@ class bookController extends Controller
 {
     public function book($name)
     {  
+        // return $name;
         // TITLE LINK
         $title = str_replace('-', ' ', $name);
         // CARI DATA BEDASARKAN NAMA

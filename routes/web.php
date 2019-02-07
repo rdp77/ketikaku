@@ -29,10 +29,10 @@
    // FRONT END NOVEL
    // book
    Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
-   Route::get('/book/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
-   Route::get('/book/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
-   Route::get('/book/subscribe', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
-   Route::get('/book/like', 'novel_frontend\likeController@like')->name('like_novel');
+   Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
+   Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
+   Route::get('/subscribe', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
+   Route::get('/like', 'novel_frontend\likeController@like')->name('like_novel');
    // chapter
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    //BACKEND 

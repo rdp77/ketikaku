@@ -12,7 +12,7 @@ class subscribeController extends Controller
 {
     public function subscribe(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $check_data = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$request->id)
                             ->where('dns_subscribe_by',Auth::user()->m_id)
