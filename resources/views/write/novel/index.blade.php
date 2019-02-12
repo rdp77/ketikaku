@@ -39,24 +39,37 @@
     "></i> Create Novel</a>
                 </div>
                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered">
+                        <table id="zero_config" class="table table-striped table-bordered" width="100%">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Title</th>
+                                    <th width="1%">No</th>
+                                    <th width="25%">Title</th>
                                     <th>Create Date</th>
-                                    <th>Photo</th>
-                                    <th>Action</th>
+                                    <th>Status</th>
+                                    <th width="35%">Photo</th>
+                                    <th width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $index => $element)
                                     <tr>
-                                        <td>{{ $index+1 }}</td>
+                                        <td align="center">{{ $index+1 }}</td>
                                         <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}">{{ $element->dn_title }}</a></td>
-                                        <td>{{ date('d F Y  -  h:i:s',strtotime($element->dn_created_at)) }}</td>
-                                        {{-- <td>{!! $element->dn_description !!}</td> --}}
-                                        <td><img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}?{{ time() }}"></td>
+                                        <td>{{ date('d M Y  -  h:i',strtotime($element->dn_created_at)) }}</td>
+                                        <td>
+                                            @if ($element->dn_status == 'publish')
+                                                <span class="label label-rounded label-success">Pulish</span>
+                                            @else
+                                                <span class="label label-rounded label-warning">Draft</span>
+                                            @endif
+                                        </td>
+                                        <td align="center">
+                                            @if ($element->dn_cover == null)
+                                                <span class="label label-rounded label-danger">No Image</span>
+                                            @else
+                                                <img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}?{{ time() }}">
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_novel_edit', ['id' => $element->dn_id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}" ><i class="fas fa-times"></i></button>

@@ -31,7 +31,7 @@ class write_novelController extends Controller
     }
     public function save(Request $req)
     {
-        // dd($request->all());
+        // dd($req->all());
 
         $file = $req->file('dn_cover');
         $check_incre = DB::Table('d_novel')->max('dn_id');
@@ -40,20 +40,19 @@ class write_novelController extends Controller
         }else{
             $check_incre += 1;
         }
-
         if ($file != null) {
-
             $photo = 'novel/cover_'.$check_incre.'.png'/*$file->getClientOriginalExtension()*/;
-
             Storage::put($photo,file_get_contents($req->file('dn_cover')));
         }else{
-            return Response::json(['status'=>0,'message'=>'Please Put Your Photo...']);
+            // return Response::json(['status'=>0,'message'=>'Please Put Your Photo...']);
+            $photo = null;
         }
 
         $data = DB::table('d_novel')->insert([
                 'dn_id'=>$check_incre,
                 'dn_cover'=>$photo,
                 'dn_title'=>$req->dn_title,
+                'dn_status'=>$req->dn_status,
                 'dn_description'=>$req->dn_description,
                 'dn_created_at'=>date('Y-m-d h:i:s'),
                 'dn_created_by'=>Auth::user()->m_id,

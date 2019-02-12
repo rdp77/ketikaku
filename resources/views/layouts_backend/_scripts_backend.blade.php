@@ -34,8 +34,11 @@
 <script src="{{ asset('assets_backend/libs/iziToast-master/dist/js/iziToast.min.js') }}"></script>
 
 <script src="{{ asset('node_modules/croppie/croppie.js')}}"></script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
+    $('.js-example-basic-multiple').select2();
+
     $(".preloader").fadeOut();
 
     var baseUrl = '{{ url('/') }}';

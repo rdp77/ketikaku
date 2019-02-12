@@ -41,7 +41,7 @@
                                             <input class="form-control" value="{{ $title->dn_title }}" type="text" readonly="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group row">
                                         <label for="dnch_title" class="col-2 col-form-label">Title Chapter</label>
                                         <div class="col-10">
@@ -54,7 +54,8 @@
                                     <br>
 
                                      <div class="text-right">
-                                        <button class="btn btn-primary" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save()"><i class="fas fa-share"> </i> Draft</button>
                                     </div>
                                 </form>
                             </div>
@@ -85,6 +86,14 @@
         // });
 
         function save() {
+
+            if ($('.button_click').val() == 'publish') {
+                var status = 'publish';
+            }else{
+                var status = 'draft';
+            }
+            console.log(status);
+
            iziToast.show({
             overlay: true,
             close: false,
@@ -99,9 +108,12 @@
             [
                 '<button style="background-color:#17a991;color:white;">Save</button>',
                 function (instance, toast) {
-                  tinyMCE.triggerSave();
-                  var comment = $("#mytextarea").val();
                   var id = $("#dnch_ref_id").val();
+                  tinyMCE.triggerSave();
+                  var form  = $('#save');
+                  formdata = new FormData(form[0]);
+                  formdata.append('dnch_status',status);
+
 
                   $.ajaxSetup({
                       headers: {
@@ -112,9 +124,9 @@
                     $.ajax({
                         type: "post",
                         url: baseUrl+'/write'+'/write_chapter/save/'+id,
-                        data: $('#save').serialize(),
-                        // processData: false,
-                        // contentType: false,
+                        data: formdata ? formdata : form.serialize(),
+                        processData: false,
+                        contentType: false,
                       success:function(data){
                         if (data.status == 'sukses') {
                             iziToast.success({

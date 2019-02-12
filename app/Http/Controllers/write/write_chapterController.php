@@ -30,6 +30,7 @@ class write_chapterController extends Controller
         $data = DB::table('d_novel_chapter')->insert([
             'dnch_ref_id'=>$req->dnch_ref_id,
             'dnch_title'=>$req->dnch_title,
+            'dnch_status'=>$req->dnch_status,
             'dnch_content'=>$req->dnch_content,
             'dnch_created_at'=>date('Y-m-y h:i:s'),
             'dnch_created_by'=>Auth::user()->m_id,

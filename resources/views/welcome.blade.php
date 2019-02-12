@@ -99,14 +99,18 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="Sample Article">
+                                                    @if ($element->dn_cover == null)
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @else
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+
+                                                    @endif
                                                 </a>
                                             </figure>
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <span class="love active"><i class="ion-android-favorite"></i> <div>1263</div></span>
-                                                    {{-- <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a> --}}
+                                                    <span class="love active"><i class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
                                                     <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -136,7 +140,7 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love active"><i class="ion-android-favorite"></i> <div>1263</div></a>
+                                                    <a href="#" class="love active"><i class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></a>
                                                     <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -165,7 +169,7 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1263</div></a>
+                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></a>
                                                     <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>

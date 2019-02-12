@@ -1,6 +1,16 @@
 @extends('layouts_backend._main_backend')
 
 @section('extra_styles')
+<style type="text/css">
+    
+    .select2 {
+        width: 100% !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice{
+        background-color:#4798e8 !important;
+    }
+
+</style>
 @endsection
 
 @section('content')
@@ -40,12 +50,15 @@
                                             <input class="form-control" type="text" name="dn_title" id="dn_title">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    {{-- <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Category</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" name="dn_title" id="dn_title">
+                                            <select class="form-control js-example-basic-multiple " name="states[]" multiple="multiple">
+                                              <option value="AL">Alabama</option>
+                                              <option value="WY">Wyoming</option>
+                                            </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row clearfix preview_div">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label class="form-control-label" for="caption_by">Photo</label>
@@ -75,7 +88,8 @@
                                     <br>
 
                                      <div class="text-right">
-                                        <button class="btn btn-primary" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save()"><i class="fas fa-share"> </i> Draft</button>
                                     </div>
                                 </form>
                             </div>
@@ -146,6 +160,11 @@
         // });
 
         function save() {
+            if ($('.button_click').val() == 'publish') {
+                var status = 'publish';
+            }else{
+                var status = 'draft';
+            }
            iziToast.show({
             overlay: true,
             close: false,
@@ -163,21 +182,21 @@
                   tinyMCE.triggerSave();
                   var comment = $("#mytextarea").val();
 
+                  var form  = $('#save');
+                  formdata = new FormData(form[0]);
+                  formdata.append('dn_status',status);
+
+
                   $.ajaxSetup({
                       headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    var form = $('#save');
-                    var formdata = false;
-                    if (window.FormData){
-                        formdata = new FormData(form[0]);
-                    }
 
                     $.ajax({
-                        type: "POST",
-                        url:'{{ route('write_novel_save') }}',
-                        data: formdata ? formdata : form.serialize()+'&'+comment,
+                        type: "post",
+                        url: ('{{ route('write_novel_save') }}'),
+                        data: formdata ? formdata : form.serialize(),
                         processData: false,
                         contentType: false,
                       success:function(data){
