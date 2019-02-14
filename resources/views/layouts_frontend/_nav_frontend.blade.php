@@ -84,10 +84,10 @@
                                             
                                         </ul>
                                     @else
-                                    <ul class="nav-icons" style="display: none;">
+                                    {{-- <ul class="nav-icons" style="display: none;">
                                         <li><a href="{{ url('register') }}"><div>Register</div></a></li>
                                         <li><a href="{{ url('login') }}"><div>Login</div></a></li>
-                                    </ul>
+                                    </ul> --}}
                                     @endif
                                 </li>
                         </ul>
