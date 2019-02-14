@@ -28,15 +28,23 @@ class welcomeController extends Controller
                                 				GROUP BY d_novel_like.dnl_ref_id) as liked"))
         								->where('dn_status','publish')
                                         ->limit(8)
+                                        ->orderByRaw('liked DESC')
         								->get();
 
-        $review = DB::table('d_novel')->get();
         $review = DB::table('d_novel_rate')
                     ->join('d_mem','m_id','dr_rated_by')
                     ->orderBy('dr_created_at','DESC')
                     ->limit(7)
                     ->get();
-        return view('welcome',compact('data_latest','data_popular','data_like','review'));
+        /*return */$popular_writter = DB::table('d_mem')
+                            ->select('d_mem.m_id','d_mem.m_username','d_mem.m_image','d_mem.m_desc_short',
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_creator = d_mem.m_id
+                                                GROUP BY d_novel_subscribe.dns_creator) as subscriber"))
+                            ->limit(7)
+                            ->orderByRaw('subscriber DESC')
+                            ->get();
+        return view('welcome',compact('data_latest','data_popular','data_like','review','popular_writter'));
     }
     public function comment_ajax()
     {

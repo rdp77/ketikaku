@@ -236,7 +236,7 @@
     
 
     function readmore(argument) {
-        alert(argument);
+        // alert(argument);
     }
 
         $('.chooseFile').bind('change', function () {

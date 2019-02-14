@@ -77,7 +77,8 @@
                                     <br>
 
                                      <div class="text-right">
-                                        <button class="btn btn-primary" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save(2)"><i class="fas fa-share"> </i> Draft</button>
                                     </div>
                                 </form>
                             </div>
@@ -147,7 +148,12 @@
             }
         // });
 
-        function save() {
+        function save(argument) {
+            if (argument == 1) {
+                status = 'publish';
+            }else if (argument == 2){
+                status = 'draft';
+            }
            iziToast.show({
             overlay: true,
             close: false,
@@ -165,32 +171,24 @@
                   tinyMCE.triggerSave();
                   var comment = $("#mytextarea").val();
 
+                  var form  = $('#save');
+                  formdata = new FormData(form[0]);
+                  formdata.append('dn_status',status);
+
+
                   $.ajaxSetup({
                       headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
 
-                  
-                    // alert($('.chooseFile').val());
-                    if ($('.chooseFile').val() == '') {
-                        $('.chooseFile_null').val('kosong');
-                    }else{
-                        $('.chooseFile_null').val(' ');
-                    }
-                    // console.log($('.chooseFile').val());
-                    var form = $('#save');
-                    var formdata = false;
-                    if (window.FormData){
-                        formdata = new FormData(form[0]);
-                    }
-
                     $.ajax({
-                        type: "POST",
-                        url:'{{ route('write_novel_update') }}',
-                        data: formdata ? formdata : form.serialize()+'&'+comment,
+                        type: "post",
+                        url: ('{{ route('write_novel_update') }}'),
+                        data: formdata ? formdata : form.serialize(),
                         processData: false,
                         contentType: false,
+                  
                       success:function(data){
                         if (data.status == 'sukses') {
                             iziToast.success({

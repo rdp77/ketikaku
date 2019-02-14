@@ -88,8 +88,8 @@
                                     <br>
 
                                      <div class="text-right">
-                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save()"><i class="fas fa-share"> </i> Save</button>
-                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save()"><i class="fas fa-share"> </i> Draft</button>
+                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save(2)"><i class="fas fa-share"> </i> Draft</button>
                                     </div>
                                 </form>
                             </div>
@@ -159,11 +159,11 @@
             }
         // });
 
-        function save() {
-            if ($('.button_click').val() == 'publish') {
-                var status = 'publish';
-            }else{
-                var status = 'draft';
+        function save(argument) {
+            if (argument == 1) {
+                status = 'publish';
+            }else if (argument == 2){
+                status = 'draft';
             }
            iziToast.show({
             overlay: true,

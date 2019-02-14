@@ -8,14 +8,24 @@ use Illuminate\Http\Request;
 use Validator;
 use DB; 
 use Storage;
-
+use Response;
 class write_novelController extends Controller
 {
 
     public function index()
     {
 
-        $data =  DB::Table('d_novel')->where('dn_created_by',Auth::user()->m_id)->get();
+        $data =  DB::Table('d_novel')->select('d_novel.*',
+                                            DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                                WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_creator = d_mem.m_id
+                                                GROUP BY d_novel_subscribe.dns_creator) as subscriber")
+                                    )
+                                    ->join('d_mem','m_id','dn_created_by')
+                                    ->where('dn_created_by',Auth::user()->m_id)
+                                    ->get();
         return view('write.novel.index',compact('data'));
     }
     public function create()
@@ -81,16 +91,21 @@ class write_novelController extends Controller
         // return $check;
         if ($request->dn_cover_null == null) {
             if ($file != null) {
-            $photo = $check[0]->dn_cover;
-
-            Storage::put($photo,file_get_contents($request->file('dn_cover')));
+                if ($photo == null) {
+                    $photo = 'novel/cover_'.$check[0]->dn_id.'.png'/*$file->getClientOriginalExtension()*/;
+                    Storage::put($photo,file_get_contents($req->file('dn_cover')));# code...
+                }else{
+                    $photo = $check[0]->dn_cover;
+                Storage::put($photo,file_get_contents($request->file('dn_cover')));
+                }
             }else{
-                return Response::json(['status'=>0,'message'=>'Please Put Your Photo...']);
+            $photo = $check[0]->dn_cover;
             }
 
             $data = DB::table('d_novel')->where('dn_id',$request->dn_id)->update([
                 'dn_cover'=>$photo,
                 'dn_title'=>$request->dn_title,
+                'dn_status'=>$request->dn_status,
                 'dn_description'=>$request->dn_description,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
                 'dn_updated_by'=>Auth::user()->m_id,
@@ -98,6 +113,7 @@ class write_novelController extends Controller
         }else{
             $data = DB::table('d_novel')->where('dn_id',$request->dn_id)->update([
                 'dn_title'=>$request->dn_title,
+                'dn_status'=>$request->dn_status,
                 'dn_description'=>$request->dn_description,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
                 'dn_updated_by'=>Auth::user()->m_id,

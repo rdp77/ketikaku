@@ -39,13 +39,14 @@
     "></i> Create Novel</a>
                 </div>
                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered" width="100%">
+                        <table id="zero_config" class="table table-striped table-bordered font-weight-bold" width="100%">
                             <thead>
                                 <tr>
                                     <th width="1%">No</th>
                                     <th width="25%">Title</th>
                                     <th>Create Date</th>
                                     <th>Status</th>
+                                    <th>View</th>
                                     <th width="35%">Photo</th>
                                     <th width="10%">Action</th>
                                 </tr>
@@ -54,14 +55,21 @@
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td align="center">{{ $index+1 }}</td>
-                                        <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}">{{ $element->dn_title }}</a></td>
+                                        <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}"><span style="font-size: 13px !important;" class="label label-success font-weight-bold">{{ $element->dn_title }}</span></a></td>
                                         <td>{{ date('d M Y  -  h:i',strtotime($element->dn_created_at)) }}</td>
-                                        <td>
+                                        <td align="center">
                                             @if ($element->dn_status == 'publish')
                                                 <span class="label label-rounded label-success">Pulish</span>
                                             @else
                                                 <span class="label label-rounded label-warning">Draft</span>
                                             @endif
+                                        </td>
+                                        <td class="font-weight-bold">
+                                            Subscriber : {{ $element->subscriber == null ? '0' : $element->subscriber }}
+                                            <br>
+                                            Liked : {{ $element->liked == null ? '0' : $element->liked }}
+                                            <br>
+                                            
                                         </td>
                                         <td align="center">
                                             @if ($element->dn_cover == null)
