@@ -1,3 +1,8 @@
+<style type="text/css">
+    .mailbox .message-center{
+        height: auto;
+    }
+</style>
 <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header">
@@ -264,15 +269,14 @@
                     var key = 1;
                     Object.keys(data.notif).forEach(function(){
                         $('.drop_notif').append(
-
                             '<div class="message-center notifications">'+
                                 '<a href="javascript:void(0)" class="message-item">'+
-                                    '<span class="btn btn-danger btn-circle">'+
-                                        '<i class="fa fa-link"></i>'+
+                                    '<span class="user-img">'+
+                                        '<img src="storage/app/'+data.notif[key-1].m_image+'" alt="user" class="rounded-circle">'+
                                     '</span>'+
                                     '<div class="mail-contnet">'+
                                         '<h5 class="message-title">'+data.notif[key-1].m_username+' Has Subsribed</h5>'+
-                                        '<span class="mail-desc">Subsribed this '+data.notif[key-1].dn_title+'</span>'+
+                                        '<span class="mail-desc">Subsribed <b>'+data.notif[key-1].dn_title+'</b></span>'+
                                         '<span class="time"></span>'+
                                     '</div>'+
                                 '</a>'+
@@ -284,7 +288,7 @@
 
                 }else if(data.status == 'kosong'){
                     $('.check_all').css('display','none');
-                    // $('.drop_header').ht ml(data.header);
+                    // $('.drop_header').html(data.header);
                     $('.drop_notif').html('<div class="drop-title bg-primary text-white">'+data.notif+'</div>');
                 }
 

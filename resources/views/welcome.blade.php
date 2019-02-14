@@ -129,7 +129,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     @foreach ($data_like as $element)
-                                    <article class="article col-md-3">
+                                    <article class="article col-md-3 col-xs-6">
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
@@ -158,7 +158,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     @foreach ($data_latest as $element)
-                                    <article class="article col-md-3">
+                                    <article class="article col-md-3 col-xs-6">
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">

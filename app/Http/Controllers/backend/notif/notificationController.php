@@ -15,7 +15,7 @@ class notificationController extends Controller
     public function notif_bell()
     {
     	$notif = DB::table('d_novel_subscribe')
-                    ->select('m_username','dns_created_at','dn_title')
+                    ->select('m_username','dns_created_at','dn_title','m_image')
                     ->join('d_novel','dns_ref_id','dn_id')
                     ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
