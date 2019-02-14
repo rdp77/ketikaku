@@ -207,7 +207,7 @@
                                         @if ($index == 0)
                                         <article class="article-fw">
                                             <div class="inner">
-                                                <figure>
+                                                <figure style="margin-left: 30px" >
                                                     <a href="{{ route('profile_frontend',['name'=>$popular_writter[0]->m_username]) }}">
                                                         @if ($popular_writter[0]->m_image == null)
                                                             <img style=" border-radius: 50%;height: 150px; width: 150px;" src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
