@@ -84,6 +84,10 @@
                                             
                                         </ul>
                                     @else
+                                    <ul class="nav-icons" style="display: none;">
+                                        <li><a href="{{ url('register') }}"><div>Register</div></a></li>
+                                        <li><a href="{{ url('login') }}"><div>Login</div></a></li>
+                                    </ul>
                                     @endif
                                 </li>
                         </ul>
@@ -92,3 +96,15 @@
             </nav>
             <!-- End nav -->
         </header>
+        @include('layouts_frontend._scripts_frontend')
+
+        <script type="text/javascript">
+            
+            if ($(window).width() < 427) {
+               $('.nav-icons').css('display','block');
+            }
+            else {
+               $('.nav-icons').css('display','none');
+            }
+
+        </script>

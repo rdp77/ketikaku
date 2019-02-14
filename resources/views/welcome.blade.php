@@ -133,7 +133,11 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="Sample Article">
+                                                    @if ($element->dn_cover == null)
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @else
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @endif
                                                 </a>
                                             </figure>
                                             <div class="padding">
@@ -154,7 +158,7 @@
                         <div class="line">
                             <div>LATEST</div>
                         </div>
-                          <div class="row">
+                          <div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     @foreach ($data_latest as $element)
@@ -162,7 +166,11 @@
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                    <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" width="199px" height="380px" alt="Sample Article">
+                                                    @if ($element->dn_cover == null)
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @else
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @endif
                                                 </a>
                                             </figure>
                                             <div class="padding">
