@@ -45,10 +45,10 @@
                                     @endif
                                 <div class="custom-control custom-checkbox">
                                     
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    {{-- <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> --}}
                                     {{-- <input type="checkbox" class="custom-control-input" id="customCheck1"> --}}
-                                    <label class="custom-control-label" for="remember">Remember me</label>
-                                    <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+                                    {{-- <label class="custom-control-label" for="remember">Remember me</label> --}}
+                                    <a href="{{ route('forgot_password_page_email') }}" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
 
                                 </div>
                             </div>

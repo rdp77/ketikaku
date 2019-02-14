@@ -15,6 +15,9 @@
    Route::post('login', 'Auth\loginController@authenticate');
 
 // Route::group(['middleware' => 'guest'], function () {
+
+
+
    // homw front end welcome
    Route::get('/', 'welcomeController@data_all')->name('data_all');
    Route::get('/welcome/comment_ajax', 'welcomeController@comment_ajax')->name('welcome_comment_ajax');
@@ -38,6 +41,12 @@
    //BACKEND 
 
  // });
+
+   // forgot passsword
+   Route::get('/forgot_password/page_email', 'frontend\forgot_password\forgot_passwordController@page_email')->name('forgot_password_page_email');
+   Route::get('/forgot_password/send_email', 'frontend\forgot_password\forgot_passwordController@send_email')->name('forgot_password_send_email');
+   Route::get('/forgot_password/page_reset_password/{token}/{id}', 'frontend\forgot_password\forgot_passwordController@page_reset_password')->name('forgot_password_page_reset_password');
+   Route::post('/forgot_password/send_reset_password', 'frontend\forgot_password\forgot_passwordController@send_reset_password')->name('forgot_password_send_reset_password');
 
 Auth::routes();
 

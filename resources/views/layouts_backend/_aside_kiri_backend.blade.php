@@ -70,20 +70,14 @@
                         @endif
                         <!-- User Profile-->
                         @if (Auth::user()->m_isactive == 'Y')
-                            <li class="sidebar-item">
-                                <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                    <i class="icon-Pen"></i>
-                                    <span class="hide-menu"> Write</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse  first-level">
-                                    <li class="sidebar-item">
-                                        <a href="{{ route('write_novel') }}" class="sidebar-link">
-                                            <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Novel</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('write_novel') }}"
+                                   " aria-expanded="false">
+                                <i class="icon-Pen"></i>
+                                <span class="hide-menu">Write</span>
+                            </a>
+                        </li>
+                            
                         @endif
                         
                         @if (Auth::user()->m_role == 1 || Auth::user()->m_role == 2)

@@ -13,8 +13,9 @@
             <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-bottom: 20px">
                 <tbody>
                     <tr>
-                        <td style="vertical-align: top; padding-bottom:30px;" align="center"><a href="http://eliteadmin.themedesigner.in" target="_blank"><img src="../../assets/images/logo-icon.png" alt="Eliteadmin Responsive web app kit" style="border:none"><br/>
-            <img src="../../assets/images/logo-text.png" alt="Eliteadmin Responsive web app kit" style="border:none"></a> </td>
+                        <td style="vertical-align: top;" align="center">
+                            <a href="ketikaku.com" target="_blank"><img width="200px" src="https://i.ibb.co/kxjHKKx/logo-text.png" alt="KETIKAKU" style="border:none"><br/>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -23,7 +24,7 @@
                     <tbody>
                         <tr>
                             <td style="border-bottom:1px solid #f6f6f6;">
-                                <h1 style="font-size:14px; font-family:arial; margin:0px; font-weight:bold;">Dear Sir/Madam/Customer,</h1>
+                                <h1 style="font-size:14px; font-family:arial; margin:0px; font-weight:bold;">Dear {{ $username }},</h1>
                                 <p style="margin-top:0px; color:#bbbbbb;">Here are your password reset instructions.</p>
                             </td>
                         </tr>
@@ -31,20 +32,15 @@
                             <td style="padding:10px 0 30px 0;">
                                 <p>A request to reset your Admin password has been made. If you did not make this request, simply ignore this email. If you did make this request, please reset your password:</p>
                                 <center>
-                                    <a href="javascript: void(0);" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Reset Password</a>
+                                    <a href="{{ route('forgot_password_page_reset_password',['token'=>$token,'id'=>$code]) }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Reset Password</a>
                                 </center>
-                                <b>- Thanks (Wrappixel team)</b> </td>
+                                <b>- Team Ketikaku</b> </td>
                         </tr>
                         <tr>
-                            <td style="border-top:1px solid #f6f6f6; padding-top:20px; color:#777">If the button above does not work, try copying and pasting the URL into your browser. If you continue to have problems, please feel free to contact us at info@themedesigner.in</td>
+                            <td style="border-top:1px solid #f6f6f6; padding-top:20px; color:#777">If the button above does not work, try copying and pasting the URL into your browser. If you continue to have problems, please feel free to contact us at admin@ketiaku.com</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div style="text-align: center; font-size: 12px; color: #b2b2b5; margin-top: 20px">
-                <p> Powered by Wrappixel
-                    <br>
-                    <a href="javascript: void(0);" style="color: #b2b2b5; text-decoration: underline;">Unsubscribe</a> </p>
             </div>
         </div>
     </div>

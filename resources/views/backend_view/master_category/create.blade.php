@@ -115,14 +115,6 @@
                             });
 
                         location.href = baseUrl+'/master'+'/master_category';
-                        }else if (data.status == 'ada') {
-                            iziToast.warning({
-                                icon: 'fa fa-save',
-                                position:'topRight',
-                                title: 'Error!',
-                                message:'Level Sudah Terpakai',
-                            });
-
                         }
                       },error:function(){
                         iziToast.error({
