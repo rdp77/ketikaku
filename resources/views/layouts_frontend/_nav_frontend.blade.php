@@ -104,7 +104,7 @@
                $('.nav-icons').css('display','block');
             }
             else {
-               $('.nav-icons').css('display','none');
+               $('.nav-icons').css('display','block');
             }
 
         </script>
