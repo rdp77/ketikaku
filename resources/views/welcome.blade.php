@@ -103,7 +103,6 @@
                                                         <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @else
                                                         <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
-
                                                     @endif
                                                 </a>
                                             </figure>
@@ -239,7 +238,11 @@
                                                 <div class="inner">
                                                     <figure>
                                                         <a href="{{ route('profile_frontend',['name'=>$popular_writter[$index]->m_username]) }}">
-                                                            <img src="{{ asset('assets/images/news/img05.jpg') }}" alt="Sample Article">
+                                                            @if ($popular_writter[0]->m_image == null)
+                                                                <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
+                                                            @else
+                                                                <img src="{{ asset('/storage/app/'.$popular_writter[0]->m_image) }}?{{ time() }}" />
+                                                            @endif
                                                         </a>
                                                     </figure>
                                                     <div class="padding">
