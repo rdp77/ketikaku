@@ -210,9 +210,9 @@
                                                 <figure>
                                                     <a href="{{ route('profile_frontend',['name'=>$popular_writter[0]->m_username]) }}">
                                                         @if ($popular_writter[0]->m_image == null)
-                                                            <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
+                                                            <img style=" border-radius: 50%;height: 150px; width: 150px;" src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
                                                         @else
-                                                            <img src="{{ asset('/storage/app/'.$popular_writter[0]->m_image) }}?{{ time() }}" />
+                                                            <img style=" border-radius: 50%;height: 150px; width: 150px;" src="{{ asset('/storage/app/'.$popular_writter[0]->m_image) }}?{{ time() }}" />
                                                         @endif
                                                     </a>
                                                 </figure>
@@ -235,18 +235,18 @@
                                         {{-- <div class="line"></div> --}}
                                         @else
                                             <article class="article-mini">
-                                                <div class="inner">
-                                                    <figure>
+                                                <div class="inner" style="width: 100%">
+                                                    <figure >
                                                         <a href="{{ route('profile_frontend',['name'=>$popular_writter[$index]->m_username]) }}">
-                                                            @if ($popular_writter[0]->m_image == null)
-                                                                <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
+                                                            @if ($popular_writter[$index]->m_image == null)
+                                                                <img style=" border-radius: 50%;height: 50px; width: 50px;" src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" />
                                                             @else
-                                                                <img src="{{ asset('/storage/app/'.$popular_writter[0]->m_image) }}?{{ time() }}" />
+                                                                <img style=" border-radius: 50%;height: 50px; width: 50px;" src="{{ asset('/storage/app/'.$popular_writter[$index]->m_image) }}?{{ time() }}" />
                                                             @endif
                                                         </a>
                                                     </figure>
-                                                    <div class="padding">
-                                                        <h1><a href="{{ route('profile_frontend',['name'=>$popular_writter[$index]->m_username]) }}">{{ $popular_writter[$index]->m_username }}</a></h1>
+                                                    <div  style="margin-left: 55px" class="padding">
+                                                        <h1 style="margin-top: 2px;"><a href="{{ route('profile_frontend',['name'=>$popular_writter[$index]->m_username]) }}">{{ $popular_writter[$index]->m_username }}</a></h1>
                                                         <div class="detail">
                                                             {{-- <div class="category"><a href="category.html">Lifestyle</a></div> --}}
                                                         <div class="time">
