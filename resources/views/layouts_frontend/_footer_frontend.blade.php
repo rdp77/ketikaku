@@ -9,7 +9,7 @@
                                     <img src="{{ asset('assets_backend/images/Logo_Putih.png') }}" class="img-responsive" alt="Logo">
                                 </figure>
                                 <p class="brand-description">
-                                    Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.
+                                    Ketikaku adalah online sharing platform karya Aksara Satmika, sebagai wadah bagi pembaca dan penulis bercerita pada dunia.
                                 </p>
                             </div>
                         </div>

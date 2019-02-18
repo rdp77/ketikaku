@@ -39,7 +39,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/news/img04.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/news/slide1.png') }}" alt="Sample Article">
                                     </figure>
                                     <div class="details">
                                         <div class="category"><a href="category.html">Computer</a></div>
@@ -52,7 +52,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/news/img14.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/news/slide2.png') }}" alt="Sample Article">
                                     </figure>
                                     <div class="details">
                                         <div class="category"><a href="category.html">Travel</a></div>
@@ -65,7 +65,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/news/img13.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/news/slide3.png') }}" alt="Sample Article">
                                     </figure>
                                     <div class="details">
                                         <div class="category"><a href="category.html">International</a></div>

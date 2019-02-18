@@ -33,7 +33,7 @@ class forgot_passwordController extends Controller
                     ], function($message) use ($email,$username,$token,$code){
                         $message->from('system@ketikaku.com', 'KETIKAKU')
                             ->to($email)
-                            ->subject('Verify Your Email');
+                            ->subject('Email Forgot Password');
                     });
 
     		return Redirect::back()->withErrors(['sukses']);

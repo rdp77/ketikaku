@@ -45,7 +45,7 @@
                         
                         <div class="form-group text-center">
                             <div class="col-xs-12 p-b-20">
-                                <button class="btn btn-block btn-lg btn-info send" type="submit">Send Email</button>
+                                <button class="btn btn-block btn-lg btn-info {{-- send --}}" type="submit">Send Email</button>
                             </div>
                         </div>
                         <div class="form-group m-b-0 m-t-10">
@@ -74,13 +74,13 @@
 <script type="text/javascript">
     $('.send').click(function(){
         if ($('.email').val() == '') {
-            iziToast.success({
+            iziToast.Warning({
                 icon: 'fa fa-info',
                 position:'topRight',
                 title: 'Warning!',
                 message: 'Email Cannot be empty!',
             });
-        return false;
+        // return false;
         }
         $('.send').text('sending..');
         $('.send').attr('disabled','disabled');
