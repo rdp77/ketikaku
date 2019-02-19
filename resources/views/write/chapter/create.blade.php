@@ -85,7 +85,7 @@
             }
         // });
 
-        function save() {
+        function save(argument) {
 
             if (argument == 1) {
                 status = 'publish';

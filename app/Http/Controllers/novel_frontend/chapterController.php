@@ -19,10 +19,21 @@ class chapterController extends Controller
         				->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
         				->where('dnch_title',$title)
         				->first();
-
+        $chapter_comment = DB::table('d_novel_chapter_comment')
+                            ->join('d_mem','m_id','=','dncc_comment_by')
+                            ->where('dncc_ref_id',$chapter->dnch_ref_id)
+                            ->get();
+        for ($i=0; $i <count($chapter_comment) ; $i++) { 
+            $chapter_reply = DB::table('d_novel_chapter_comment_dt')
+                    ->join('d_mem','m_id','dnccdt_reply_by')
+                    // ->where('dnccdt_ref_id',$chapter_comment->dncc_id)
+                    // ->orWhere('drdt_ref_rate_id',$novel_rate[$i]->dr_id)
+                    ->orderBy('dnccdt_id','ASC')
+                    ->get();
+        }
         $all_chapter = DB::table('d_novel_chapter')->where('dnch_ref_id',$chapter->dnch_ref_id)->get();
         // return response()->json(['chapter'=>$chapter,'title'=>$title,'all_chapter'=>$all_chapter]);
-        return view('novel_frontend.detail_chapter.detail_chapter',compact('title','chapter','all_chapter'));
+        return view('novel_frontend.detail_chapter.detail_chapter_build',compact('title','chapter','all_chapter','chapter_comment','chapter_reply'));
     }
     public function subscribe(Request $request)
     {

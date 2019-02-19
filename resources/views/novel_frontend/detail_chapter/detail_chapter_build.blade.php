@@ -1,4 +1,4 @@
-@extends('layouts_frontend._main_frontend')
+@extends('layouts_frontend._chapter_frontend')
 
 @section('extra_style')
 {{-- <link href="{{ asset('assets/css/profile.css') }}" rel="stylesheet"> --}}
@@ -9,86 +9,39 @@
 
 
 <style type="text/css">
-    .nav-tabs>li.active>a:hover{color:#555;cursor:default;background-color:red;border-bottom-color:transparent}
-    .nav-tabs{
-        border-bottom:none;
+    .header_title {
+        font-family:Lato,Helvetica Neue,Arial,Helvetica,sans-serif !important;
+        font-weight: 300 !important;
+        margin-top: 50px !important;
+        font-size: 30px !important;
+        color: black !important;
     }
-    .nav-tabs>li.active>a{
-        color: #555;
-        cursor: default;
-        background-color: transparent !important;
-        border-bottom: 0px solid #ddd !important;
-        border-bottom-color: transparent !important;
+    .article p{
+        font-family:Lato,Helvetica Neue,Arial,Helvetica,sans-serif !important;
+        font-weight: 300 !important;
     }
-    .starrr { display: inline-block; }
+    section.single article.main-article .main p {
+        font-family:Lato,Helvetica Neue,Arial,Helvetica,sans-serif !important;
+    
+    }
+    section.single article.main-article .main{
+        padding: 10px 50px 10px 50px;
+    }
 
-    .starrr i {
-      font-size: 25px;
-      padding: 0 1px;
-      cursor: pointer;
-      color: #ffd119;
-    }
 </style>
 @endsection
 
 @section('content')
-<section class="single">
-            <div class="container">
+<section class="single" style="background-color: #e1e1e1;margin-top: 40px">
+            <div class="container" style="background-color: white;">
                 <div class="row">
-                    <div class="col-md-3 sidebar" id="sidebar">
-                     
-                        <aside>
-                            <h1 class="aside-title">List Chapter</h1>
-                            <div class="aside-body">
-                                @foreach ($all_chapter as $element)
-                                @if ($element->dnch_id == $chapter->dnch_id)
-                                    <article class="article-mini" style="background-color: #eaeaea;padding: 7px">
-                                        <div class="inner">
-                                            <div>
-                                                <h1><a href="{{ route('frontend_chapter',[str_replace(" ","-",$element->dnch_title)]) }}" class="baca">{{ $element->dnch_title }}</a></h1>
-                                                <div class="detail">
-                                                    {{-- <div class="category"><a href="category.html">Lifestyle</a></div> --}}
-                                                    <div class="time">{{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                @else
-                                    <article class="article-mini" style="padding: 7px">
-                                        <div class="inner">
-                                            <div>
-                                                <h1><a href="{{ route('frontend_chapter',[str_replace(" ","-",$element->dnch_title)]) }}" class="baca">{{ $element->dnch_title }}</a></h1>
-                                                <div class="detail">
-                                                    {{-- <div class="category"><a href="category.html">Lifestyle</a></div> --}}
-                                                    <div class="time">{{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
-                                @endif
-                                @endforeach
-                            </div>
-                        </aside>
-                     
-                    </div>
-                    <div class="col-md-9">
-                        <ol class="breadcrumb">
-                          <li><a href="{{ url('/') }}">Home</a></li>
-                          <li><a href="#">{{ $chapter->dn_title }}</a></li>
-                          <li class="active">{{ $chapter->dnch_title }}</li>
-                        </ol>
-                        <article class="article main-article">
-                            <header>
-                                <h1>{{ $chapter->dnch_title }}</h1>
-                                <ul class="details">
-                                    <li>Posted on {{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</li>
-                                    {{-- <li> --}}
-                                        {{-- @foreach ($array as $element) --}}
-                                            {{-- <a>Film</a> --}}
-                                        {{-- @endforeach --}}
-                                    {{-- </li> --}}
-                                    <li>By <a href="#">{{ $chapter->m_username }}</a></li>
-                                </ul>
+                    <div class="col-md-12">
+                        
+                        <article class="article main-article" >
+                            <header align="center">
+                                <p class="header_title">{{ $chapter->dnch_title }}</p>
+
+                                <p style="margin-top: 30px"><dd style="font-size: 15px"> Ditulis Oleh  <a href="#">{{ $chapter->m_username }}</a></dd><tt style="color: grey">{{ date('d F Y ',strtotime($chapter->dnch_created_at)) }} pukul {{ date('h:i ',strtotime($chapter->dnch_created_at)) }} </tt></p>
                             </header>
                             <div class="main">
                                <p>
@@ -282,6 +235,10 @@
         $.ajax({
             
         })
+    });
+
+    $( document ).ready(function() {
+        $('.info').html('<i class="fas fa-book"></i> &nbsp;&nbsp;'+'{{ ucwords($chapter->dn_title) }}'+' oleh '+'{{ ucwords($chapter->m_username) }}');
     });
 
 </script>

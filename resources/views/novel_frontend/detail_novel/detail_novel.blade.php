@@ -451,11 +451,12 @@
     });
 
     $('.baca').on('click',function(){
-        var datas = $(this).data('name');
-        var datass = $(this).data('name1');
-        var res1 = datas.replace(/\s/g,"-");
+        // var datas = $(this).data('name');
+        var datass = $(this).data('name');
+        // var res1 = datas.replace(/\s/g,"-");
+
         var res = datass.replace(/\s/g,"-");
-        window.location.href = baseUrl + '/chapter/'+res1;
+        window.location.href = baseUrl + '/chapter/'+res;
     })
 
     function reply(argument) {
