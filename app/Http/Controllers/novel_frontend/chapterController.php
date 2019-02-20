@@ -12,7 +12,6 @@ class chapterController extends Controller
 {
     public function chapter($name)
     {  
-    	// return $name;
         $title = str_replace('-', ' ',$name);
         $chapter = DB::table('d_novel_chapter')
         				->join('d_mem','m_id','=','dnch_created_by')
@@ -26,18 +25,14 @@ class chapterController extends Controller
         for ($i=0; $i <count($chapter_comment) ; $i++) { 
             $chapter_reply = DB::table('d_novel_chapter_comment_dt')
                     ->join('d_mem','m_id','dnccdt_reply_by')
-                    // ->where('dnccdt_ref_id',$chapter_comment->dncc_id)
-                    // ->orWhere('drdt_ref_rate_id',$novel_rate[$i]->dr_id)
                     ->orderBy('dnccdt_id','ASC')
                     ->get();
         }
-        $all_chapter = DB::table('d_novel_chapter')->where('dnch_ref_id',$chapter->dnch_ref_id)->get();
-        // return response()->json(['chapter'=>$chapter,'title'=>$title,'all_chapter'=>$all_chapter]);
+        $all_chapter = DB::table('d_novel_chapter')->where('dnch_status','publish')->where('dnch_ref_id',$chapter->dnch_ref_id)->get();
         return view('novel_frontend.detail_chapter.detail_chapter_build',compact('title','chapter','all_chapter','chapter_comment','chapter_reply'));
     }
     public function subscribe(Request $request)
     {
-        // dd($request->all());
         $check_data = DB::table('d_novel_subscribe')
                             ->where('dns_ref_id',$request->id)
                             ->where('dns_subscribe_by',Auth::user()->m_id)
@@ -61,7 +56,18 @@ class chapterController extends Controller
                             ->where('dns_ref_id',$request->id)
                             ->count();
         return response()->json(['status'=>'sukses','total_subscribe'=>$total_subscribe]);
-        // return $insert;
-
+    }
+    public function viewer(Request $request)
+    {
+        $chapter = DB::table('d_novel_chapter')
+                        ->select('dnch_viewer')
+                        ->where('dnch_id',$request->id)
+                        ->first();
+        $update_view = DB::table('d_novel_chapter')
+                        ->where('dnch_id',$request->id)
+                        ->update([
+                            'dnch_viewer'=>$chapter->dnch_viewer+1
+                        ]);
+         return response()->json('sukses');                
     }
 }

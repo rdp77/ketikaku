@@ -38,6 +38,7 @@
    Route::get('/like', 'novel_frontend\likeController@like')->name('like_novel');
    // chapter
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
+   Route::post('/chapter/viewer/{id}', 'novel_frontend\chapterController@viewer')->name('frontend_chapter_viewer');
    //BACKEND 
 
  // });

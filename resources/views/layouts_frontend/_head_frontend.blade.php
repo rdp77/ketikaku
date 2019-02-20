@@ -12,4 +12,5 @@
         {{-- <meta property="og:image" content="{{ asset('assets_backend/images/favicon.png') }}" /> --}}
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
         <title>KETIKAKU</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>

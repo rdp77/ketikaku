@@ -52,6 +52,7 @@
         <script type="text/javascript">
             $( document ).ready(function() {
                 $('.brand').css('display','block');
+                $('.menu .mobile-toggle').css('padding','0px');
             });
 
             if ($(window).width() < 427) {
