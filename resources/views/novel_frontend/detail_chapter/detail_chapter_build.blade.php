@@ -33,8 +33,9 @@
 
 @section('content')
 <section class="single" style="background-color: #e1e1e1;margin-top: 40px">
-            <div class="container" style="background-color: white;">
-                <div class="row">
+
+            <div class=" container " >
+                <div class="row col-md-offset-1 col-md-10" style="background-color: white;">
                     <div class="col-md-12">
                         
                         <article class="article main-article" >
