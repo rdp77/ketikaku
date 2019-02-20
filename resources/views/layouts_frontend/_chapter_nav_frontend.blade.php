@@ -7,6 +7,11 @@
     color: #1abc9c;
     margin-top: 10px;
 }
+.info_icon{
+   font-size: 22px;
+    color: #1abc9c;
+    margin-top: 10px; 
+}
 .menu_chapter{
     height: 65px;
     border-bottom: 1px solid #a8a8a8;
@@ -39,7 +44,8 @@
                             <li class="for-tablet nav-title"><a>Menu</a></li>
                             <li class="for-tablet"><a href="{{ url('/login') }}">Login</a></li>
                             <li class="for-tablet"><a href="{{ url('/register') }}">Register</a></li>
-                            <li><p class="info">ditulis oleh</p></li>
+                            <li><p class="info_icon"></p></li>
+                            <li><input type="text" name="" class="info"></li>
                             
                         </ul>
                     </div>

@@ -59,7 +59,7 @@
                                         <td>{{ date('d M Y  -  h:i',strtotime($element->dn_created_at)) }}</td>
                                         <td align="center">
                                             @if ($element->dn_status == 'publish')
-                                                <span class="label label-rounded label-success">Pulish</span>
+                                                <span class="label label-rounded label-success">Published</span>
                                             @else
                                                 <span class="label label-rounded label-warning">Draft</span>
                                             @endif

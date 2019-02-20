@@ -32,7 +32,7 @@
 @endsection
 
 @section('content')
-<section class="single" style="background-color: #e1e1e1;margin-top: 40px">
+<section class="" style="background-color: #e1e1e1;margin-top: 40px">
             <div class="container">
                 <div class="row col-md-offset-1 col-md-10 col-md-offset-2 col-md-10" style="background-color: white;padding-bottom: 40px">
                     <div class="col-md-12">
@@ -209,7 +209,8 @@
     });
 
     $( document ).ready(function() {
-        $('.info').html('<i class="fas fa-book-open"></i> &nbsp;&nbsp;'+'{{ ucwords($chapter->dn_title) }}');
+        $('.info_icon').html('<i class="fas fa-book-open"></i> &nbsp;&nbsp;');
+        $('.info').val('{{ ucwords($chapter->dn_title) }}');
     });
     if ($(window).width() < 427) {
        $('.main').css('padding','10px 10px 10px 10px');
