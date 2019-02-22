@@ -226,8 +226,8 @@
         $('.info').val('{{ ucwords($chapter->dn_title) }}');
     });
 
-    if ($(window).width() < 427) {
-       $('.main').css('padding','10px 10px 10px 10px');
+    if ($(window).width() < 500) {
+       $('.main').css('padding','10px 0px 10px 0px');
     }
     else {
        $('.main').css('padding','10px 50px 10px 50px');
