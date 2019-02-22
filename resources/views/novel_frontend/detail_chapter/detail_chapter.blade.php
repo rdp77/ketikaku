@@ -82,11 +82,7 @@
                                 <h1>{{ $chapter->dnch_title }}</h1>
                                 <ul class="details">
                                     <li>Posted on {{ date('d F ,Y',strtotime($chapter->dnch_created_at)) }}</li>
-                                    {{-- <li> --}}
-                                        {{-- @foreach ($array as $element) --}}
-                                            {{-- <a>Film</a> --}}
-                                        {{-- @endforeach --}}
-                                    {{-- </li> --}}
+                                   
                                     <li>By <a href="#">{{ $chapter->m_username }}</a></li>
                                 </ul>
                             </header>
@@ -95,51 +91,9 @@
                                    {!! $chapter->dnch_content !!}
                                </p>
                             </div>
-                           {{--  <footer>
-                                <div class="col">
-                                    <ul class="tags">
-                                        <li><a href="#">Free Themes</a></li>
-                                        <li><a href="#">Bootstrap 3</a></li>
-                                        <li><a href="#">Responsive Web Design</a></li>
-                                        <li><a href="#">HTML5</a></li>
-                                        <li><a href="#">CSS3</a></li>
-                                        <li><a href="#">Web Design</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>1220</div></a>
-                                </div>
-                            </footer> --}}
+                           
                         </article>
-                        {{-- <div class="sharing">
-                        <div class="title"><i class="ion-android-share-alt"></i> Sharing is caring</div>
-                            <ul class="social">
-                                <li>
-                                    <a href="#" class="facebook">
-                                        <i class="ion-social-facebook"></i> Facebook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter">
-                                        <i class="ion-social-twitter"></i> Twitter
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="googleplus">
-                                        <i class="ion-social-googleplus"></i> Google+
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="skype">
-                                        <i class="ion-ios-email-outline"></i> Email
-                                    </a>
-                                </li>
-                                <li class="count">
-                                    20
-                                    <div>Shares</div>
-                                </li>
-                            </ul>
-                        </div> --}}
+                        
                         <div class="line">
                             <div>Author</div>
                         </div>
@@ -185,18 +139,6 @@
                                 <div class="col-md-12">
                                     <h4 class="title">Leave Your Response <a href="#">Write a Response</a></h4>
                                 </div>
-                                {{-- <div class="form-group col-md-4">
-                                    <label for="name">Name <span class="required"></span></label>
-                                    <input type="text" id="name" name="" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="email">Email <span class="required"></span></label>
-                                    <input type="email" id="email" name="" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="website">Website</label>
-                                    <input type="url" id="website" name="" class="form-control">
-                                </div> --}}
                                 <div class="form-group col-md-12">
                                     <label for="message">Response <span class="required"></span></label>
                                     <textarea class="form-control" name="message" placeholder="Write your response ..."></textarea>

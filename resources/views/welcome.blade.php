@@ -436,10 +436,26 @@
 
 <script type="text/javascript">
     
-    function link(argument) {
-        window.location.assign('www.esensicreative.com');
-    }
+    function link(response, urlPath) {
+        // window.location.assign('www.esensicreative.com');
+        // function processAjaxData(response, urlPath){
 
+     // document.getElementById("content").innerHTML = response.html;
+     // document.title = response.pageTitle;
+
+ // }
+    }
+    // $(function(){
+    //   $(window).scroll(function(){
+    //     var aTop = 1;
+    //     if($(this).scrollTop()>=aTop){
+    //     window.history.pushState({"html":'gege',"pageTitle":'title'},"", 'gggg');
+    //     }else{
+    //     window.history.pushState({"html":'gege',"pageTitle":'title'},"", 'sssss');
+            
+    //     }
+    //   });
+    // });
     function fetchdata(){
      $.ajax({
       url: 'fetch_details.php',

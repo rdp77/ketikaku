@@ -27,6 +27,17 @@
     section.single article.main-article .main{
          ;
     }
+    article footer .btn-primary{
+        padding: 5px !important;
+    }
+
+    article footer .select_chapter{
+        /*padding: 0px  !important;*/
+        height: auto;
+    }
+    article footer .coling_chapters{
+        padding: 0px  !important;
+    }
 
 </style>
 @endsection
@@ -44,11 +55,13 @@
                             <div class="main" {{-- style="padding: ;" --}}>
                                 {!! $chapter->dnch_content !!}
                                <footer>
-                                    <div class="col-md-3">
-                                        <button class="btn btn-primary" type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
+                                    <div class="col-md-3 col-sm-4 col-xs-4">
+                                        <div class="pull-left">
+                                            <button class="btn btn-primary" type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <select class="form-control">
+                                    <div class="col-md-6 col-sm-4 col-xs-4 coling_chapters">
+                                        <select class="form-control select_chapter">
                                             @foreach ($all_chapter as $index => $element)
                                                 @if ($element->dnch_title == $chapter->dnch_title)
                                                     <option value="{{ $element->dnch_title }}" selected="" disabled="">{{ $index+1 }}&nbsp;&nbsp;&nbsp;{{ $element->dnch_title }}</option>
@@ -58,7 +71,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class=" col-md-3 ">
+                                    <div class=" col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-right">
                                             <button class="btn btn-primary" type="button"><i class="fas fa-arrow-alt-circle-right"></i>Next</button>
                                         </div>
@@ -212,6 +225,7 @@
         $('.info_icon').html('<i class="fas fa-book-open"></i> &nbsp;&nbsp;');
         $('.info').val('{{ ucwords($chapter->dn_title) }}');
     });
+
     if ($(window).width() < 427) {
        $('.main').css('padding','10px 10px 10px 10px');
     }
