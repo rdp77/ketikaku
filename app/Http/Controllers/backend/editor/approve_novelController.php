@@ -16,9 +16,10 @@ class approve_novelController extends Controller
     {
  
     	$data = DB::table('d_novel')
-    						->select('dn_title','m_username','dn_created_at','m_role','dn_id','dn_type_novel')
+    						->select('dn_title','m_id','m_username','dn_created_at','m_role','dn_id','dn_type_novel')
     						->join('d_mem','m_id','dn_created_by')
-    						->where('dn_status',2)
+                            ->where('dn_type_novel',2)
+    						->where('dn_status','publish')
     						->get();
 
     	return view('backend_view.approve_novel.index',compact('data'));
@@ -29,7 +30,8 @@ class approve_novelController extends Controller
  
     	$data = DB::table('d_novel')
     						->join('d_mem','m_id','dn_created_by')
-    						->where('dn_status',2)
+    						->where('dn_type_novel',2)
+                            ->where('dn_status','publish')
     						->where('dn_id',$id)
     						->first();
 

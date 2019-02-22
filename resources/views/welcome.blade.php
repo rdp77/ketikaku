@@ -6,6 +6,15 @@
       color: #ffd119;
       font-size: 15px;
     }
+    .article .padding{
+        padding: 15px 15px 50px !important;
+    }
+    .love i:before{
+        font-size: 20px !important;
+    }
+    .love div{
+        margin-top: 1px !important;
+    }
 </style>
 @endsection
 
@@ -109,11 +118,13 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <span class="love active"><i class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
-                                                    <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
+                                                    <span class="love active"><i style="padding-left: 13px" class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-users"></i> <div>@if ($element->liked == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-eye"></i> <div>@if ($element->liked == null) 0 @else {{ $element->viewer }} @endif</div></span>
+                                                    {{-- <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
                                                         <div>More</div>
                                                         <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
+                                                    </a> --}}
                                                 </footer>
                                             </div>
                                         </div>
@@ -143,11 +154,9 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <span class="love active"><i class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
-                                                    <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
+                                                    <span class="love active"><i style="padding-left: 13px" class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-users"></i> <div>@if ($element->liked == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-eye"></i> <div>@if ($element->liked == null) 0 @else {{ $element->viewer }} @endif</div></span>
                                                 </footer>
                                             </div>
                                         </div>
@@ -177,11 +186,9 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love active"><i class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></a>
-                                                    <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
+                                                    <span class="love active"><i style="padding-left: 13px" class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-users"></i> <div>@if ($element->liked == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-eye"></i> <div>@if ($element->liked == null) 0 @else {{ $element->viewer }} @endif</div></span>
                                                 </footer>
                                             </div>
                                         </div>
@@ -210,11 +217,9 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">{{-- {{ substr(strip_tags($element->dn_title), 0,25) }}{{ strlen($element->dn_title) > 2 ?  ".." : "" }} --}}<input type="text" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <a href="#" class="love"><i class="ion-android-favorite-outline"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></a>
-                                                    <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a>
+                                                    <span class="love active"><i style="padding-left: 13px" class="ion-android-favorite"></i> <div>@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-users"></i> <div>@if ($element->liked == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active"><i style="padding-left: 13px" class="fas fa-eye"></i> <div>@if ($element->liked == null) 0 @else {{ $element->viewer }} @endif</div></span>
                                                 </footer>
                                             </div>
                                         </div>

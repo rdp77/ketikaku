@@ -20,11 +20,26 @@ class bookController extends Controller
                     ->where('dn_title',$title)
                     ->first();
 
-        $novel = DB::table('d_novel')
-                    ->where('dn_created_by','=',$code->dn_created_by)
-                    ->where('dn_title','=',$title)
-                    // ->where('dn_status',1)
-                    ->get();
+        // $novel = DB::table('d_novel')
+        //             ->where('dn_created_by','=',$code->dn_created_by)
+        //             ->where('dn_title','=',$title)
+        //             // ->where('dn_status',1)
+        //             ->get();
+        $novel = DB::table('d_novel')->select('d_novel.*',
+                                            DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                                WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_ref_id) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_subscribe.dns_ref_id) as subscribed"),
+                                            DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                                WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
+                                        ->where('dn_status','publish')
+                                        ->where('dn_created_by','=',$code->dn_created_by)
+                                        ->where('dn_title','=',$title)
+                                        ->where('dn_type_novel',1)
+                                        ->orderBy('dn_id','DESC')->limit(8)->get();
         // CARI NOVEL DENGAN KONDISI PENULIS
         $book = DB::table('d_novel')
                     ->join('d_mem','m_id','=','dn_created_by')
@@ -72,6 +87,10 @@ class bookController extends Controller
                             ->where('dnl_ref_id',$code->dn_id)
                             ->count();
 
+        $total_view = DB::table('d_novel_chapter')
+                            ->where('dnch_ref_id',$code->dn_id)
+                            ->sum('dnch_viewer');
+
         if (Auth::user() != null) {
             $subscriber = DB::table('d_novel_subscribe')
                             ->where('dns_subscribe_by',Auth::user()->m_id)
@@ -89,7 +108,7 @@ class bookController extends Controller
                     ->get();
 
         // return response()->json(['chapter'=>$chapter,'book'=>$book,'tags'=>$tags,'code'=>$code,'novel'=>$novel]);
-        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_book','novel_rate','novel_reply','total_subscribe','subscriber','liker','total_like'));
+        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_view','total_book','novel_rate','novel_reply','total_subscribe','subscriber','liker','total_like'));
     }
     public function novel_rate_star(Request $request)
     {
