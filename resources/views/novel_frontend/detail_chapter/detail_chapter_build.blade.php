@@ -24,15 +24,11 @@
         font-family:Lato,Helvetica Neue,Arial,Helvetica,sans-serif !important;
     
     }
-    section.single article.main-article .main{
-         ;
-    }
+    
     article footer .btn-primary{
         padding: 5px !important;
     }
-
     article footer .select_chapter{
-        /*padding: 0px  !important;*/
         height: auto;
     }
     article footer .coling_chapters{
@@ -222,7 +218,6 @@
     });
 
     $( document ).ready(function() {
-        $('.info_icon').html('<i class="fas fa-book-open"></i> &nbsp;&nbsp;');
         $('.info').val('{{ ucwords($chapter->dn_title) }}');
     });
 
