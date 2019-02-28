@@ -47,6 +47,7 @@
                             <header align="center">
                                 <p class="header_title">{{ $chapter->dnch_title }}</p>
                                 <p style="margin-top: 30px"><dd style="font-size: 15px"> Ditulis Oleh  <a href="#">{{ $chapter->m_username }}</a></dd><tt style="color: grey">{{ date('d F Y ',strtotime($chapter->dnch_created_at)) }} pukul {{ date('h:i ',strtotime($chapter->dnch_created_at)) }} </tt></p>
+                                <p><i class="fa fa-eye"></i> &nbsp;{{ $chapter->dnch_viewer }}</p>
                             </header>
                             <div class="main" {{-- style="padding: ;" --}}>
                                 {!! $chapter->dnch_content !!}
