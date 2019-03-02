@@ -44,10 +44,10 @@
                                 <tr>
                                     <th width="1%">No</th>
                                     <th width="25%">Title</th>
-                                    <th>Create Date</th>
+                                    <th width="15%">Created</th>
                                     <th>Status</th>
-                                    <th>View</th>
-                                    <th width="35%">Photo</th>
+                                    <th width="10%">View</th>
+                                    <th width="30%">Photo</th>
                                     <th width="10%">Action</th>
                                 </tr>
                             </thead>
@@ -56,8 +56,14 @@
                                     <tr>
                                         <td align="center">{{ $index+1 }}</td>
                                         <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}"><span style="font-size: 13px !important;" class="label label-success font-weight-bold">{{ $element->dn_title }}</span></a></td>
-                                        <td>{{ date('d M Y  -  h:i',strtotime($element->dn_created_at)) }}</td>
+                                        <td>
+                                            {{ date('d M Y',strtotime($element->dn_created_at)) }} 
+                                            <br>
+                                            {{ date('h:i a',strtotime($element->dn_created_at)) }} 
+                                            {{-- {{ $element->m_username }} --}}
+                                        </td>
                                         <td align="center">
+                                             
                                             @if ($element->dn_status == 'publish')
                                                 <span class="label label-rounded label-success">Published</span>
                                             @else
@@ -65,10 +71,11 @@
                                             @endif
                                         </td>
                                         <td class="font-weight-bold">
-                                            Subscriber : {{ $element->subscriber == null ? '0' : $element->subscriber }}
+                                            Subs : {{ $element->subscriber == null ? '0' : $element->subscriber }}
                                             <br>
                                             Liked : {{ $element->liked == null ? '0' : $element->liked }}
                                             <br>
+                                            View : {{ $element->viewer == null ? '0' : $element->viewer }}
                                             
                                         </td>
                                         <td align="center">

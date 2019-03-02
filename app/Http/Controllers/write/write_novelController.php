@@ -14,14 +14,16 @@ class write_novelController extends Controller
 
     public function index()
     {
-
-        $data =  DB::Table('d_novel')->select('d_novel.*',
+        $data =  DB::Table('d_novel')->select('d_novel.*','d_mem.*',
                                             DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
                                                 WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_like.dnl_ref_id) as liked"),
                                             DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
                                                 WHERE d_novel_subscribe.dns_creator = d_mem.m_id
-                                                GROUP BY d_novel_subscribe.dns_creator) as subscriber")
+                                                GROUP BY d_novel_subscribe.dns_creator) as subscriber"),
+                                            DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                                WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_chapter.dnch_ref_id) as viewer")
                                     )
                                     ->join('d_mem','m_id','dn_created_by')
                                     ->where('dn_created_by',Auth::user()->m_id)
