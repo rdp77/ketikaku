@@ -295,6 +295,8 @@
     function reply_data(argument) {
         var message = $('#drdt_message_'+argument).val();
         var dncc_comment_by = $('.dncc_comment_by').val();
+        var dncc_creator = $('.dncc_creator').val();
+        var dncc_id = argument;
         
         if (message == '') {
             iziToast.warning({
@@ -308,7 +310,7 @@
         $.ajax({
             type: "get",
             url:'{{ route('frontend_chapter_novel_comment_reply') }}',
-            data: '&id='+argument+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dnccdt_creator='+dncc_creator+'&dnccdt_comment_by='+dncc_comment_by,
+            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dnccdt_creator='+dncc_creator+'&dnccdt_comment_by='+dncc_comment_by+'&dncc_id='+dncc_id,
             processData: false,
             contentType: false,
           success:function(data){

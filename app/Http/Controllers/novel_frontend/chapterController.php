@@ -21,6 +21,7 @@ class chapterController extends Controller
         $chapter_comment = DB::table('d_novel_chapter_comment')
                             ->join('d_mem','m_id','=','dncc_comment_by')
                             ->where('dncc_ref_id',$chapter->dnch_ref_id)
+                            ->orderBy('dncc_id','DESC')
                             ->get();
         for ($i=0; $i <count($chapter_comment) ; $i++) { 
             $chapter_reply = DB::table('d_novel_chapter_comment_dt')
@@ -87,6 +88,7 @@ class chapterController extends Controller
                             ->join('d_mem','m_id','=','dncc_comment_by')
                             ->where('dncc_ref_id',$request->id)
                             ->where('dncc_ref_iddt',$request->iddt)
+                            ->orderBy('dncc_id','DESC')
                             ->get();
 
         $chapter_reply = DB::table('d_novel_chapter_comment_dt')
@@ -104,7 +106,8 @@ class chapterController extends Controller
         $insert = DB::table('d_novel_chapter_comment_dt')
                 ->insert([
                     'dnccdt_ref_id'=>$request->id,
-                    'dnccdt_comment_id'=>$request->iddt,
+                    'dnccdt_ref_iddt'=>$request->iddt,
+                    'dnccdt_comment_id'=>$request->dncc_id,
                     'dnccdt_message'=>$request->message,
                     'dnccdt_reply_by'=>$request->dnccdt_comment_by,
                     'dnccdt_created_at'=>date('Y-m-d h:i:s')
@@ -114,6 +117,7 @@ class chapterController extends Controller
                             ->join('d_mem','m_id','=','dncc_comment_by')
                             ->where('dncc_ref_id',$request->id)
                             ->where('dncc_ref_iddt',$request->iddt)
+                            ->orderBy('dncc_id','DESC')
                             ->get();
 
         $chapter_reply = DB::table('d_novel_chapter_comment_dt')
