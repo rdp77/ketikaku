@@ -73,7 +73,9 @@
                     <div class="col-md-12">
                         <div class="copyright">
                             COPYRIGHT &copy; <a >KETIKAKU</a>. ALL RIGHT RESERVED.
+
                             <div>
+                                <p>Learn more About our <a href="{{ route('welcome_tnc') }}" style="font-weight: 1000">Term & Conditions </a>.</p>
                                 Made with <i class="ion-heart"></i> by <a onclick="link()">Esensi Creative</a>
                             </div>
                         </div>

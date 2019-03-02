@@ -21,10 +21,11 @@
    // homw front end welcome
    Route::get('/', 'welcomeController@data_all')->name('data_all');
    Route::get('/welcome/comment_ajax', 'welcomeController@comment_ajax')->name('welcome_comment_ajax');
+   Route::get('/welcome/tnc', 'welcomeController@tnc')->name('welcome_tnc');
 
    //FRONT END
    // profile front end
-   Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');
+   Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');   
    Route::get('/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
    Route::get('/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
    Route::get('/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
@@ -39,6 +40,8 @@
    // chapter
    Route::get('/chapter/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    Route::post('/chapter/viewer/{id}', 'novel_frontend\chapterController@viewer')->name('frontend_chapter_viewer');
+   Route::get('/chapter_novel_comment', 'novel_frontend\chapterController@chapter_novel_comment')->name('frontend_chapter_novel_comment');
+   Route::get('/chapter_novel_comment_reply', 'novel_frontend\chapterController@chapter_novel_comment_reply')->name('frontend_chapter_novel_comment_reply');
    //BACKEND 
 
  // });

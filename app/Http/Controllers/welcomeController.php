@@ -83,4 +83,8 @@ class welcomeController extends Controller
     {
     	
     }
+    public function tnc()
+    {
+        return view('frontend_view.tnc.tnc');
+    }
 }

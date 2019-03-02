@@ -39,8 +39,20 @@
 @endsection
 
 @section('content')
+
+
+{{--  --}}
+
 <section class="" style="background-color: #e1e1e1;margin-top: 40px">
             <div class="container">
+
+
+                @if (auth::user() != null)
+                    <input type="hidden" name="dncc_comment_by" class="dncc_comment_by" value="{{ Auth::user()->m_id }}">
+                    <input type="hidden" name="dncc_creator" class="dncc_creator" value="{{ $chapter->dnch_created_by }}">
+                @endif
+
+
                 <div class="row col-md-offset-1 col-md-10 col-md-offset-2 col-md-10" style="background-color: white;padding-bottom: 40px">
                     <div class="col-md-12">
                         <article class="article main-article" >
@@ -120,18 +132,24 @@
                         <div class="comments" style="margin-top: -50px !important;">
                             <h4 class="title">{{-- 3 Responses  --}}</h4>
                             <div class="comment-list">
+                            @if (auth::user() != null)
                             <form class="row">
                                 <div class="col-md-12">
                                     <h4 class="title">Leave Your Response <a href="#">Write a Response</a></h4>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="message">Response <span class="required"></span></label>
-                                    <textarea class="form-control" name="message" placeholder="Write your response ..."></textarea>
+                                    <textarea class="form-control" id="message" name="message" placeholder="Write your response ..."></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <button class="btn btn-primary">Send Response</button>
+                                    <button class="btn btn-primary response" type="button">Send Response</button>
                                 </div>
                             </form>
+                            @else
+                                <div class="line">
+                                    <div>Login To Comment</div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div {{-- class="col-md-12" --}}>
@@ -155,7 +173,9 @@
                                                     </div>
                                                     <footer>
                                                         <br>
-                                                        <button type="button" class="btn btn-sm btn-primary reply_{{ $element->dncc_id }}" onclick="reply({{ $element->dncc_id }})"><i class="fas fa-share"></i> Reply</button>
+                                                        @if (auth::user() != null)
+                                                            <button type="button" class="btn btn-sm btn-primary reply_{{ $element->dncc_id }}" onclick="reply({{ $element->dncc_id }})"><i class="fas fa-share"></i> Reply</button>
+                                                        @endif
                                                     </footer>
                                                 </div>
                                             @foreach ($chapter_reply as $gg)
@@ -227,6 +247,81 @@
     }
     else {
        $('.main').css('padding','10px 50px 10px 50px');
+    }
+
+    $('.response').click(function(){
+        var message = $('#message').val();
+        var dncc_comment_by = $('.dncc_comment_by').val();
+        var dncc_creator = $('.dncc_creator').val();
+        
+        if (message == '') {
+            iziToast.warning({
+                    icon: 'fa fa-info-circle',
+                    position:'topRight',
+                    title: 'Warning!',
+                    message: 'Ulasan Tidak Boleh Kosong!',
+                });
+            return false;
+        }
+
+        $.ajax({
+            type: "get",
+            url:'{{ route('frontend_chapter_novel_comment') }}',
+            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dncc_creator='+dncc_creator+'&dncc_comment_by='+dncc_comment_by,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    })
+
+    function reply(argument) {
+        // console.log(argument);
+        $('.drop_reply_'+argument).html(
+        '<br>'+
+        '<textarea class="form-control" name="drdt_message_'+argument+'" id="drdt_message_'+argument+'" placeholder="Write your response ..."></textarea>'+
+        '<br>'+
+        '<button type="button" class="btn btn-sm btn-primary reply_comment_'+argument+'" onclick="reply_data('+argument+')"><i class="fas fa-share"></i> Reply</button>');  
+    }
+
+    function reply_data(argument) {
+        var message = $('#drdt_message_'+argument).val();
+        var dncc_comment_by = $('.dncc_comment_by').val();
+        
+        if (message == '') {
+            iziToast.warning({
+                    icon: 'fa fa-info-circle',
+                    position:'topRight',
+                    title: 'Warning!',
+                    message: 'Ulasan Tidak Boleh Kosong!',
+                });
+            return false;
+        }
+        $.ajax({
+            type: "get",
+            url:'{{ route('frontend_chapter_novel_comment_reply') }}',
+            data: '&id='+argument+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dnccdt_creator='+dncc_creator+'&dnccdt_comment_by='+dncc_comment_by,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
     }
 
 </script>

@@ -152,7 +152,6 @@ class bookController extends Controller
                     ->get();
         return view('novel_frontend.detail_novel.comment_novel',compact('novel_rate','novel_reply'));
         // return response()->json(['status'=>'sukses']);
-
     }
     public function novel_rate_reply(Request $request)
     {
