@@ -62,7 +62,9 @@
                                 <p><i class="fa fa-eye"></i> &nbsp;{{ $chapter->dnch_viewer }}</p>
                             </header>
                             <div class="main" {{-- style="padding: ;" --}}>
-                                {!! $chapter->dnch_content !!}
+                                <div class="drop_here_content">
+                                    {!! $chapter->dnch_content !!}
+                                </div>
                                <footer>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-left">
@@ -75,7 +77,7 @@
                                                 @if ($element->dnch_title == $chapter->dnch_title)
                                                     <option value="{{ $element->dnch_title }}" selected="" disabled="">{{ $index+1 }}&nbsp;&nbsp;&nbsp;{{ $element->dnch_title }}</option>
                                                 @else
-                                                    <option value="{{ $element->dnch_title }}">{{ $index+1 }}&nbsp;&nbsp;&nbsp;{{ $element->dnch_title }}</option>
+                                                    <option value="{{ $element->dnch_title }}" data-id="{{ $element->dnch_id }}" class="chose_chapter">{{ $index+1 }}&nbsp;&nbsp;&nbsp;{{ $element->dnch_title }}</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -218,9 +220,11 @@
 @endsection
 
 @section('extra_scripts')
-<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
+
+    $('.select_chapter').on('change',function(){
+        alert($(this).val());
+    })
 
     $( window ).load(function() {
         $.ajaxSetup({
@@ -236,10 +240,15 @@
             },error:function(){
           }
         });
+
+
     });
 
     $( document ).ready(function() {
         $('.info').val('{{ ucwords($chapter->dn_title) }}');
+
+        
+
     });
 
     if ($(window).width() < 500) {
@@ -325,6 +334,8 @@
           }
         });
     }
+
+    
 
 </script>
 @endsection
