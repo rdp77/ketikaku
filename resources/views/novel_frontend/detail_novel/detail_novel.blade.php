@@ -468,10 +468,11 @@
     $('.baca').on('click',function(){
         // var datas = $(this).data('name');
         var datass = $(this).data('name');
+        var creator = ('{{ $book->m_username }}');
         // var res1 = datas.replace(/\s/g,"-");
 
         var res = datass.replace(/\s/g,"-");
-        window.location.href = baseUrl + '/chapter/'+res;
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res;
     })
 
     function reply(argument) {

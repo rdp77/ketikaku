@@ -16,3 +16,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
 <link href="{{ asset('assets_backend/libs/iziToast-master/dist/css/iziToast.css') }}" rel="stylesheet" type="text/css" >
   	
+<style type="text/css">
+	article figure{
+		margin-bottom: -10px !important;
+	}
+</style>

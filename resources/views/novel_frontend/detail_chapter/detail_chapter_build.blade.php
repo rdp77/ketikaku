@@ -68,7 +68,7 @@
                                <footer>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-left">
-                                            <button class="btn btn-primary" type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
+                                            <button class="btn btn-primary back" {{-- value="{{ $back }}"  --}} type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-4 col-xs-4 coling_chapters">
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class=" col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-right">
-                                            <button class="btn btn-primary" type="button"><i class="fas fa-arrow-alt-circle-right"></i>Next</button>
+                                            <button class="btn btn-primary next" {{-- value="{{ $next }}" --}} type="button"><i class="fas fa-arrow-alt-circle-right"></i>Next</button>
                                         </div>
                                     </div>
                                 </footer>
@@ -223,7 +223,13 @@
 <script type="text/javascript">
 
     $('.select_chapter').on('change',function(){
-        alert($(this).val());
+        // alert($(this).val());
+        var datass = $(this).val();
+        var creator = ('{{ $chapter->m_username }}');
+        // var res1 = datas.replace(/\s/g,"-");
+
+        var res = datass.replace(/\s/g,"-");
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res;
     })
 
     $( window ).load(function() {

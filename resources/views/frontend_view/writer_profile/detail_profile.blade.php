@@ -28,54 +28,159 @@
         background-repeat: no-repeat;
     }
     h3,h6{
-        font-weight: 300;
+        font-weight: 400;
     }
+    h4{
+        font-weight: 700;
+    }
+    li {
+        display: inline;
+    }
+    .menur ul > li > a {
+        line-height: 20px !important;
+    }
+    .menur {
+        height: 60px !important;
+    }
+    .pad{
+        padding-left: 0px !important;padding-right:0px !important
+    }
+    .btnfllower{
+        margin-top: 16px;
+    }
+    .sidebar{
+        border:1px solid transparent;
+
+        box-shadow: 0 1px 10px 0 rgba(34,34,34,.08), 0 4px 5px 0 rgba(34,34,34,.1);
+        background-color: white;
+    }
+    /*.main_article{
+        border:1px solid transparent;
+
+        box-shadow: 0 1px 10px 0 rgba(34,34,34,.08), 0 4px 5px 0 rgba(34,34,34,.1);
+        background-color: white;
+    }*/
+    .single {
+        padding-top: 160px !important;
+    }
+    .love i:before{
+        font-size: 20px !important;
+    }
+    .love div{
+        margin-top: 1px !important;
+    }
+    .article .padding{
+        padding-top: 10px;
+    }
+    section.single footer{
+        margin-top: 10px;
+    }
+    input {
+        font-weight: 600;
+    }
+    
 </style>
 @endsection
 
 @section('content')
 <section class="single">
-            <div class="container-fluid">
-                    <div class="col-md-12">
+            <div class="container-fluid pad" >
+                    <div class="col-md-12 pad">
                         <div class="bg">
                         </div>
+                        <nav class="menu menur">
+                            <div class="container">
+                                <div class="brand">
+                                    <a href="{{ url('/') }}">
+                                        <img src="{{ asset('assets/images/logo.png') }}">
+                                    </a>
+                                </div>
+                                <div class="mobile-toggle">
+                                    <a href="#" data-toggle="sidebar" data-target="#sidebar"><i class="ion-ios-arrow-left"></i> Detail</a>
+                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                <div id="menu-list" style="margin-left: 0%">
+                                    <ul class="nav-list">
+                                        {{-- <li class="for-tablet nav-title"><a>Menu</a></li> --}}
+                                        <li class="for-tablet"><a href="{{ url('/login') }}">Login</a></li>
+                                        <li class="for-tablet"><a href="{{ url('/register') }}">Register</a></li>
+                                        <li>
+                                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 40%;margin-top:-120px;border:3px solid white">
+                                        </li>
+                                        <li >
+                                                <p style="font-size: 17px;margin-top: 8px">Following </p>
+                                                <a style="font-size: 20px;text-align: center;">{{ $following }}</a>
+                                        </li>
+                                        <li style="padding-left: 40px">
+                                                <p style="font-size: 17px;margin-top: 8px">Followers </p>
+                                                <a class="drop_here_follower" style="font-size: 20px;text-align: center;">{{ $profile->m_follower }}</a>
+                                        </li>
+                                        <li style="padding-left: 120px">
+                                                @if (Auth::user() != null)
+                                                    @if ($profile->m_id != Auth::user()->m_id)
+                                                        <button class="btn-sm btn btn-primary drop_here_button_follower btnfllower" onclick="follow()"><i class="fas fa-user-plus"></i> Follow</button>
+                                                    @endif
+                                                @else
+                                                        {{-- Login First --}}
+                                                        <button class="btn-sm btn btn-secondary btnfllower" disabled=""><i class="fas fa-user-plus"></i> Follow</button>
+                                                @endif                                            
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
-                    
             </div>
             <div class="container">
-                    <div class="line thin"></div>
-                    <div class="col-md-2 sidebar" id="sidebar">
+                    <div class="col-md-3 sidebar" id="sidebar">
                         <aside>
-                            @if ($profile->m_image == null)
-                                <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" style="border-radius: 50%;width: 100%;" />
-                            @else
-                                <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 100%;">
-                            @endif
-                            <br>
-                            <br>
-                            <p class="drop_here_follower"><i class="fas fa-users"></i> &nbsp;{{ $profile->m_follower }} Followers</p>
-                            <p ><i class="fas fa-user-friends"></i> &nbsp;{{ $following }} Following</p>
-                            @if (Auth::user() != null)
-                                @if ($profile->m_id != Auth::user()->m_id)
-                                    <button class="btn-sm btn btn-primary drop_here_button_follower" onclick="follow()"><i class="fas fa-user-plus"></i> Follow</button>
-                                @endif
-                            @else
-                                    Login First
-                                    {{-- <button class="btn-sm btn btn-secondary" disabled=""><i class="fas fa-user-plus"></i> Follow</button> --}}
-                            @endif
-                        </aside>
-                    </div>
-                    <div class="col-md-10">
-                        <article class="article main-article">
-                            <header>
-                                <h3>{{ $profile->m_name }}</h3>
+                                <h4>{{ $profile->m_username }}</h4>
+                                <h4>{{ $profile->m_name }}</h4>
                                 <p>
                                     {!! $profile->m_desc_short !!}
                                 </p>
                                 <br>
-                                <h6>
+                                <p>
                                     {{  $profile->m_desc_full }}
-                                </h6>
+                                </p>
+                        </aside>
+                    </div>
+                    <div class="col-md-9 main_article">
+                        <article class="article main-article">
+                            <header>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    @foreach ($data as $element)
+                                    <article class="article col-md-3 col-xs-6">
+                                        <div class="inner">
+                                            <figure>
+                                                <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
+                                                    @if ($element->dn_cover == null)
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @else
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                    @endif
+                                                </a>
+                                            </figure>
+                                            <div class="padding">
+                                                <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
+                                                <footer>
+                                                    <span class="love active"><i class="ion-android-favorite"></i> <div class="liked">@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active"><i class="fas fa-users"></i> <div class="subscribed">@if ($element->subscribed == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active"><i class="fas fa-eye"></i> <div class="viewer">@if ($element->viewer == null) 0 @else {{ $element->viewer }} @endif</div></span>
+                                                    {{-- <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
+                                                        <div>More</div>
+                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
+                                                    </a> --}}
+                                                </footer>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    @endforeach
+                                </div>
+                            </div>
                             </header>
                         </article>
                     </div>
@@ -102,7 +207,7 @@
                                     </div>
                                 </div>
                         @else
-                            Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a>
+                            {{-- Anda Harus Login terlebih dahulu  <a href="{{ url('/login') }}" class="btn btn-primary btn-sm">Login</a> --}}
                         @endif
                 </div>
             </div>
@@ -188,6 +293,22 @@
             });
           }
         });
+    }
+    if (parseInt($('.viewer').text()) > 1) {
+        var char = $('.viewer').text();
+        console.log(char);
+        console.log(char.charAt(0));
+    }
+
+    if ($(window).width() < 500) {
+       $('.ion-android-favorite').css('padding-left','0px');
+       $('.fa-users').css('padding-left','9px');
+       $('.fa-eye').css('padding-left','9px');
+    }
+    else {
+       $('.ion-android-favorite').css('padding-left','3px');
+       $('.fa-users').css('padding-left','13px');
+       $('.fa-eye').css('padding-left','13px');
     }
 
 </script>

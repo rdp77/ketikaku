@@ -10,7 +10,7 @@ use DB;
 use Storage;
 class chapterController extends Controller
 {
-    public function chapter($name)
+    public function chapter($creator,$name)
     {  
         $title = str_replace('-', ' ',$name);
         $chapter = DB::table('d_novel_chapter')
@@ -18,6 +18,47 @@ class chapterController extends Controller
         				->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
         				->where('dnch_title',$title)
         				->first();
+
+        $check_next = DB::table('d_novel_chapter')
+                        ->join('d_mem','m_id','=','dnch_created_by')
+                        ->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
+                        ->where('dnch_ref_id',$chapter->dn_id)
+                        ->Where('dnch_id', '>', $chapter->dnch_id)
+                        ->get();
+        // $check_back = [];
+        $check_back = DB::table('d_novel_chapter')
+                        ->join('d_mem','m_id','=','dnch_created_by')
+                        ->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
+                        ->where('dnch_ref_id',$chapter->dn_id)
+                        ->Where('dnch_id', '<', $chapter->dnch_id)
+                        ->orderBy('dnch_id','DESC')
+                        ->get();
+        // return $check_back;
+        // if (empty($check_back)) {
+        //     $back = $check_back[0]->dnch_title;
+        // }else{
+        //     $back = null;
+        // }
+
+        // return $back;
+
+        // if (isset($check_next) == null) {
+        //     $next = $check_next[0]->dnch_title;
+        // }else{
+        //     $next = null;
+        // }
+        // return $check;
+
+        // return [$back[0]->dnch_title,$title,$next[0]->dnch_title];
+        // if ($back != null) {
+        //     $back = $back[0]->dnch_title;
+        // }else{
+        //     $back = null;
+        // }
+        
+
+        $recent = $title;
+        // $next = $next[0]->dnch_title;
         $chapter_comment = DB::table('d_novel_chapter_comment')
                             ->join('d_mem','m_id','=','dncc_comment_by')
                             ->where('dncc_ref_id',$chapter->dnch_ref_id)
@@ -30,7 +71,7 @@ class chapterController extends Controller
                     ->get();
         }
         $all_chapter = DB::table('d_novel_chapter')->where('dnch_status','publish')->where('dnch_ref_id',$chapter->dnch_ref_id)->get();
-        return view('novel_frontend.detail_chapter.detail_chapter_build',compact('title','chapter','all_chapter','chapter_comment','chapter_reply'));
+        return view('novel_frontend.detail_chapter.detail_chapter_build',compact('title','chapter','all_chapter','chapter_comment','chapter_reply','back','recent','next'));
     }
     public function subscribe(Request $request)
     {
