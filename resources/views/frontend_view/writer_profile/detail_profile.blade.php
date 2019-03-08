@@ -106,10 +106,10 @@
                                         {{-- <li class="for-tablet nav-title"><a>Menu</a></li> --}}
                                         <li class="for-tablet"><a href="{{ url('/login') }}">Login</a></li>
                                         <li class="for-tablet"><a href="{{ url('/register') }}">Register</a></li>
-                                        <li>
-                                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 40%;margin-top:-120px;border:3px solid white">
-                                        </li>
                                         <li >
+                                            <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 210px;margin-top:-120px;border:3px solid white">
+                                        </li>
+                                        <li style="padding-left: 250px">
                                                 <p style="font-size: 17px;margin-top: 8px">Following </p>
                                                 <a style="font-size: 20px;text-align: center;">{{ $following }}</a>
                                         </li>
