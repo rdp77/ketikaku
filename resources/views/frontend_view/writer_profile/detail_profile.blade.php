@@ -78,6 +78,9 @@
     input {
         font-weight: 600;
     }
+    aside {
+        min-height: 385px;
+    }
     
 </style>
 @endsection
@@ -115,6 +118,14 @@
                                         </li>
                                         <li style="padding-left: 40px">
                                                 <p style="font-size: 17px;margin-top: 8px">Followers </p>
+                                                <a class="drop_here_follower" style="font-size: 20px;text-align: center;">{{ $profile->m_follower }}</a>
+                                        </li>
+                                        <li style="padding-left: 40px">
+                                                <p style="font-size: 17px;margin-top: 8px">Novel </p>
+                                                <a class="drop_here_follower" style="font-size: 20px;text-align: center;">{{ $profile->m_follower }}</a>
+                                        </li>
+                                        <li style="padding-left: 40px">
+                                                <p style="font-size: 17px;margin-top: 8px">Subscribed </p>
                                                 <a class="drop_here_follower" style="font-size: 20px;text-align: center;">{{ $profile->m_follower }}</a>
                                         </li>
                                         <li style="padding-left: 120px">
