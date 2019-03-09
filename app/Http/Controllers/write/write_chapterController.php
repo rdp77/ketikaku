@@ -32,7 +32,7 @@ class write_chapterController extends Controller
             'dnch_title'=>$req->dnch_title,
             'dnch_status'=>$req->dnch_status,
             'dnch_content'=>$req->dnch_content,
-            'dnch_created_at'=>date('Y-m-y h:i:s'),
+            'dnch_created_at'=>date('Y-m-d h:i:s'),
             'dnch_created_by'=>Auth::user()->m_id,
         ]);
 
