@@ -73,7 +73,7 @@
                                 <td valign="middle" width="30%" style="border-top:none;border-bottom:1px solid #dddddd">Status</td>
                                 <td colspan="3" valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">
                                     @if ($book->dn_type_novel == 1)
-                                        <div class="badges">
+                                        <div class="badge badge-secondary">
                                             <div class="badge-item"><i class="ion-star"></i> Official</div>
                                         </div>
                                     @else
