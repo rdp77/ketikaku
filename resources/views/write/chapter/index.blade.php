@@ -50,7 +50,8 @@
                                     <th>Title</th>
                                     <th>Title Chapter</th>
                                     <th>Create Date</th>
-                                    {{-- <th>Photo</th> --}}
+                                    <th>Status</th>
+                                    <th>View</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -61,8 +62,13 @@
                                         <td>{{ $element->dn_title }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>{{ date('d F Y  -  h:i:s',strtotime($element->dnch_created_at)) }}</td>
-                                        {{-- <td>{!! $element->dnch_description !!}</td> --}}
-                                        {{-- <td><img width="30%" src="{{ asset('/storage/app/'.$element->dnch_cover) }}"></td> --}}
+                                        <td>@if ($element->dnch_status == 'publish')
+                                                <span class="label label-rounded label-success">Published</span>
+                                            @else
+                                                <span class="label label-rounded label-warning">Draft</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $element->dnch_viewer }}</td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" ><i class="fas fa-times-circle"></i></button>

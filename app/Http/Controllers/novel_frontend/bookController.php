@@ -55,11 +55,12 @@ class bookController extends Controller
         if ($code->dn_type_novel == 1) {
             $chapter = DB::table('d_novel_chapter')
                     ->where('dnch_ref_id',$code->dn_id)
-                    ->where('dnch_status',1)
+                    ->where('dnch_status','publish')
                     ->get();
         }else{
             $chapter = DB::table('d_novel_chapter')
                     ->where('dnch_ref_id',$code->dn_id)
+                    ->where('dnch_status','publish')
                     ->get();
         }
         // RATING NOVEL
