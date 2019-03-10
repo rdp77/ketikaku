@@ -75,7 +75,7 @@ Auth::routes();
 
    Route::get('/editor/approve_chapter', 'backend\editor\approve_chapterController@index')->name('approve_chapter');
    Route::get('/editor/approve_chapter/edit/{id}', 'backend\editor\approve_chapterController@edit')->name('approve_chapter_edit');
-   Route::get('/editor/approve_chapter/update/{id}', 'backend\editor\approve_chapterController@update')->name('approve_chapter_update');
+   Route::post('/editor/approve_chapter/update/{id}', 'backend\editor\approve_chapterController@update')->name('approve_chapter_update');
    Route::get('/editor/approve_chapter/delete/{id}', 'backend\editor\approve_chapterController@delete')->name('approve_chapter_delete');
 
    Route::get('/write/write_novel', 'write\write_novelController@index')->name('write_novel');

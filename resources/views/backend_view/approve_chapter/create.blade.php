@@ -101,6 +101,9 @@
                   tinyMCE.triggerSave();
                   var comment = $("#mytextarea").val();
                   var id = $("#dnch_ref_id").val();
+                  var form  = $('#save');
+                  formdata = new FormData(form[0]);
+                  formdata.append('dnch_status',status);
 
                   $.ajaxSetup({
                       headers: {
@@ -109,9 +112,10 @@
                     });
 
                     $.ajax({
-                        type: "get",
+                        type: "post",
                         url: baseUrl+'/write'+'/write_chapter/save/'+id,
-                        data: $('#save').serialize(),
+                        // data: $('#save').serialize(),
+                        data: formdata ? formdata : form.serialize(),
                         // processData: false,
                         // contentType: false,
                       success:function(data){
@@ -138,7 +142,7 @@
                             icon: 'fa fa-info',
                             position:'topRight',
                             title: 'Error!',
-                            message: data.message,
+                            message: 'Error bungg ,Telpon developer :)',
                         });
                       }
                     });
