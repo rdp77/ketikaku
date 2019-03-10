@@ -71,9 +71,23 @@ class profileController extends Controller
             $n_format = str_replace( $dotzero, '', $n_format );
         }
         // return $n_format . $suffix;
+         $followed = DB::table('d_mem_follow')
+                                ->select('d_mem_follow.*','d_mem.*',
+                                            DB::raw("(SELECT COUNT(d_novel.dn_created_by) FROM d_novel
+                                                WHERE d_mem.m_id = d_novel.dn_created_by
+                                                GROUP BY d_novel.dn_created_by) as novel"),
+                                            DB::raw("(SELECT COUNT(d_mem_follow.dmf_followed) FROM d_mem_follow
+                                                WHERE d_mem.m_id = d_mem_follow.dmf_followed
+                                                GROUP BY d_mem_follow.dmf_followed) as followers"),
+                                            DB::raw("(SELECT COUNT(d_mem_follow.dmf_follow_by) FROM d_mem_follow
+                                                WHERE d_mem.m_id = d_mem_follow.dmf_follow_by
+                                                GROUP BY d_mem_follow.dmf_follow_by) as following")
+                                )
+                                ->join('d_mem','dmf_followed','m_id')
+                                ->where('dmf_follow_by',$profile->m_id)
+                                ->get();
 
-
-        return view('frontend_view.writer_profile.detail_profile',compact('profile','following','data','novels','follow'));
+        return view('frontend_view.writer_profile.detail_profile',compact('profile','following','data','novels','follow','followed'));
     }
     public function FunctionName($value='')
     {
@@ -145,5 +159,43 @@ class profileController extends Controller
                                 ->get();
 
         return view('frontend_view.writer_profile.detail_profile_following',compact('followed'));
+    }
+    public function followers(Request $request)
+    {
+        $followers = DB::table('d_mem_follow')
+                                ->select('d_mem_follow.*','d_mem.*',
+                                            DB::raw("(SELECT COUNT(d_novel.dn_created_by) FROM d_novel
+                                                WHERE d_mem.m_id = d_novel.dn_created_by
+                                                GROUP BY d_novel.dn_created_by) as novel"),
+                                            DB::raw("(SELECT COUNT(d_mem_follow.dmf_followed) FROM d_mem_follow
+                                                WHERE d_mem.m_id = d_mem_follow.dmf_followed
+                                                GROUP BY d_mem_follow.dmf_followed) as followers"),
+                                            DB::raw("(SELECT COUNT(d_mem_follow.dmf_follow_by) FROM d_mem_follow
+                                                WHERE d_mem.m_id = d_mem_follow.dmf_follow_by
+                                                GROUP BY d_mem_follow.dmf_follow_by) as following")
+                                )
+                                ->join('d_mem','dmf_follow_by','m_id')
+                                ->where('dmf_followed',$request->id)
+                                ->get();
+
+        return view('frontend_view.writer_profile.detail_profile_followers',compact('followers'));
+    }
+    public function novel(Request $request)
+    {
+        $data =  DB::Table('d_novel')->select('d_novel.*','d_mem.*',
+                                            DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                                WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_creator = d_mem.m_id
+                                                GROUP BY d_novel_subscribe.dns_creator) as subscribed"),
+                                            DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                                WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_chapter.dnch_ref_id) as viewer")
+                                    )
+                                    ->join('d_mem','m_id','dn_created_by')
+                                    ->where('dn_created_by',$request->id)
+                                    ->get();
+        return view('frontend_view.writer_profile.detail_profile_novel',compact('data'));
     }
 }

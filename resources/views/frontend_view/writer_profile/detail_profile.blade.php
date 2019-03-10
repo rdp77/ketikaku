@@ -30,6 +30,10 @@
     h3,h6{
         font-weight: 400;
     }
+    h5 {
+        font-weight: 500;
+        color:#585858 !important;
+    }
     h4{
         font-weight: 650;
         color:#585858 !important;
@@ -85,7 +89,7 @@
         min-height: 385px;
     }
     .counted{
-        font-size: 30px;
+        font-size: 25px;
         color:grey !important;
         text-align: center;
         font-family: 'Lato', sans-serif !important;
@@ -104,6 +108,38 @@
     }
     .featured-author .featured-author-body .featured-author-count .item .name{
         text-transform: none !important;
+    }
+    .icon-facebookbg {
+    color: #3b5998;
+    }
+    .icon-twitterbg {
+    color: #00aced;
+    }
+    .icon-youtubebg {
+    color: #FF0000;
+    }
+    .icon-instagrambg {
+    color: #fbad50;
+    }
+
+    .circle-icon2 {
+        background: #ffc0c0;
+        padding:30px;
+        border-radius: 50%;
+    }
+
+    .circle-icon {
+        background: #ffc0c0;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+        vertical-align: middle;
+        padding: 30px;
+    }
+    .social{
+        color: white;
     }
     
 </style>
@@ -138,7 +174,7 @@
                                         </li>
                                         <li style="padding-left: 250px">
                                                 <p class="text_count">Novel </p>
-                                                <a class="counted" >{{ $novels }}</a>
+                                                <a class="counted" onclick="novel({{ $profile->m_id }})">{{ $novels }}</a>
                                         </li>
                                         <li style="padding-left: 23px">
                                                 <p class="text_count">Following </p>
@@ -146,7 +182,7 @@
                                         </li>
                                         <li style="padding-left: 23px">
                                                 <p class="text_count">Followers </p>
-                                                <a class="drop_here_follower counted">{{ $profile->m_follower }}</a>
+                                                <a class="drop_here_follower counted" onclick="followers({{ $profile->m_id }})">{{ $profile->m_follower }}</a>
                                         </li>
                                         <li style="padding-left: 120px">
                                                 @if (Auth::user() != null)
@@ -171,7 +207,53 @@
                     <div class="col-md-3 sidebar" id="sidebar">
                         <aside>
                                 <h4>{{ ucwords($profile->m_username) }}</h4>
-                                <h4>{{ ucwords($profile->m_name) }}</h4>
+                                <h5>{{ ucwords($profile->m_name) }}</h5>
+                                
+                                <ul class="social trp">
+                                    <li>
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-circle fa-stack-2x icon-facebookbg"></i>
+                                          <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <h6>{{ $profile->m_facebook }}</h6>
+                                    </li>
+                                </ul>
+                                <ul class="social trp">
+                                    <li>
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-circle fa-stack-2x icon-instagrambg"></i>
+                                          <i class="fab fa-instagram fa-stack-1x"></i>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <h6>{{ $profile->m_instagram }}</h6>
+                                    </li>
+                                </ul>
+                                <ul class="social trp">
+                                    <li>
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-circle fa-stack-2x icon-twitterbg"></i>
+                                          <i class="fab fa-twitter fa-stack-1x"></i>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <h6>{{ $profile->m_twitter }}</h6>
+                                    </li>
+                                </ul>
+                                <ul class="social trp">
+                                    <li>
+                                        <span class="fa-stack fa-lg">
+                                          <i class="fa fa-circle fa-stack-2x icon-youtubebg"></i>
+                                          <i class="fab fa-youtube fa-stack-1x"></i>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <h6>{{ $profile->m_youtube }}</h6>
+                                    </li>
+                                </ul>
+                                <br>
                                 <p>
                                     {!! ucfirst($profile->m_desc_short) !!}
                                 </p>
@@ -204,10 +286,6 @@
                                                     <span class="love active"><i class="ion-android-favorite"></i> <div class="liked">@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
                                                     <span class="love active"><i class="fas fa-users"></i> <div class="subscribed">@if ($element->subscribed == null) 0 @else {{ $element->subscribed }} @endif</div></span>
                                                     <span class="love active"><i class="fas fa-eye"></i> <div class="viewer">@if ($element->viewer == null) 0 @else {{ $element->viewer }} @endif</div></span>
-                                                    {{-- <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a> --}}
                                                 </footer>
                                             </div>
                                         </div>
@@ -353,6 +431,44 @@
         $.ajax({
             type: "get",
             url:'{{ route('profile_following_frontend') }}',
+            data: '&id='+argument,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.main_article').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+    function novel(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('profile_novel_frontend') }}',
+            data: '&id='+argument,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.main_article').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+    function followers(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('profile_followers_frontend') }}',
             data: '&id='+argument,
             processData: false,
             contentType: false,

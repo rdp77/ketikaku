@@ -19,8 +19,8 @@ class d_mem extends Authenticatable
     					   'm_role','m_token','m_username',
     					   'm_password', 'm_lastlogin', 'm_lastlogout',
     					   'm_instagram', 'm_gender', 'm_phone',
-    					   'm_instagram_link', 'm_follower', 'm_desc_full',
-    					   'm_facebook', 'm_desc_short','m_facebook_link', 
+                           'm_follower', 'm_desc_full','m_twitter',
+    					   'm_facebook', 'm_desc_short', 'm_youtube',
     					   'm_created_at', 'm_updated_at'];
 
 }

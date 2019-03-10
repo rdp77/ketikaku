@@ -37,4 +37,11 @@ class master_userController extends Controller
         $data = d_mem::where('m_id',Auth::user()->m_id)->update(['m_image'=>$filename]);
 
     }
+    public function update_sosmed(Request $request)
+    {
+        // dd($request->all());
+        $input = $request->all();
+        $data = d_mem::where('m_id',Auth::user()->m_id)->update($input);
+        return response()->json(['status'=>'sukses']);
+    }
 }

@@ -116,6 +116,9 @@
                                     <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">Setting</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#social_media" role="tab" aria-controls="pills-setting" aria-selected="false">Social Media</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#change_password" role="tab" aria-controls="pills-setting" aria-selected="false">Change Password</a>
                                 </li>
                             </ul>
@@ -176,6 +179,42 @@
                                         </div>
                                         <hr>
                                         <p class="m-t-30">{!! Auth::user()->m_desc_full !!}
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="social_media" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div class="card-body">
+                                        <form class="form-horizontal form-material" id="form_save_sosmed">
+                                            <div class="form-group">
+                                                <label class="col-md-12"> Facebook </label>
+                                                <div class="col-md-12">
+                                                    <input type="text" value="{{ Auth::user()->m_facebook }}" class="form-control form-control-line" name="m_facebook">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12"> Instagram</label>
+                                                <div class="col-md-12">
+                                                    <input type="email" value="{{ Auth::user()->m_instagram }}" class="form-control form-control-line" name="m_instagram" id="m_email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12"> Twitter</label>
+                                                <div class="col-md-12">
+                                                    <input type="email" value="{{ Auth::user()->m_twitter }}" class="form-control form-control-line" name="m_twitter" id="m_email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12"> Youtube</label>
+                                                <div class="col-md-12">
+                                                    <input type="email" value="{{ Auth::user()->m_youtube }}" class="form-control form-control-line" name="m_youtube" id="m_email">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button type="button" onclick="save_sosmed()" class="btn btn-success">Update Profile</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
@@ -392,6 +431,33 @@
             ]
         });
         }
+
+    function save_sosmed(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('master_user_update_sosmed') }}',
+            data: $('#form_save_sosmed').serialize(),
+            processData: false,
+            contentType: false,
+          success:function(data){
+            if (data.status == 'sukses') {
+                iziToast.success({
+                    icon: 'fa fa-save',
+                    position:'topRight',
+                    title: 'Success!',
+                    message: 'Data Berhasil Disimpan!',
+                });
+            }
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
 
 </script>
 

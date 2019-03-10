@@ -30,6 +30,8 @@
    Route::get('/follow', 'frontend\profile\profileController@follow')->name('follow_frontend');
    Route::get('/comment_reply', 'frontend\profile\profileController@comment_reply')->name('comment_reply_frontend');
    Route::get('/following', 'frontend\profile\profileController@following')->name('profile_following_frontend');   
+   Route::get('/novel', 'frontend\profile\profileController@novel')->name('profile_novel_frontend');   
+   Route::get('/followers', 'frontend\profile\profileController@followers')->name('profile_followers_frontend');   
 
    // FRONT END NOVEL
    // book
@@ -65,6 +67,7 @@ Auth::routes();
 //MASTER
    Route::get('/profile_detail/{id}', 'backend\profile\profileController@profile')->name('profile_backend');
    Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
+   Route::get('/master/master_user/update_sosmed', 'backend\master\master_userController@update_sosmed')->name('master_user_update_sosmed');
    Route::post('/master/master_user/update_image', 'backend\master\master_userController@update_image')->name('master_user_image_update');
 
    Route::get('/editor/approve_novel', 'backend\editor\approve_novelController@index')->name('approve_novel');
