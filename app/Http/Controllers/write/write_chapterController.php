@@ -61,7 +61,7 @@ class write_chapterController extends Controller
          $data = DB::table('d_novel_chapter')->where('dnch_ref_id',$req->dnch_ref_id)->where('dnch_id',$req->dnch_id)->update([
             'dnch_title'=>$req->dnch_title,
             'dnch_content'=>$req->dnch_content,
-            'dnch_updated_at'=>date('Y-m-y h:i:s'),
+            'dnch_updated_at'=>date('Y-m-d h:i:s'),
             // 'dnch_updated_by'=>Auth::user()->m_id,
         ]);
 
