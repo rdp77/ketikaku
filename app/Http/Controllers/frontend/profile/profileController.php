@@ -17,6 +17,9 @@ class profileController extends Controller
     	$following = DB::table('d_mem_follow')
     							->where('dmf_follow_by',$profile->m_id)
     							->count();
+        $novels = DB::table('d_novel')
+                    ->where('dn_created_by',$profile->m_id)
+                    ->get();
         $data =  DB::Table('d_novel')->select('d_novel.*','d_mem.*',
                                             DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
                                                 WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
@@ -32,7 +35,8 @@ class profileController extends Controller
                                     ->where('dn_created_by',$profile->m_id)
                                     ->get();
 
-        return view('frontend_view.writer_profile.detail_profile',compact('profile','following','data'));
+
+        return view('frontend_view.writer_profile.detail_profile',compact('profile','following','data','novels'));
     }
     public function follow(Request $request)
     {

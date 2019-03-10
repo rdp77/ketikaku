@@ -37,10 +37,12 @@
         display: inline;
     }
     .menur ul > li > a {
-        line-height: 20px !important;
+        line-height: 28px !important;
     }
     .menur {
         height: 60px !important;
+        border:1px solid transparent !important;
+        box-shadow: -1px 0px 20px 8px rgba(0, 0, 0, 0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.1);
     }
     .pad{
         padding-left: 0px !important;padding-right:0px !important
@@ -50,9 +52,9 @@
     }
     .sidebar{
         border:1px solid transparent;
-
-        box-shadow: 0 1px 10px 0 rgba(34,34,34,.08), 0 4px 5px 0 rgba(34,34,34,.1);
+        box-shadow: -1px 0px 20px 8px rgba(0, 0, 0, 0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.1);
         background-color: white;
+        color: #606466;
     }
     /*.main_article{
         border:1px solid transparent;
@@ -80,6 +82,15 @@
     }
     aside {
         min-height: 385px;
+    }
+    .counted{
+        font-size: 30px;
+        color:grey !important;
+        text-align: center;
+        font-family: 'Lato', sans-serif !important;
+    }
+    .text_count{
+        font-size: 17px;margin-top: 8px;margin-bottom: 3px;color:grey;
     }
     
 </style>
@@ -113,12 +124,12 @@
                                             <img src="{{ asset('storage/app/'.$profile->m_image) }}?{{ time() }}" style="border-radius: 50%;width: 210px;height:210px;margin-top:-120px;border:3px solid white">
                                         </li>
                                         <li style="padding-left: 250px">
-                                                <p style="font-size: 17px;margin-top: 8px">Following </p>
-                                                <a style="font-size: 20px;text-align: center;">{{ $following }}</a>
+                                                <p class="text_count">Following </p>
+                                                <a class="counted">{{ $following }}</a>
                                         </li>
                                         <li style="padding-left: 40px">
-                                                <p style="font-size: 17px;margin-top: 8px">Followers </p>
-                                                <a class="drop_here_follower" style="font-size: 20px;text-align: center;">{{ $profile->m_follower }}</a>
+                                                <p class="text_count">Followers </p>
+                                                <a class="drop_here_follower counted" >{{ $profile->m_follower }}</a>
                                         </li>
                                         {{-- <li style="padding-left: 40px">
                                                 <p style="font-size: 17px;margin-top: 8px">Novel </p>
@@ -248,11 +259,15 @@
             processData: false,
             contentType: false,
           success:function(data){
-            $('.drop_here_follower').html('<i class="fas fa-users"></i> &nbsp;'+data.follow+' Followers');
+            $('.drop_here_follower').html(data.follow);
             if (data.check == 'plus') {
-                $('.drop_here_button_follower').html('<i class="fas fa-user-check"></i> &nbsp; Follow');
+                $('.drop_here_button_follower').html('<i class="fas fa-user-check"></i> &nbsp; Following');
+                $('.drop_here_button_follower').removeClass('btn-primary');
+                $('.drop_here_button_follower').addClass('btn-secondary');
             }else{
                 $('.drop_here_button_follower').html('<i class="fas fa-user-plus"></i> &nbsp; Follow');
+                $('.drop_here_button_follower').addClass('btn-primary');
+                $('.drop_here_button_follower').removeClass('btn-secondary');
             }
           },error:function(){
             iziToast.error({
