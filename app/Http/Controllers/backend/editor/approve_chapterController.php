@@ -16,7 +16,7 @@ class approve_chapterController extends Controller
     {
  
     	$data = DB::table('d_novel_chapter')
-    						->select('dnch_id','dnch_title','dn_title','m_username','dnch_created_at','m_role')
+    						->select('dnch_id','dnch_title','dn_title','m_username','dnch_created_at','m_role','dn_id')
     						->join('d_novel','dn_id','dnch_ref_id')
     						->join('d_mem','m_id','dnch_created_by')
                             ->where(function ($query) {

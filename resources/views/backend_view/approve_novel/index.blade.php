@@ -124,7 +124,7 @@
                     ['<button style="background-color:red;"> Delete </button>', function (instance, toast) {
 
                         $.ajax({
-                            url  : baseUrl+'/write'+'/write_chapter/delete/'+this_val,
+                            url  : baseUrl+'/write'+'/write_novel/delete/'+this_val,
                             type :'get',
                             success:function(data){
                                 if (data.status == 'sukses') {

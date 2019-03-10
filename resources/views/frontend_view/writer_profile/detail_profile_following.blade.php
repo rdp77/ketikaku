@@ -1,5 +1,5 @@
 @foreach ($followed as $element)
-<div class="col-md-4">
+<div class="col-md-4" @if ($index == 0 || $index == 1 || $index == 2) @else style="margin-top: 20px" @endif>
     <div class="featured-author">
         <div class="featured-author-inner">
             <div class="featured-author-cover" style="background-image: url('http://localhost:7777/ketikaku/assets/images/news/img15.jpg');">

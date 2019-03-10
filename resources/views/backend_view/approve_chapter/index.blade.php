@@ -79,7 +79,7 @@
                                         <td>{{ date('F ,d Y',strtotime($element->dnch_created_at)) }}</td>
                                         <td width="10%">
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('approve_chapter_edit',['id'=>$element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}"><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" data-ref="{{ $element->dn_id }}" value="{{ $element->dnch_id }}"><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -123,6 +123,7 @@
 
                         $.ajax({
                             url  : baseUrl+'/write'+'/write_chapter/delete/'+this_val,
+                            data:'&dnch_ref_id='+ref,
                             type :'get',
                             success:function(data){
                                 if (data.status == 'sukses') {

@@ -134,10 +134,10 @@ class write_novelController extends Controller
         $check = DB::table('d_novel')->where('dn_id',$id)->delete();
     	$check_dt = DB::table('d_novel_chapter')->where('dnch_ref_id',$id)->delete();
 
-    	if ($check == true) {
+    	// if ($check == true) {
     		return response()->json(['status'=>'sukses']);
-        }else{
-        	return response()->json(['status'=>'gagal']);	
-    	}
+     //    }else{
+     //    	return response()->json(['status'=>'gagal']);	
+    	// }
     }
 }
