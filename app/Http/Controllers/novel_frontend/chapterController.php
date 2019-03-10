@@ -10,8 +10,9 @@ use DB;
 use Storage;
 class chapterController extends Controller
 {
-    public function chapter($creator,$name)
+    public function chapter($creator,$name,$id)
     {  
+        // $title = str_replace('-', ' ',$name);
         $title = str_replace('-', ' ',$name);
 
         $check_data = DB::table('d_mem')->where('m_username',$creator)->first();
@@ -20,7 +21,7 @@ class chapterController extends Controller
         				->join('d_mem','m_id','=','dnch_created_by')
         				->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
                         ->where('dnch_created_by',$check_data->m_id)
-        				->where('dnch_title',$title)
+        				->where('dnch_id',$id)
         				->first();
 
         $check_next = DB::table('d_novel_chapter')
@@ -39,7 +40,7 @@ class chapterController extends Controller
                         ->get();
         // return $check_back;
         // if (empty($check_back)) {
-        //     $back = $check_back[0]->dnch_title;
+        //     $back = $check_back[0]->dnch_id;
         // }else{
         //     $back = null;
         // }

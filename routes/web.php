@@ -41,7 +41,7 @@
    Route::get('/subscribe', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
    Route::get('/like', 'novel_frontend\likeController@like')->name('like_novel');
    // chapter
-   Route::get('/chapter/{creator}/{name}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
+   Route::get('/chapter/{creator}/{name}/{id}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    Route::post('/chapter/viewer/{id}', 'novel_frontend\chapterController@viewer')->name('frontend_chapter_viewer');
    Route::get('/chapter_novel_comment', 'novel_frontend\chapterController@chapter_novel_comment')->name('frontend_chapter_novel_comment');
    Route::get('/chapter_novel_comment_reply', 'novel_frontend\chapterController@chapter_novel_comment_reply')->name('frontend_chapter_novel_comment_reply');
