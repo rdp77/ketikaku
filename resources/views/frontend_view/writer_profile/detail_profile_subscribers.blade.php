@@ -98,13 +98,6 @@
         box-shadow: -1px 0px 20px 8px rgba(0, 0, 0, 0.08), 0 4px 20px 0px rgba(0, 0, 0, 0.1);
         border-radius: 50%;width: 210px;height:210px;margin-top:-120px;border:3px solid white;
     }
-    .featured-author .featured-author-body{
-        box-shadow: -1px 0px 20px 8px rgba(0, 0, 0, 0.08), 0 4px 20px 0px rgba(0, 0, 0, 0.1);
-
-    }
-    .featured-author .featured-author-body .featured-author-count .item .name{
-        text-transform: none !important;
-    }
     
 </style>
 @endsection
@@ -142,7 +135,7 @@
                                         </li>
                                         <li style="padding-left: 23px">
                                                 <p class="text_count">Following </p>
-                                                <a class="counted" onclick="following({{ $profile->m_id }})">{{ $following }}</a>
+                                                <a class="counted">{{ $following }}</a>
                                         </li>
                                         <li style="padding-left: 23px">
                                                 <p class="text_count">Followers </p>
@@ -347,26 +340,6 @@
        $('.ion-android-favorite').css('padding-left','3px');
        $('.fa-users').css('padding-left','13px');
        $('.fa-eye').css('padding-left','13px');
-    }
-
-    function following(argument) {
-        $.ajax({
-            type: "get",
-            url:'{{ route('profile_following_frontend') }}',
-            data: '&id='+argument,
-            processData: false,
-            contentType: false,
-          success:function(data){
-            $('.main_article').html(data);
-          },error:function(){
-            iziToast.error({
-                icon: 'fa fa-info',
-                position:'topRight',
-                title: 'Error!',
-                message: 'Try Again Later!',
-            });
-          }
-        });
     }
 
 </script>
