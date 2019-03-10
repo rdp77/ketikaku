@@ -31,7 +31,7 @@
         font-weight: 400;
     }
     h5 {
-        font-weight: 500;
+        font-weight: 550;
         color:#585858 !important;
     }
     h4{
@@ -69,6 +69,7 @@
     }*/
     .single {
         padding-top: 160px !important;
+        background-color: #e8e8e8;
     }
     .love i:before{
         font-size: 20px !important;
@@ -78,6 +79,7 @@
     }
     .article .padding{
         padding-top: 10px;
+        background-color: white;
     }
     section.single footer{
         margin-top: 10px;
@@ -206,8 +208,8 @@
             <div class="container" style="margin-top: 15px">
                     <div class="col-md-3 sidebar" id="sidebar">
                         <aside>
-                                <h4>{{ ucwords($profile->m_username) }}</h4>
-                                <h5>{{ ucwords($profile->m_name) }}</h5>
+                                <h5>{{ ucwords($profile->m_username) }}</h5>
+                                <h6>{{ ucwords($profile->m_name) }}</h6>
                                 
                                 <ul class="social trp">
                                     <li>
