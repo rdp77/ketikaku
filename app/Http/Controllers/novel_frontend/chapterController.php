@@ -13,9 +13,13 @@ class chapterController extends Controller
     public function chapter($creator,$name)
     {  
         $title = str_replace('-', ' ',$name);
+
+        $check_data = DB::table('d_mem')->where('m_username',$creator)->first();
+
         $chapter = DB::table('d_novel_chapter')
         				->join('d_mem','m_id','=','dnch_created_by')
         				->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
+                        ->where('dnch_created_by',$check_data->m_id)
         				->where('dnch_title',$title)
         				->first();
 
