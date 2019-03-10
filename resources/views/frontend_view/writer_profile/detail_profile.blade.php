@@ -31,7 +31,8 @@
         font-weight: 400;
     }
     h4{
-        font-weight: 700;
+        font-weight: 650;
+        color:#585858 !important;
     }
     li {
         display: inline;
