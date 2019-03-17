@@ -32,6 +32,7 @@
    Route::get('/following', 'frontend\profile\profileController@following')->name('profile_following_frontend');   
    Route::get('/novel', 'frontend\profile\profileController@novel')->name('profile_novel_frontend');   
    Route::get('/followers', 'frontend\profile\profileController@followers')->name('profile_followers_frontend');   
+   Route::get('/subscribing', 'frontend\profile\profileController@subscribing')->name('profile_subscribing_frontend');   
 
    // FRONT END NOVEL
    // book

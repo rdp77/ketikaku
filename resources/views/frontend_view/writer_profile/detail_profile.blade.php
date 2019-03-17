@@ -1,12 +1,7 @@
 @extends('layouts_frontend._main_frontend')
 
 @section('extra_style')
-{{-- <link href="{{ asset('assets/css/profile.css') }}" rel="stylesheet"> --}}
-{{-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> --}}
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="{{ asset('assets/dist/starrr.css') }}">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
+{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"> --}}
 
 <style type="text/css">
     .nav-tabs>li.active>a:hover{color:#555;cursor:default;background-color:red;border-bottom-color:transparent}
@@ -22,7 +17,7 @@
     }
     .bg{
         padding-left: 0px;
-        background-image: url(https://images.unsplash.com/photo-1548536154-c1e7ea093768?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+        background-image: url({{ asset('assets/images/bg_deny.png') }});
         background-size: cover;
         height: 400px;
         background-repeat: no-repeat;
@@ -60,6 +55,7 @@
         box-shadow: -1px 0px 20px 8px rgba(0, 0, 0, 0.08), 0 4px 5px 0 rgba(0, 0, 0, 0.1);
         background-color: white;
         color: #606466;
+        margin-top: 20px;
     }
     /*.main_article{
         border:1px solid transparent;
@@ -143,6 +139,13 @@
     .social{
         color: white;
     }
+    .modal-footer {
+        padding-bottom:50px !important;
+        border:none;
+    }
+    .modal-header .close {
+        margin-top: -35px !important;
+    }
     
 </style>
 @endsection
@@ -185,6 +188,10 @@
                                         <li style="padding-left: 23px">
                                                 <p class="text_count">Followers </p>
                                                 <a class="drop_here_follower counted" onclick="followers({{ $profile->m_id }})">{{ $profile->m_follower }}</a>
+                                        </li>
+                                        <li style="padding-left: 23px">
+                                                <p class="text_count">Subscribing </p>
+                                                <a class="drop_here_follower counted" onclick="subscribing({{ $profile->m_id }})">{{ $subscribing }}</a>
                                         </li>
                                         <li style="padding-left: 120px">
                                                 @if (Auth::user() != null)
@@ -271,7 +278,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="row">
                                     @foreach ($data as $element)
-                                    <article class="article col-md-3 col-xs-6">
+                                    <article class="article col-md-3 col-xs-6" style="margin-top: 20px">
                                         <div class="inner">
                                             <figure>
                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
@@ -285,8 +292,8 @@
                                             <div class="padding">
                                                 <h6 style="font-size: 12px"><a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}"><input type="text" readonly="" style="width: 100%;border: none;cursor: pointer;" value="{{ $element->dn_title }}" name=""></a></h6>
                                                 <footer>
-                                                    <span class="love active"><i class="ion-android-favorite"></i> <div class="liked">@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
-                                                    <span class="love active"><i class="fas fa-users"></i> <div class="subscribed">@if ($element->subscribed == null) 0 @else {{ $element->subscribed }} @endif</div></span>
+                                                    <span class="love active" onclick="liked_show_novel()" data-toggle="modal" data-target="#responsive-modal" class="model_img img-fluid"><i class="ion-android-favorite"></i> <div class="liked">@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
+                                                    <span class="love active" onclick="subscribed_show_novel()" data-toggle="modal" data-target="#responsive-modal"><i class="fas fa-users"></i> <div class="subscribed">@if ($element->subscribed == null) 0 @else {{ $element->subscribed }} @endif</div></span>
                                                     <span class="love active"><i class="fas fa-eye"></i> <div class="viewer">@if ($element->viewer == null) 0 @else {{ $element->viewer }} @endif</div></span>
                                                 </footer>
                                             </div>
@@ -326,13 +333,38 @@
                 </div>
             </div>
             </div>
-
+            <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- sample modal content -->
+                                <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;margin-top: 20px;" aria-hidden="true">
+                                    <div class="modal-dialog" style="min-width: 70%;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Like </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fas fa-times"></i></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="drop_here_liked">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                {{-- <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger waves-effect waves-light">Save changes</button> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.modal -->
+                                
+                            </div>
+                        </div>
+                    </div>
         </section>
 @endsection
 
 @section('extra_scripts')
-<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
 
     $( window ).load(function() {
@@ -428,11 +460,50 @@
        $('.fa-users').css('padding-left','13px');
        $('.fa-eye').css('padding-left','13px');
     }
+    function liked_show_novel(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('profile_following_frontend') }}',
+            data: '&id='+31,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here_liked').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+
+    function subscribed_show_novel(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('profile_followers_frontend') }}',
+            data: '&id='+31,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.drop_here_liked').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
 
     function following(argument) {
         $.ajax({
             type: "get",
-            url:'{{ route('profile_following_frontend') }}',
+            url:'{{ route('profile_novel_frontend') }}',
             data: '&id='+argument,
             processData: false,
             contentType: false,
@@ -471,6 +542,25 @@
         $.ajax({
             type: "get",
             url:'{{ route('profile_followers_frontend') }}',
+            data: '&id='+argument,
+            processData: false,
+            contentType: false,
+          success:function(data){
+            $('.main_article').html(data);
+          },error:function(){
+            iziToast.error({
+                icon: 'fa fa-info',
+                position:'topRight',
+                title: 'Error!',
+                message: 'Try Again Later!',
+            });
+          }
+        });
+    }
+    function subscribing(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('profile_subscribing_frontend') }}',
             data: '&id='+argument,
             processData: false,
             contentType: false,

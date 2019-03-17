@@ -1,9 +1,6 @@
 @extends('layouts_frontend._main_frontend')
 
 @section('extra_style')
-{{-- <link href="{{ asset('assets/css/profile.css') }}" rel="stylesheet"> --}}
-{{-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> --}}
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('assets/dist/starrr.css') }}">
 
 
@@ -434,7 +431,6 @@
 @endsection
 
 @section('extra_scripts')
-<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/dist/starrr.js') }}"></script>
 <script type="text/javascript">
 
