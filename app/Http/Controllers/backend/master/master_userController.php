@@ -44,4 +44,11 @@ class master_userController extends Controller
         $data = d_mem::where('m_id',Auth::user()->m_id)->update($input);
         return response()->json(['status'=>'sukses']);
     }
+
+    public function delete($id)
+    {
+        // dd($request->all());
+        $data = d_mem::where('m_id',$id)->delete();
+        return response()->json(['status'=>'sukses']);
+    }
 }

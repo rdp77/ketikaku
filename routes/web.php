@@ -12,7 +12,7 @@
 */
 
 
-   Route::post('login', 'Auth\loginController@authenticate');
+   // Route::post('login', 'Auth\loginController@authenticate');
 
 // Route::group(['middleware' => 'guest'], function () {
 
@@ -105,7 +105,7 @@ Auth::routes();
    Route::get('/master/master_user/edit/{id}', 'backend\master\master_userController@edit')->name('master_user_edit');
    Route::post('/master/master_user/save', 'backend\master\master_userController@save')->name('master_user_save');
    Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
-   Route::post('/master/master_user/delete', 'backend\master\master_userController@delete')->name('master_user_delete');
+   Route::get('/master/master_user/delete/{id}', 'backend\master\master_userController@delete')->name('master_user_delete');
    // category
    Route::get('/master/master_category', 'backend\master\master_categoryController@index')->name('master_category');
    Route::get('/master/master_category/create', 'backend\master\master_categoryController@create')->name('master_category_create');

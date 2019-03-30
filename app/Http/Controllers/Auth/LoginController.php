@@ -27,7 +27,7 @@ class LoginController extends Controller
     {
         return view('welcome');
     }
-    // use AuthenticatesUsers;
+    use AuthenticatesUsers;
     public function login(Request $req)
     {
      
@@ -46,7 +46,7 @@ class LoginController extends Controller
         }
     }
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
     public function logout(Request $request)
     {
