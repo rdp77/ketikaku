@@ -9,7 +9,7 @@
         <meta property="og:title" content="ESENSI CREATIVE" />
         <meta property="og:type" content="ESENSI" />
         <meta property="og:url" content="ketikaku.com" />
-        {{-- <meta property="og:image" content="{{ asset('assets_backend/images/favicon.png') }}" /> --}}
+        <meta property="og:image" content="{{ asset('assets_backend/images/favicon.png') }}" />
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
         <title>KETIKAKU</title>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
