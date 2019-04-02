@@ -6,10 +6,10 @@
         <meta name="author" content="ESENSI">
         <meta name="keyword" content="ketikau, novel, chapter, magazine">
         <!-- Shareable -->
-        <meta property="og:title" content="ESENSI CREATIVE" />
+        <meta property="og:title" content="KETIKAKU : CERITA PADA DUNIA " />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="http://ketikaku.com/" />
-        <meta property="og:description"        content="How much does culture influence creative thinking?" />
+        <meta property="og:description" content="Ketikaku adalah online sharing platform karya Aksara Satmika, sebagai wadah bagi pembaca dan penulis bercerita pada dunia." />
         <meta property="og:image" content="{{ asset('assets_backend/images/favicon.png') }}" />
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
         <title>KETIKAKU</title>
