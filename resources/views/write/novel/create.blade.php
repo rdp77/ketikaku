@@ -88,7 +88,7 @@
                                     <br>
 
                                      <div class="text-right">
-                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Save</button>
+                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Publish</button>
                                         <button class="btn btn-warning button_click" value="draft" type="button" onclick="save(2)"><i class="fas fa-share"> </i> Draft</button>
                                     </div>
                                 </form>
