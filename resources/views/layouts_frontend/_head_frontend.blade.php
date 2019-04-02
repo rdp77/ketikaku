@@ -2,13 +2,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="description" content="Magz is a HTML5 & CSS3 magazine template is based on Bootstrap 3.">
-        <meta name="author" content="Kodinger">
-        <meta name="keyword" content="magz, html5, css3, template, magazine template">
+        <meta name="description" content="ESENSI CREATIVE.">
+        <meta name="author" content="ESENSI ">
+        <meta name="keyword" content="ketikau, novel, chapter, magazine">
         <!-- Shareable -->
-        <meta property="og:title" content="HTML5 & CSS3 magazine template is based on Bootstrap 3" />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
+        <meta property="og:title" content="ESENSI CREATIVE" />
+        <meta property="og:type" content="ESENSI" />
+        <meta property="og:url" content="ketikaku.com" />
         {{-- <meta property="og:image" content="{{ asset('assets_backend/images/favicon.png') }}" /> --}}
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
         <title>KETIKAKU</title>
