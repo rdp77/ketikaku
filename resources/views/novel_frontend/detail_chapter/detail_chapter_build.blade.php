@@ -227,9 +227,7 @@
         var datass = $(this).val();
         var dt_id = $(this).find(':selected').data('id');
         var creator = ('{{ $chapter->m_username }}');
-        // var res1 = datas.replace(/\s/g,"-");
-
-        var res = datass.replace(/\s/g,"-");
+        var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
         window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+dt_id;
     })
 
