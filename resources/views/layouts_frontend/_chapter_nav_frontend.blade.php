@@ -45,7 +45,7 @@
                         <ul class="nav-list" style="margin-left: 40px;width: 90%">
                             <li class="for-tablet nav-title"><a>Menu</a></li>
                             <li style="width: 50%;"><i class="fas fa-book-open info_icon"></i> &nbsp;&nbsp;<input type="text" disabled="" style="width: 90%;" class="info"></li>
-                            <li class="dropdown magz-dropdown">
+                            <li class="dropdown magz-dropdown pull-right">
                                 @if (Auth::User() != null) 
                                     <a href="#">hy ,{{ Auth::user()->m_username }} <i class="ion-ios-arrow-right"></i></a>
                                     <ul class="dropdown-menu">
