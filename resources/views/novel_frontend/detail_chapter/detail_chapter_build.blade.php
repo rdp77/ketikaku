@@ -68,7 +68,7 @@
                                <footer>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-left">
-                                            <button class="btn btn-primary back" {{-- value="{{ $back }}"  --}} type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
+                                            <button class="btn btn-primary back" data-id="{{ $back_id }}" value="{{ $back_tittle }} type="button"><i class="fas fa-arrow-alt-circle-left"></i>Back</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-4 col-xs-4 coling_chapters">
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class=" col-md-3 col-sm-4 col-xs-4">
                                         <div class="pull-right">
-                                            <button class="btn btn-primary next" {{-- value="{{ $next }}" --}} type="button"><i class="fas fa-arrow-alt-circle-right"></i>Next</button>
+                                            <button class="btn btn-primary next" data-id="{{ $next_id }}" value="{{ $next_tittle }}" type="button"><i class="fas fa-arrow-alt-circle-right"></i>Next</button>
                                         </div>
                                     </div>
                                 </footer>
@@ -221,6 +221,21 @@
 
 @section('extra_scripts')
 <script type="text/javascript">
+    $('.next').click(function(){
+        var datass = $(this).val();
+        var dt_id = $(this).data('id');
+        var creator = ('{{ $chapter->m_username }}');
+        var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+dt_id;
+    })
+    $('.back').click(function(){
+        var datass = $(this).val();
+        var dt_id = $(this).data('id');
+        var creator = ('{{ $chapter->m_username }}');
+        var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+dt_id;
+    })
+
 
     $('.select_chapter').on('change',function(){
         // alert($(this).val());
@@ -251,9 +266,6 @@
 
     $( document ).ready(function() {
         $('.info').val('{{ ucwords($chapter->dn_title) }}');
-
-        
-
     });
 
     if ($(window).width() < 500) {
