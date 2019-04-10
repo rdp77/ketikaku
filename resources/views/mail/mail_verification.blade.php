@@ -66,7 +66,9 @@
                      <br>
                      <br>
                      <p style="padding-left: 20px">
-                      Your KPI has been submitted on <?php date_default_timezone_set("Asia/Jakarta"); echo date('d-M-Y H:i') ?>. <b></b> will your KPI for approval process.</p>
+                      Your KPI has been submitted on <?php date_default_timezone_set("Asia/Jakarta"); echo date('d-M-Y H:i') ?>. <b>
+                          <a style="color:blue;text-decoration: underline;" href="https://ketikaku.com">review</a>
+                      </b> will your KPI for approval process.</p>
                       <br>
 
                       <p><b>Key Result Area:</b>
