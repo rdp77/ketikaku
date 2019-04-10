@@ -1,8 +1,9 @@
-{{-- <html>
+<!DOCTYPE html>
+<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Eliteadmin Responsive web app kit</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body style="margin:0px; background: #f8f8f8; ">
@@ -32,7 +33,7 @@
                                 <p>Hello <b>{{ $username }}</b>,</p>
                                 <p>SELAMAT DATANG DI KETIKAKU, Mohon Veriifkasi Email anda untuk mendapatkan semua fitur</p>
                                 <center>
-                                    <a href="{{ $token }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Verifikasi</a>
+                                    <a href="{{ url('/verified/'.$token.'/'.$code) }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Verifikasi</a>
                                 </center>
                                 <p>Hormat kami </p><b> Team Ketikaku </b> </td>
                         </tr>
@@ -42,52 +43,10 @@
             <div style="text-align: center; font-size: 12px; color: #b2b2b5; margin-top: 20px">
                 <p> Powered by KETIKAKU
                     <br>
+                    {{-- <a href="javascript: void(0);" style="color: #b2b2b5; text-decoration: underline;">Unsubscribe</a> </p> --}}
             </div>
         </div>
     </div>
 </body>
 
 </html>
-
-
-
-{{-- ini tester --}}
-
-
-{{-- ini tester tester testttt --}}
-
-   <table class="main-table">
-          <tr>
-            <td class="one-column">
-              <table width="100%">
-                <tr>
-                  <td class="inner-td">
-                       <p style="padding-left: 20px">Dear <b></b>,
-                     <br>
-                     <br>
-                     <p style="padding-left: 20px">
-                      Your KPI has been submitted on <?php date_default_timezone_set("Asia/Jakarta"); echo date('d-M-Y H:i') ?>. <b>
-                          <a style="color:blue;text-decoration: underline;" href="https://ketikaku.com">review</a>
-                      </b> will your KPI for approval process.</p>
-                      <br>
-
-                      <p><b>Key Result Area:</b>
-                      <p></p>
-                      <br>
-                      
-                      <p><b>Goal:</b></p>
-                      <p></p>
-                      <br>
-
-                      <p><b>Target Date:</b></p>
-                      <p></p><br>
-                      
-                      <p>Performance Appraisal</p>
-                      <p><strong>IT Services - PT. Gudang Garam Tbk.</strong></p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr> <!--- End Heading, Paragraph & Button Section -->
-          
-            </table> <!--- End Main Table -->
