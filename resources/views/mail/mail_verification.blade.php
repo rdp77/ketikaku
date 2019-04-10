@@ -54,4 +54,38 @@
 {{-- ini tester --}}
 
 
-ini tester tester testttt
+{{-- ini tester tester testttt --}}
+
+   <table class="main-table">
+          <tr>
+            <td class="one-column">
+              <table width="100%">
+                <tr>
+                  <td class="inner-td">
+                       <p style="padding-left: 20px">Dear <b></b>,
+                     <br>
+                     <br>
+                     <p style="padding-left: 20px">
+                      Your KPI has been submitted on <?php date_default_timezone_set("Asia/Jakarta"); echo date('d-M-Y H:i') ?>. <b></b> will your KPI for approval process.</p>
+                      <br>
+
+                      <p><b>Key Result Area:</b>
+                      <p></p>
+                      <br>
+                      
+                      <p><b>Goal:</b></p>
+                      <p></p>
+                      <br>
+
+                      <p><b>Target Date:</b></p>
+                      <p></p><br>
+                      
+                      <p>Performance Appraisal</p>
+                      <p><strong>IT Services - PT. Gudang Garam Tbk.</strong></p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr> <!--- End Heading, Paragraph & Button Section -->
+          
+            </table> <!--- End Main Table -->
