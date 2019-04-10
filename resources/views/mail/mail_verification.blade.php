@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{{-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -44,10 +44,14 @@
             <div style="text-align: center; font-size: 12px; color: #b2b2b5; margin-top: 20px">
                 <p> Powered by KETIKAKU
                     <br>
-                    {{-- <a href="javascript: void(0);" style="color: #b2b2b5; text-decoration: underline;">Unsubscribe</a> </p> --}}
+                    {{-- <a href="javascript: void(0);" style="color: #b2b2b5; text-decoration: underline;">Unsubscribe</a> </p> 
             </div>
         </div>
     </div>
 </body>
 
-</html>
+</html> --}}
+
+
+
+ini tester 
