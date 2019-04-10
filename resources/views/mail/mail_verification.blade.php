@@ -32,7 +32,7 @@
                                 <p>Hello <b>{{ $username }}</b>,</p>
                                 <p>SELAMAT DATANG DI KETIKAKU, Mohon Veriifkasi Email anda untuk mendapatkan semua fitur</p>
                                 <center>
-                                    <a href="{{ url('/verified/'.$token.'/'.$code) }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Verifikasi</a>
+                                    <a href="{{ $token }}" style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #4fc3f7; border-radius: 60px; text-decoration:none;">Verifikasi</a>
                                 </center>
                                 <p>Hormat kami </p><b> Team Ketikaku </b> </td>
                         </tr>
@@ -48,7 +48,7 @@
     </div>
 </body>
 
-</html> --}}
+</html>
 
 
 
