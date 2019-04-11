@@ -21,7 +21,7 @@
             <div class="bg-light no-card-border">
                 <div class="alert alert-warning">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                        <h3 class="text-warning"><i class="fa fa-info-circle"></i> Peringatan</h3> Verifikasi ke email  {{ Auth::user()->m_email }}   diperlukan agar mendapatkan akses untuk menulis. email verifikasi akan membutuhkan beberapa waktu. Mohon cek folder SPAM apabila email tidak di temukan di kotak masuk (UTAMA) <a href="#" onclick="verify()" class="btn btn-primary btn-sm"> <b><strong> Verifikasi </strong></b></a>
+                        <h3 class="text-warning"><i class="fa fa-info-circle"></i> Peringatan</h3> Verifikasi ke email  {{ Auth::user()->m_email }}   diperlukan agar mendapatkan akses untuk menulis. email verifikasi akan membutuhkan beberapa waktu. Mohon cek folder SPAM apabila email tidak di temukan di kotak masuk (UTAMA) <a href="#" class="btn btn-primary btn-sm verify"> <b><strong> Verifikasi </strong></b></a>
                         <br>
                         {{-- <b>Setting email untuk mendapatkan Verifikasi Email  <strong>( IMAP access -> Enable IMAP )</strong>. <a  href="https://mail.google.com/mail/u/0/#settings/fwdandpop" target="_blank"> <strong>Klik Disini</strong></a> Untuk Membuka Setting dari Gmail </b> --}}
                 </div>
@@ -184,7 +184,9 @@
 @section('extra_scripts')
 <script type="text/javascript">
 
-$( document ).ready(function() {
+// $( document ).ready(function() {
+    $('.verify').click(function(){
+        
     function verify() {
         $('.preloader').show();
         $.ajaxSetup({
