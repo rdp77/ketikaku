@@ -537,7 +537,7 @@
             <table class="outer-table">
                 <tr>
                     <td class="header">
-                        <p><a href="index.html#"><img src="https://image.ibb.co/hU8pgd/icon.png" alt="icon" border="0" class="logo">{{-- BRILLIANT ENGLISH COURSE --}}</a></p>
+                        <p><a href="index.html#"><img src="https://ketikaku.com/assets_backend/images/Logo_Putih.png" alt="icon" border="0" class="logo">{{-- BRILLIANT ENGLISH COURSE --}}</a></p>
                     </td>
                 </tr> <!--- End Header -->
             </table> <!--- End Outer Table -->
@@ -549,7 +549,7 @@
                             <tr>
                                 <td class="inner-td">
                                      <p class="h2">KETIKAKU</p>
-                                     <p class="center">Hy {{ $username }}, Segera Lakukan Verifikasi Email untuk memulai menulis novel pertama anda di KETIKAKU</p>
+                                     <p class="center">Hai {{ $username }}, Segera Lakukan Verifikasi Email untuk memulai menulis novel pertama anda di KETIKAKU</p>
                                      {{--  <br>
                                         <table class="data">
                                             <tr>
