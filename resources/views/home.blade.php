@@ -184,7 +184,7 @@
 @section('extra_scripts')
 <script type="text/javascript">
 
-
+$( document ).ready(function() {
     function verify() {
         $('.preloader').show();
         $.ajaxSetup({
@@ -218,6 +218,7 @@
               }
             });
     }
+});
 
 
 </script>
