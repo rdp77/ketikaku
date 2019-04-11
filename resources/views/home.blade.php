@@ -186,7 +186,7 @@
 
 // $( document ).ready(function() {
     $('.verify').click(function(){
-        
+
     function verify() {
         $('.preloader').show();
         $.ajaxSetup({
@@ -197,7 +197,7 @@
 
         $.ajax({
                 type: "get",
-                url:baseUrl+'/verify/'+'{{ Auth::user()->m_token }}'+'/'+'{{ Auth::user()->m_code }}',
+                url:baseUrl+'/verify/'+('{{ Auth::user()->m_token }}')+'/'+('{{ Auth::user()->m_code }}'),
                 processData: false,
                 contentType: false,
               success:function(data){
