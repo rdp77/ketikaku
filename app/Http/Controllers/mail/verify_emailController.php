@@ -17,7 +17,7 @@ class verify_emailController extends Controller
     	$email = Auth::user()->m_email;
     	$username = Auth::user()->m_username;
     	$token = Auth::user()->m_token;
-    	$code = Auth::user()->m_id;
+    	$code = Auth::user()->m_code;
 
     	$mail = Mail::send('mail.mail_verification', 
                     ['username' => $username,
