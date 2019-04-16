@@ -120,11 +120,45 @@
                                                 <footer>
                                                     <span class="love active"><i class="ion-android-favorite"></i> <div class="liked">@if ($element->liked == null) 0 @else {{ $element->liked }} @endif</div></span>
                                                     <span class="love active"><i class="fas fa-users"></i> <div class="subscribed">@if ($element->subscribed == null) 0 @else {{ $element->subscribed }} @endif</div></span>
-                                                    <span class="love active"><i class="fas fa-eye"></i> <div class="viewer">@if ($element->viewer == null) 0 @else {{ $element->viewer }} @endif</div></span>
-                                                    {{-- <a class="btn btn-primary more" href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}">
-                                                        <div>More</div>
-                                                        <div><i class="ion-ios-arrow-thin-right"></i></div>
-                                                    </a> --}}
+                                                    <span class="love active"><i class="fas fa-eye"></i> <div class="viewer">@if ($element->viewer == null) 0 @else 
+                                                        @php
+                                                        $n = $element->viewer;
+                                                        $precision = 1; 
+                                                        if ($n < 900) {
+                                                            // 0 - 900
+                                                            $n_format = number_format($n, $precision);
+                                                            $suffix = '';
+                                                        } else if ($n < 900000) {
+                                                            // 0.9k-850k
+                                                            $n_format = number_format($n / 1000, $precision);
+                                                            $suffix = 'K';
+                                                        } else if ($n < 900000000) {
+                                                            // 0.9m-850m
+                                                            $n_format = number_format($n / 1000000, $precision);
+                                                            $suffix = 'M';
+                                                        } else if ($n < 900000000000) {
+                                                            // 0.9b-850b
+                                                            $n_format = number_format($n / 1000000000, $precision);
+                                                            $suffix = 'B';
+                                                        } else {
+                                                            // 0.9t+
+                                                            $n_format = number_format($n / 1000000000000, $precision);
+                                                            $suffix = 'T';
+                                                        }
+
+                                                        if ( $precision > 0 ) {
+                                                            $dotzero = '.' . str_repeat( '0', $precision );
+                                                            $n_format = str_replace( $dotzero, '', $n_format );
+                                                        }
+                                                        echo($n_format.$suffix);
+                                                        @endphp
+
+                                                            
+                                                        
+                                                         
+
+
+                                                        @endif</div></span>
                                                 </footer>
                                             </div>
                                         </div>
