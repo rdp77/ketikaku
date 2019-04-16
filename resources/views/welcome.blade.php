@@ -7,7 +7,7 @@
       font-size: 15px;
     }
     .article .padding{
-        padding: 15px 15px 50px !important;
+        padding: 10px 10px 50px !important;
     }
     .love i:before{
         font-size: 20px !important;
