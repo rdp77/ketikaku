@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="headline">
-                            {{-- <div class="nav" id="headline-nav">
+                           {{--  <div class="nav" id="headline-nav">
                                 <a class="left carousel-control" role="button" data-slide="prev">
                                     <span class="ion-ios-arrow-left" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
@@ -33,15 +33,15 @@
                                     <span class="ion-ios-arrow-right" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
-                            </div> --}}
+                            </div>
                             <div class="owl-carousel owl-theme" id="headline">                          
                                 <div class="item">
-                                    {{-- <a href="#"><div class="badge">Tip!</div> Vestibulum ante ipsum primis in faucibus orci</a> --}}
+                                    <a href="#"><div class="badge">Tip!</div> Vestibulum ante ipsum primis in faucibus orci</a>
                                 </div>
                                 <div class="item">
-                                    {{-- <a href="#">Ut rutrum sodales mauris ut suscipit</a> --}}
+                                    <a href="#">Ut rutrum sodales mauris ut suscipit</a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="owl-carousel owl-theme slide" id="featured">
                             <div class="item">
@@ -50,11 +50,11 @@
                                     <figure>
                                         <img src="{{ asset('assets/images/banner/1.jpg') }}" alt="Sample Article">
                                     </figure>
-                                    <div class="details">
+                                   {{--  <div class="details">
                                         <div class="category"><a href="category.html">Welcome</a></div>
-                                        <h1><a href="single.html">Selamat Datang Di KETIKAKU</a></h1>
+                                        <h1><a href="#">Selamat Datang Di KETIKAKU</a></h1>
                                         <div class="time">April 17, 2019</div>
-                                    </div>
+                                    </div> --}}
                                 </article>
                             </div>
                             <div class="item">
@@ -63,11 +63,11 @@
                                     <figure>
                                         <img src="{{ asset('assets/images/banner/2.jpg') }}" alt="Sample Article">
                                     </figure>
-                                    <div class="details">
+                                    {{-- <div class="details">
                                         <div class="category"><a href="category.html">Travel</a></div>
-                                        <h1><a href="single.html">Class aptent taciti sociosqu ad litora torquent per conubia nostra</a></h1>
+                                        <h1><a href="#">Class aptent taciti sociosqu ad litora torquent per conubia nostra</a></h1>
                                         <div class="time">December 10, 2016</div>
-                                    </div>
+                                    </div> --}}
                                 </article>
                             </div>
                             <div class="item">
@@ -76,11 +76,11 @@
                                     <figure>
                                         <img src="{{ asset('assets/images/banner/3.jpg') }}" alt="Sample Article">
                                     </figure>
-                                    <div class="details">
+                                    {{-- <div class="details">
                                         <div class="category"><a href="category.html">International</a></div>
-                                        <h1><a href="single.html">Maecenas accumsan tortor ut velit pharetra mollis</a></h1>
+                                        <h1><a href="#">Maecenas accumsan tortor ut velit pharetra mollis</a></h1>
                                         <div class="time">October 12, 2016</div>
-                                    </div>
+                                    </div> --}}
                                 </article>
                             </div>
                            {{--  <div class="item">
@@ -490,6 +490,17 @@
     //     }
     //   });
     // });
+
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items:1,
+        loop:true,
+        // margin:10,
+        autoplay:true,
+        autoplayHoverPause:false
+        // autoplayTimeout:200,
+    });
+
     if (parseInt($('.viewer').text()) > 1) {
         var char = $('.viewer').text();
         console.log(char);
