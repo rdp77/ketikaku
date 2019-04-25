@@ -10,14 +10,14 @@ use DB;
 use Storage;
 class bookController extends Controller
 {
-    public function book($name)
+    public function book($id,$name)
     {  
-        // return $name;
+        // return $id;
         // TITLE LINK
         $title = str_replace('-', ' ', $name);
         // CARI DATA BEDASARKAN NAMA
         $code = DB::table('d_novel')
-                    ->where('dn_title',$title)
+                    ->where('dn_id',$id)
                     ->first();
 
         // $novel = DB::table('d_novel')
