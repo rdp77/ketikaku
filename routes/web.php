@@ -23,7 +23,8 @@
    Route::get('/welcome/comment_ajax', 'welcomeController@comment_ajax')->name('welcome_comment_ajax');
    Route::get('/welcome/tnc', 'welcomeController@tnc')->name('welcome_tnc');
 
-   //FRONT END
+
+//FRONT END
    // profile front end
    Route::get('/profile/{name}', 'frontend\profile\profileController@profile')->name('profile_frontend');   
    Route::get('/comment', 'frontend\profile\profileController@comment')->name('comment_frontend');
@@ -34,21 +35,22 @@
    Route::get('/followers', 'frontend\profile\profileController@followers')->name('profile_followers_frontend');   
    Route::get('/subscribing', 'frontend\profile\profileController@subscribing')->name('profile_subscribing_frontend');   
 
-   // FRONT END NOVEL
-   // book
+// FRONT END NOVEL
+// BOOK
    Route::get('/book/{name}', 'novel_frontend\bookController@book')->name('frontend_book');
    Route::get('/novel_rate_star', 'novel_frontend\bookController@novel_rate_star')->name('novel_rate_star');
    Route::get('/novel_rate_reply', 'novel_frontend\bookController@novel_rate_reply')->name('novel_rate_reply');
    Route::get('/subscribe', 'novel_frontend\subscribeController@subscribe')->name('subscribe_novel');
    Route::get('/like', 'novel_frontend\likeController@like')->name('like_novel');
-   // chapter
+   //search novel 
+   Route::get('/novel_load_more/{type}', 'novel_frontend\bookController@load_more')->name('load_more');
+   // load more Novel
+// CHAPTER
    Route::get('/chapter/{creator}/{name}/{id}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    Route::post('/chapter/viewer/{id}', 'novel_frontend\chapterController@viewer')->name('frontend_chapter_viewer');
    Route::get('/chapter_novel_comment', 'novel_frontend\chapterController@chapter_novel_comment')->name('frontend_chapter_novel_comment');
    Route::get('/chapter_novel_comment_reply', 'novel_frontend\chapterController@chapter_novel_comment_reply')->name('frontend_chapter_novel_comment_reply');
-   //BACKEND 
-
- // });
+//BACKEND 
 
    // forgot passsword
    Route::get('/forgot_password/page_email', 'frontend\forgot_password\forgot_passwordController@page_email')->name('forgot_password_page_email');

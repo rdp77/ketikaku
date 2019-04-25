@@ -71,25 +71,11 @@ class RegisterController extends Controller
         $token = str_random(300);
         // return $token;
         // dd($token);
-        $query = DB::select(DB::raw("SELECT MAX(RIGHT(m_id,4)) as kode_max from d_mem"));
- 
-        $kd = "";
-
-        if(count($query)>0)
-        {
-            foreach($query as $k)
-            {
-                $tmp = ((int)$k->kode_max)+1;
-                $kd = sprintf("%05s", $tmp);
-            }
-        }
-        else
-        {
-            $kd = "00001";
-        } 
+        $getdt = DB::table('d_mem')->max('m_id');
+        $incre = ($getdt == 0 ? 1 : $getdt+1);
         // dd($data['email']);
         $username = $data['m_username'];
-        $code = "KTK-".date('ymd')."-".$kd;
+        $code = "KTK-".date('ymd')."-".$incre;
         
 
         return $user = d_mem::create([

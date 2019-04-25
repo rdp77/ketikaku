@@ -177,4 +177,83 @@ class bookController extends Controller
                     ->get();
         return view('novel_frontend.detail_novel.comment_novel',compact('novel_rate','novel_reply'));
     }
+    public function load_more($type,Request $req)
+    {
+        if ($type == 'official') {
+        $data = DB::table('d_novel')->select('d_novel.*',
+                                            DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                                WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_ref_id) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_subscribe.dns_ref_id) as subscribed"),
+                                            DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                                WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
+                                        ->where('dn_status','publish')
+                                        ->where('dn_type_novel',1)
+                                        ->orderBy('dn_id','DESC')->paginate(50);
+        $tittle = 'OFFICIAL NOVEL';
+        }elseif ($type == 'popular') {
+        $data = DB::table('d_novel')
+                                    ->select('d_novel.*',
+                                        DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                            WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                        DB::raw("(SELECT COUNT(d_novel_subscribe.dns_ref_id) FROM d_novel_subscribe
+                                            WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_subscribe.dns_ref_id) as subscribed"),
+                                        DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                            WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
+                                    ->where('dn_status','publish')
+                                    ->where('dn_type_novel',2)
+                                    ->paginate(50);
+        $tittle = 'POPULAR NOVEL';
+        }elseif ($type == 'like') {
+        $data = DB::table('d_novel')->select('d_novel.*',
+                                        DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                            WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                        DB::raw("(SELECT COUNT(d_novel_subscribe.dns_ref_id) FROM d_novel_subscribe
+                                            WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_subscribe.dns_ref_id) as subscribed"),
+                                        DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                            WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                            GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
+                                    ->where('dn_status','publish')
+                                    ->where('dn_type_novel',2)
+                                    ->orderByRaw('liked DESC')->paginate(50);
+        $tittle = 'LIKED NOVEL';
+        }elseif ($type == 'latest') {
+        $data = DB::table('d_novel')->select('d_novel.*',
+                                            DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
+                                                WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_like.dnl_ref_id) as liked"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_ref_id) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_subscribe.dns_ref_id) as subscribed"),
+                                            DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
+                                                WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
+                                        ->where('dn_status','publish')
+                                        ->where('dn_type_novel',2)
+                                        ->orderBy('dn_id','DESC')->paginate(50);
+        $tittle = 'LATEST NOVEL';
+        }
+        $review = DB::table('d_novel_rate')
+                                        ->join('d_mem','m_id','dr_rated_by')
+                                        ->orderBy('dr_created_at','DESC')
+                                        ->limit(7)
+                                        ->get();
+        $popular_writter = DB::table('d_mem')
+                                        ->select('d_mem.m_id','d_mem.m_username','d_mem.m_image','d_mem.m_desc_short',
+                                                        DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
+                                                            WHERE d_novel_subscribe.dns_creator = d_mem.m_id
+                                                            GROUP BY d_novel_subscribe.dns_creator) as subscriber"))
+                                        ->limit(7)
+                                        ->orderByRaw('subscriber DESC')
+                                        ->get();    
+        return view('frontend_view.novel_details.detail_novel_lm', ['data' => $data],compact('tittle','data','review','popular_writter'));
+    }
 }
