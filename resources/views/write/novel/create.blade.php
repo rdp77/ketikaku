@@ -51,11 +51,25 @@
                                         </div>
                                     </div>
                                     {{-- <div class="form-group row">
-                                        <label for="dn_title" class="col-2 col-form-label">Category</label>
+                                        <label for="dn_title" class="col-2 col-form-label">Genre</label>
                                         <div class="col-10">
-                                            <select class="form-control js-example-basic-multiple " name="states[]" multiple="multiple">
-                                              <option value="AL">Alabama</option>
+                                            <select class="form-control select2" name="genre[]" multiple="multiple">
+
                                               <option value="WY">Wyoming</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dn_title" class="col-2 col-form-label">Tags</label>
+                                        <div class="col-10">
+                                            <select class="form-control" multiple="" id="select2-with-tags" style="width: 100%;height: 36px;">
+                                                <option>orange</option>
+                                                <option>white</option>
+                                                <option>purple</option>
+                                                <option value="red">red</option>
+                                                <option value="blue" selected>blue</option>
+                                                <option value="green" selected>green</option>
                                             </select>
                                         </div>
                                     </div> --}}

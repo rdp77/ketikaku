@@ -143,7 +143,7 @@
                                                                 {!! strlen($element->dn_description) > 50 ?  ".....  <button href='' class='btn btn-secondary btn-xs' onclick='readmore(".$element->dn_id.")'> Readmore </button>" : "" !!}  
                                                                 <br><br>
                                                                 
-                                                                 <a href="{{ route('frontend_book',['id'=>str_replace(" ","-",$element->dn_title)]) }}" class="btn-sm btn btn-success"><i class="fas fa-eye"></i> View </a>
+                                                                 <a href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}" class="btn-sm btn btn-success"><i class="fas fa-eye"></i> View </a>
                                                                 
                                                             </div>
                                                         </div>
