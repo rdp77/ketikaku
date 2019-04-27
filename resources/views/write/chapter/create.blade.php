@@ -73,6 +73,8 @@
                 tinymce.init({
                     selector: "textarea#mymce",
                     theme: "modern",
+                    plugins: "image,paste",
+                    paste_data_images: true,
                     height: 300,
                     plugins: [
                         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
