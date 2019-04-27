@@ -18,7 +18,8 @@
 <!--Custom JavaScript -->
 <script src="{{ asset('dist/js/custom.min.js') }}"></script>
 <!--This page JavaScript -->
-<script src="{{ asset('assets_backend/libs/tinymce/tinymce.min.js') }}"></script>
+{{-- <script src="{{ asset('assets_backend/libs/tinymce/tinymce.min.js') }}"></script> --}}
+<script type="text/javascript" src="http://cdn.tinymce.com/4/tinymce.min.js"></script>
 <!--chartis chart-->
 <script src="{{ asset('assets_backend/libs/chartist/dist/chartist.min.js') }}"></script>
 <script src="{{ asset('assets_backend/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
