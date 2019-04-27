@@ -163,7 +163,7 @@
                     theme: "modern",
                     plugins: "paste",
                     oninit : "setPlainText",
-                    paste_as_text: true,
+                    // paste_as_text: true,
                     height: 300,
                     plugins: [
                         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
