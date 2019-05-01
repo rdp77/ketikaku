@@ -49,7 +49,9 @@
    Route::get('/chapter/{creator}/{name}/{id}', 'novel_frontend\chapterController@chapter')->name('frontend_chapter');
    Route::post('/chapter/viewer/{id}', 'novel_frontend\chapterController@viewer')->name('frontend_chapter_viewer');
    Route::get('/chapter_novel_comment', 'novel_frontend\chapterController@chapter_novel_comment')->name('frontend_chapter_novel_comment');
+   Route::get('/chapter_novel_comment_delete', 'novel_frontend\chapterController@chapter_novel_comment_delete')->name('frontend_chapter_novel_comment_delete');
    Route::get('/chapter_novel_comment_reply', 'novel_frontend\chapterController@chapter_novel_comment_reply')->name('frontend_chapter_novel_comment_reply');
+   Route::get('/chapter_novel_comment_reply_delete', 'novel_frontend\chapterController@chapter_novel_comment_reply_delete')->name('frontend_chapter_novel_comment_reply_delete');
 //BACKEND 
 
    // forgot passsword

@@ -137,6 +137,17 @@ class chapterController extends Controller
         return view('novel_frontend.detail_chapter.comment_chapter',compact('chapter_comment','chapter_reply'));
         // return response()->json(['status'=>'sukses']);
     }
+    public function chapter_novel_comment_delete(Request $req)
+    {
+        $delete = DB::table('d_novel_chapter_comment')->where('dncc_id',$req->id)->delete();
+        $deletess = DB::table('d_novel_chapter_comment_dt')->where('dnccdt_comment_id',$req->id)->delete();
+        return response()->json(['status'=>'sukses']);
+    }
+    public function chapter_novel_comment_reply_delete(Request $req)
+    {
+        $deletess = DB::table('d_novel_chapter_comment_dt')->where('dnccdt_id',$req->id)->delete();
+        return response()->json(['status'=>'sukses']);
+    }
     public function chapter_novel_comment_reply(Request $request)
     {
 

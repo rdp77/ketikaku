@@ -158,7 +158,7 @@
                               <div class="comments">
                                 <div class="comment-list drop_here">
                                     @foreach ($chapter_comment as $element)
-                                        <div class="item">
+                                        <div class="item delete_comment_{{ $element->dncc_id }}">
                                             <div class="user">                                
                                                 <figure>
                                                     @if ($element->m_image != null)
@@ -170,19 +170,22 @@
                                                 <div class="details">
                                                     <h5 class="name">{{ $element->m_username }}</h5>
                                                     <div class="time">{{ date('d F Y',strtotime($element->dncc_created_at)) }} <small>{{ date('h:i:s A',strtotime($element->dncc_created_at)) }}</small></div>
-                                                    <div class="description">
-                                                        {{ $element->dncc_message }}
+                                                    <div class="description" >
+                                                        {!! $element->dncc_message !!}
                                                     </div>
                                                     <footer>
                                                         <br>
                                                         @if (auth::user() != null)
                                                             <button type="button" class="btn btn-sm btn-primary reply_{{ $element->dncc_id }}" onclick="reply({{ $element->dncc_id }})"><i class="fas fa-share"></i> Reply</button>
+                                                            @if ($element->dncc_comment_by == auth::user()->m_id)
+                                                            <button type="button" class="btn btn-sm btn-danger delreply_{{ $element->dncc_id }}" onclick="delreply({{ $element->dncc_id }})"><i class="fas fa-times"></i> Delete</button>
+                                                            @endif
                                                         @endif
                                                     </footer>
                                                 </div>
                                             @foreach ($chapter_reply as $gg)
                                             @if ($gg->dnccdt_comment_id == $element->dncc_id)
-                                            <div class="reply-list">
+                                            <div class="reply-list delete_comment_dt_{{ $gg->dnccdt_id }}">
                                                 <div class="item">
                                                     <div class="user">                                
                                                         <figure>
@@ -196,8 +199,13 @@
                                                             <h5 class="name">{{ $gg->m_username }}</h5>
                                                             <div class="time">{{ date('d F Y',strtotime($gg->dnccdt_created_at)) }} <small>{{ date('h:i:s A',strtotime($gg->dnccdt_created_at)) }}</small></div>
                                                             <div class="description">
-                                                                {{ $gg->dnccdt_message }}
+                                                                {!! $gg->dnccdt_message !!}
                                                             </div>
+                                                            @if (auth::user() != null)
+                                                                @if ($element->dncc_comment_by == auth::user()->m_id)
+                                                                <button type="button" class="btn btn-sm btn-danger delreply_{{ $gg->dnccdt_id }}" onclick="deldtreply({{ $gg->dnccdt_id }})"><i class="fas fa-times"></i> Delete</button>
+                                                                @endif
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,6 +229,14 @@
 
 @section('extra_scripts')
 <script type="text/javascript">
+
+    tinymce.init({
+        selector: 'textarea#message',
+        menubar: false,
+        statusbar: false,
+        toolbar: false
+        // height: 550
+    });
     $('.next').click(function(){
         var datass = $(this).val();
         var dt_id = $(this).data('id');
@@ -252,7 +268,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
          $.ajax({
             type: "post",
             url:baseUrl+'/chapter/viewer/'+('{{ $chapter->dnch_id }}'),
@@ -260,8 +275,6 @@
             },error:function(){
           }
         });
-
-
     });
 
     $( document ).ready(function() {
@@ -276,6 +289,7 @@
     }
 
     $('.response').click(function(){
+        tinyMCE.triggerSave();
         var message = $('#message').val();
         var dncc_comment_by = $('.dncc_comment_by').val();
         var dncc_creator = $('.dncc_creator').val();
@@ -293,7 +307,7 @@
         $.ajax({
             type: "get",
             url:'{{ route('frontend_chapter_novel_comment') }}',
-            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dncc_creator='+dncc_creator+'&dncc_comment_by='+dncc_comment_by,
+            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+escape(message)+'&dncc_creator='+dncc_creator+'&dncc_comment_by='+dncc_comment_by,
             processData: false,
             contentType: false,
           success:function(data){
@@ -316,9 +330,55 @@
         '<textarea class="form-control" name="drdt_message_'+argument+'" id="drdt_message_'+argument+'" placeholder="Write your response ..."></textarea>'+
         '<br>'+
         '<button type="button" class="btn btn-sm btn-primary reply_comment_'+argument+'" onclick="reply_data('+argument+')"><i class="fas fa-share"></i> Reply</button>');  
+        tinymce.init({
+            selector: 'textarea#drdt_message_'+argument+'',
+            menubar: false,
+            statusbar: false,
+            toolbar: false
+            // height: 550
+        });
+    }
+
+    function delreply(argument) {
+        iziToast.show({
+        theme: 'dark',
+        icon: 'fas fa-ask',
+        title: 'Peringatan',
+        message: 'Hapus komen ini ?!',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        buttons: [
+            ['<button>Ok</button>', function (instance, toast) {
+                $.ajax({
+                    type: "get",
+                    url:'{{ route('frontend_chapter_novel_comment_delete') }}',
+                    data: '&id='+argument,
+                    processData: false,
+                    contentType: false,
+                  success:function(data){
+                    $('.delete_comment_'+argument).remove();
+                    instance.hide({
+                        transitionOut: 'fadeOutUp'
+                    }, toast);
+                  },error:function(){
+                    alert('eror')
+                  }
+                });
+            }, true], // true to focus
+            ['<button>Close</button>', function (instance, toast) {
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+                    }
+                }, toast, 'buttonName');
+            }]
+        ]
+    });
     }
 
     function reply_data(argument) {
+        tinyMCE.triggerSave();
         var message = $('#drdt_message_'+argument).val();
         var dncc_comment_by = $('.dncc_comment_by').val();
         var dncc_creator = $('.dncc_creator').val();
@@ -336,7 +396,7 @@
         $.ajax({
             type: "get",
             url:'{{ route('frontend_chapter_novel_comment_reply') }}',
-            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+message+'&dnccdt_creator='+dncc_creator+'&dnccdt_comment_by='+dncc_comment_by+'&dncc_id='+dncc_id,
+            data: '&id='+('{{ $chapter->dn_id }}')+'&iddt='+('{{ $chapter->dnch_id }}')+'&message='+escape(message)+'&dnccdt_creator='+dncc_creator+'&dnccdt_comment_by='+dncc_comment_by+'&dncc_id='+dncc_id,
             processData: false,
             contentType: false,
           success:function(data){
@@ -352,6 +412,43 @@
         });
     }
 
+    function deldtreply(argument) {
+        iziToast.show({
+        theme: 'dark',
+        icon: 'fas fa-ask',
+        title: 'Peringatan',
+        message: 'Hapus komen ini ?!',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        buttons: [
+            ['<button>Ok</button>', function (instance, toast) {
+                $.ajax({
+                    type: "get",
+                    url:'{{ route('frontend_chapter_novel_comment_reply_delete') }}',
+                    data: '&id='+argument,
+                    processData: false,
+                    contentType: false,
+                  success:function(data){
+                    $('.delete_comment_dt_'+argument).remove();
+                    instance.hide({
+                        transitionOut: 'fadeOutUp'
+                    }, toast);
+                  },error:function(){
+                    alert('eror')
+                  }
+                });
+            }, true], // true to focus
+            ['<button>Close</button>', function (instance, toast) {
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+                    }
+                }, toast, 'buttonName');
+            }]
+        ]
+    });
+    }
     
 
 </script>
