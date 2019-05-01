@@ -202,7 +202,7 @@
                                                                 {!! $gg->dnccdt_message !!}
                                                             </div>
                                                             @if (auth::user() != null)
-                                                                @if ($element->dncc_comment_by == auth::user()->m_id)
+                                                                @if ($gg->dnccdt_reply_by == auth::user()->m_id)
                                                                 <button type="button" class="btn btn-sm btn-danger delreply_{{ $gg->dnccdt_id }}" onclick="deldtreply({{ $gg->dnccdt_id }})"><i class="fas fa-times"></i> Delete</button>
                                                                 @endif
                                                             @endif
