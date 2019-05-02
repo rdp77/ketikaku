@@ -43,6 +43,7 @@
                             {!! $gg->dnccdt_message !!}
                         </div>
                         @if (auth::user() != null)
+                            <button type="button" class="btn btn-sm btn-primary reply_{{ $element->dncc_id }}" onclick="reply({{ $element->dncc_id }})"><i class="fas fa-share"></i> Reply</button>
                             @if ($gg->dnccdt_reply_by == auth::user()->m_id)
                             <button type="button" class="btn btn-sm btn-danger delreply_{{ $gg->dnccdt_id }}" onclick="deldtreply({{ $gg->dnccdt_id }})"><i class="fas fa-times"></i> Delete</button>
                             @endif
