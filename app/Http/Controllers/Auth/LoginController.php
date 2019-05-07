@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 // use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
+    use AuthenticatesUsers;
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -27,7 +28,6 @@ class LoginController extends Controller
     {
         return view('welcome');
     }
-    use AuthenticatesUsers;
     public function login(Request $req)
     {
      
