@@ -1,5 +1,4 @@
 <?php
-namespace Composer\Autoload;
 
 /*
  * This file is part of Composer.
@@ -11,6 +10,7 @@ namespace Composer\Autoload;
  * file that was distributed with this source code.
  */
 
+namespace Composer\Autoload;
 
 /**
  * ClassLoader implements a PSR-0, PSR-4 and classmap class loader.
