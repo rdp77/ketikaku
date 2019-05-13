@@ -83,7 +83,7 @@
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
                                 @if ($category == null)
-                                <td>-</td>
+                                <td style="border-bottom:1px solid #dddddd">-</td>
                                 @else
                                 <td style="border-bottom:1px solid #dddddd">
                                     <div class="badge" style="background-color: {{ $category->mc_bgcolor }};color:{{ $category->mc_color }}">
