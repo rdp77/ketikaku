@@ -4,7 +4,7 @@
 <style type="text/css">
     .kuning{
       color: #ffd119;
-      font-size: 15px;
+      font-size: 14px;
     }
     .article .padding{
         padding: 10px 10px 50px !important;

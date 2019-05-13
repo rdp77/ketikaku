@@ -55,7 +55,10 @@
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $element->mc_name }}</td>
+                                        <td>
+                                            <div class="badge" style="font-size: 15px;background-color: {{ $element->mc_bgcolor }};color:{{ $element->mc_color }}">
+                                                <div class="badge-item"> {{ $element->mc_name }}</div>
+                                            </div></td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('master_category_edit',['id'=>$element->mc_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->mc_id }}"><i class="fas fa-times-circle"></i></button>

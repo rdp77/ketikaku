@@ -70,17 +70,39 @@
                                 <td valign="middle" width="30%" style="border-top:none;border-bottom:1px solid #dddddd">Status</td>
                                 <td colspan="3" valign="middle" style="border-top:none;border-bottom:1px solid #dddddd">
                                     @if ($book->dn_type_novel == 1)
-                                        <div class="badge badge-secondary">
+                                        <div class="badge badge-success">
                                             <div class="badge-item"><i class="ion-star"></i> Official</div>
                                         </div>
                                     @else
-                                        -
+                                        <div class="badge badge-secondary">
+                                            <div class="badge-item"> Unofficial</div>
+                                        </div>
                                     @endif
                                 </td>
                             </tr>
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
-                                <td style="border-bottom:1px solid #dddddd">-</td>
+                                @if ($category == null)
+                                <td>-</td>
+                                @else
+                                <td style="border-bottom:1px solid #dddddd">
+                                    <div class="badge" style="background-color: {{ $category->mc_bgcolor }};color:{{ $category->mc_color }}">
+                                            <div class="badge-item"> {{ $category->mc_name }}</div>
+                                    </div>
+                                </td>
+                                @endif
+                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
+                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
+                            </tr>
+                            <tr style="height: 50px" >
+                                <td valign="middle" style="border-bottom:1px solid #dddddd">Tags</td>
+                                <td style="border-bottom:1px solid #dddddd">
+                                    @foreach ($tags as $element)
+                                        <div class="badge badge-warning">
+                                            <div class="badge-item"> #{{ $element->dnt_name }}</div>
+                                        </div>
+                                    @endforeach
+                                </td>
                                 <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
                                 <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
                             </tr>

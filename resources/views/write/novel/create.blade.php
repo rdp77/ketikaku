@@ -50,29 +50,26 @@
                                             <input class="form-control" type="text" name="dn_title" id="dn_title">
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group row">
+                                    <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Genre</label>
                                         <div class="col-10">
-                                            <select class="form-control select2" name="genre[]" multiple="multiple">
-
-                                              <option value="WY">Wyoming</option>
-
+                                            <select class="form-control select2" name="dn_category">
+                                            @foreach ($cat as $element)
+                                              <option value="{{ $element->mc_id }}">{{ $element->mc_name }}</option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="dn_title" class="col-2 col-form-label">Tags</label>
                                         <div class="col-10">
-                                            <select class="form-control" multiple="" id="select2-with-tags" style="width: 100%;height: 36px;">
-                                                <option>orange</option>
-                                                <option>white</option>
-                                                <option>purple</option>
-                                                <option value="red">red</option>
-                                                <option value="blue" selected>blue</option>
-                                                <option value="green" selected>green</option>
+                                            <select class="form-control" multiple="" id="select2-with-tags" name="dn_tags[]" style="width: 100%;height: 36px;">
+                                            @foreach ($tags as $element)
+                                              <option value="{{ $element->dnt_name }}">{{ $element->dnt_name }}</option>
+                                            @endforeach
                                             </select>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="row clearfix preview_div">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label class="form-control-label" for="caption_by">Photo</label>

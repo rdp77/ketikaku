@@ -20,14 +20,14 @@
                                     </div>
                                 </div>
                                 <div class="help-block">
-                                    {{-- <div>Popular:</div>
+                                    <div>Popular:</div>
                                     <ul>
-                                        <li><a href="#">HTML5</a></li>
+                                        {{-- <li><a href="#"><span class="label" style="background-color: red;color: blue;">HTML5</span></a></li> --}}
                                         <li><a href="#">CSS3</a></li>
                                         <li><a href="#">Bootstrap 3</a></li>
                                         <li><a href="#">jQuery</a></li>
                                         <li><a href="#">AnguarJS</a></li>
-                                    </ul> --}}
+                                    </ul>
                                 </div>
                             </form>                             
                         </div>

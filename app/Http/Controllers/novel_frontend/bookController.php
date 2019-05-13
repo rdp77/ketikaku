@@ -107,9 +107,12 @@ class bookController extends Controller
         $tags = DB::table('d_novel_tags')
                     ->where('dnt_ref_id',$code->dn_id)
                     ->get();
+        $category= DB::table('m_category')
+                    ->where('mc_id',$code->dn_category)
+                    ->first();
 
         // return response()->json(['chapter'=>$chapter,'book'=>$book,'tags'=>$tags,'code'=>$code,'novel'=>$novel]);
-        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_view','total_book','novel_rate','novel_reply','total_subscribe','subscriber','liker','total_like'));
+        return view('novel_frontend.detail_novel.detail_novel',compact('book','chapter','tags','novel','total_view','total_book','novel_rate','novel_reply','total_subscribe','subscriber','liker','total_like','category'));
     }
     public function novel_rate_star(Request $request)
     {

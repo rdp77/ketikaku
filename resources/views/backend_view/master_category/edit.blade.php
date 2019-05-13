@@ -46,6 +46,18 @@
                                             <input class="form-control" type="text" name="mc_name" id="mc_name" value="{{ $data->mc_name }}">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="mc_name" class="col-2 col-form-label">Cat Color text</label>
+                                        <div class="col-10">
+                                            <input type="color" value="{{ $data->mc_color }}" name="mc_color" id="mc_color">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="mc_name" class="col-2 col-form-label">Cat Background Color</label>
+                                        <div class="col-10">
+                                            <input type="color" value="{{ $data->mc_bgcolor }}" name="mc_bgcolor" id="mc_bgcolor">
+                                        </div>
+                                    </div>
                                     
 
                                      <div class="text-right">

@@ -86,6 +86,7 @@
                                             @endif
                                         </td>
                                         <td>
+                                            <a class="btn waves-effect waves-light btn-sm btn-success" href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}"><i class="fas fa-eye"></i></a>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_novel_edit', ['id' => $element->dn_id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}" ><i class="fas fa-times"></i></button>
                                         </td>

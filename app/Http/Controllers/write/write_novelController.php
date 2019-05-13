@@ -38,7 +38,9 @@ class write_novelController extends Controller
         }elseif (Auth::user()->m_isactive == 'N') {
             return view('page.error-401');
         }else{
-            return view('write.novel.create');
+            $cat = DB::table('m_category')->get();
+            $tags = DB::table('d_novel_tags')->select('dnt_name')->groupBy('dnt_name')->get();
+            return view('write.novel.create',compact('cat','tags'));
         }
     }
     public function save(Request $req)
@@ -66,9 +68,17 @@ class write_novelController extends Controller
                 'dn_title'=>$req->dn_title,
                 'dn_status'=>$req->dn_status,
                 'dn_description'=>$req->dn_description,
+                'dn_category'=>$req->dn_category,
                 'dn_created_at'=>date('Y-m-d h:i:s'),
                 'dn_created_by'=>Auth::user()->m_id,
         ]);
+
+        for ($i=0; $i <count($req->dn_tags) ; $i++) { 
+             $data = DB::table('d_novel_tags')->insert([
+                'dnt_name'=>$req->dn_tags[$i],
+                'dnt_ref_id'=>$check_incre,
+             ]);
+        }
 
         if ($data == true) {
         	return response()->json(['status'=>'sukses']);
