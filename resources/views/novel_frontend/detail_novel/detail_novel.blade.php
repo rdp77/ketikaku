@@ -83,7 +83,7 @@
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Kategori</td>
                                 @if ($category == null)
-                                <td style="border-bottom:1px solid #dddddd">-</td>
+                                <td style="border-bottom:1px solid #dddddd" >-</td>
                                 @else
                                 <td style="border-bottom:1px solid #dddddd">
                                     <div class="badge" style="background-color: {{ $category->mc_bgcolor }};color:{{ $category->mc_color }}">
@@ -96,15 +96,14 @@
                             </tr>
                             <tr style="height: 50px" >
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Tags</td>
-                                <td style="border-bottom:1px solid #dddddd">
+                                <td colspan="3" style="border-bottom:1px solid #dddddd">
                                     @foreach ($tags as $element)
                                         <div class="badge badge-warning">
                                             <div class="badge-item"> #{{ $element->dnt_name }}</div>
                                         </div>
                                     @endforeach
                                 </td>
-                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
-                                <td style="border-bottom:1px solid #dddddd">&nbsp;</td>
+                                
                             </tr>
                             <tr style="height: 50px">
                                 <td valign="middle" style="border-bottom:1px solid #dddddd">Ditulis Oleh</td>

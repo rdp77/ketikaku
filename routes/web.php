@@ -23,6 +23,10 @@
    Route::get('/welcome/comment_ajax', 'welcomeController@comment_ajax')->name('welcome_comment_ajax');
    Route::get('/welcome/tnc', 'welcomeController@tnc')->name('welcome_tnc');
 
+   Route::get('/search_user', 'welcomeController@search_user')->name('search_user');
+   Route::get('/search_story', 'welcomeController@search_story')->name('search_story');
+
+
 
 //FRONT END
    // profile front end

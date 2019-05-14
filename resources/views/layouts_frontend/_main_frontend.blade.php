@@ -5,7 +5,8 @@
     @yield('extra_style')
     <body class="skin-orange">
         @include('layouts_frontend._nav_frontend')
-    @yield('content')
+            @yield('content')
+        {{-- </div> --}}
     </body>
     @include('layouts_frontend._footer_frontend')
     @include('layouts_frontend._scripts_frontend')

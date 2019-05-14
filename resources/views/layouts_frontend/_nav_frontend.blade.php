@@ -13,9 +13,9 @@
                             <form class="search" autocomplete="off">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" name="q" class="form-control" placeholder="Type something here">                                 
+                                        <input type="text" name="search" class="form-control search_val" placeholder="Type something here">                                 
                                         <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="ion-search"></i></button>
+                                            <button type="button" class="btn btn-primary search_data"><i class="ion-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -106,5 +106,26 @@
             else {
                $('.nav-icons').css('display','block');
             }
+            $('.search_data').click(function(){
+                // window
+                var val = $('.search_val').val();
+                $.ajax({
+                    type: "get",
+                    url:'{{ route('search_user') }}',
+                    data: '&search='+val,
+                    success:function(data){
+                       $('.home').html(data);
+                    }
+                });
+                // $.ajax({
+                //     type: "get",
+                //     url:'{{ route('search_story') }}',
+                //     data: '&search='+val,
+                //     success:function(data){
+                //     }
+                // });
+            })
+                
+
 
         </script>
