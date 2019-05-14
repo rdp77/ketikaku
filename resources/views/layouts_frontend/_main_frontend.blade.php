@@ -15,6 +15,7 @@
                 height:60px;
                 bottom:40px;
                 right:40px;
+                z-index: 99999;
                 background-color:#0C9;
                 color:#FFF !important;
                 font-size: 25px !important;
