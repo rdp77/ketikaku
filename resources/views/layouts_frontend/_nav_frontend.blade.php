@@ -20,13 +20,13 @@
                                     </div>
                                 </div>
                                 <div class="help-block">
-                                    <div>Popular:</div>
+                                    <div>Genre Popular:</div>
                                     <ul>
-                                        {{-- <li><a href="#"><span class="label" style="background-color: red;color: blue;">HTML5</span></a></li> --}}
-                                        <li><a href="#">CSS3</a></li>
-                                        <li><a href="#">Bootstrap 3</a></li>
-                                        <li><a href="#">jQuery</a></li>
-                                        <li><a href="#">AnguarJS</a></li>
+                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Romance</span></a></li>
+                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Horror</span></a></li>
+                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Slice Of Life</span></a></li>
+                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Action</span></a></li>
+                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Comedy</span></a></li>
                                     </ul>
                                 </div>
                             </form>                             
