@@ -113,8 +113,10 @@ class welcomeController extends Controller
                                                 WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
                                         ->where('dn_status','publish')
-                                        ->where('dn_title','like',"%$req->search%")
-                                        ->where('dn_description','like',"%$req->search%")
+                                        ->where(function ($query) use ($req) {
+                                            $query->Where('dn_title','like',"%$req->search%")
+                                                  ->orWhere('dn_description','like',"%$req->search%");
+                                        })
                                         ->orderBy('dn_id','DESC')->limit(8)->get();
         // return response()->json(['status'=>'sukses','user'=>$search_user,'story'=>$search_story]);
         return view('search',compact('search_user','search_story','ss'));

@@ -106,6 +106,7 @@
             else {
                $('.nav-icons').css('display','block');
             }
+            
             $('.search_data').click(function(){
                 // window
                 var val = $('.search_val').val();
@@ -117,13 +118,6 @@
                        $('.home').html(data);
                     }
                 });
-                // $.ajax({
-                //     type: "get",
-                //     url:'{{ route('search_story') }}',
-                //     data: '&search='+val,
-                //     success:function(data){
-                //     }
-                // });
             })
                 
 
