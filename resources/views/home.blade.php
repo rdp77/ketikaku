@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        {{-- <div class="row">
+        <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -57,17 +57,18 @@
                             </div>
                             <div class="comment-widgets scrollable" style="height:560px;">
                                 <!-- Comment Row -->
+                                @foreach ($comment_chapter as $element)
                                 <div class="d-flex flex-row comment-row">
                                     <div class="p-2">
-                                        <img src="../../assets/images/users/2.jpg" alt="user" width="50" class="rounded-circle">
+                                        <img src="{{ asset('storage/app/'.$element->m_image) }}" alt="user" width="50" class="rounded-circle">
                                     </div>
                                     <div class="comment-text active w-100">
-                                        <h6 class="font-medium">Michael Jorden</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                                        <h6 class="font-medium">{{ $element->m_username }} mengomentari "{{ strtoupper($element->dn_title) }}"</h6>
+                                        <span class="m-b-15 d-block">{!! $element->dncc_message !!}</span>
                                         <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-success label-rounded">Approved</span>
-                                            <span class="action-icons active">
+                                            <span class="text-muted float-right">{{ date('d M,Y h:i a',strtotime($element->dncc_created_at)) }}</span>
+                                            {{-- <span class="label label-success label-rounded">Approved</span> --}}
+                                            {{-- <span class="action-icons active">
                                                 <a href="javascript:void(0)">
                                                     <i class="ti-pencil-alt"></i>
                                                 </a>
@@ -77,10 +78,11 @@
                                                 <a href="javascript:void(0)">
                                                     <i class="ti-heart text-danger"></i>
                                                 </a>
-                                            </span>
+                                            </span> --}}
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                                 <!-- Comment Row -->
                             </div>
                         </div>
@@ -176,7 +178,7 @@
 
     
     </div>
-        </div> --}}
+        </div>
 </div>
 
         @endsection

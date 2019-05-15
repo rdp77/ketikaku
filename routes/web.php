@@ -70,6 +70,7 @@ Auth::routes();
 //HOME
    Route::get('/home', 'HomeController@index')->name('home');
    Route::get('/notification/notif_bell', 'backend\notif\notificationController@notif_bell')->name('notif_bell');
+   Route::get('/notification/notif_like', 'backend\notif\notificationController@notif_like')->name('notif_like');
    Route::get('/verify/{token}/{id}', 'mail\verify_emailController@verify_email')->name('verify_email');
    Route::get('/verified/{token}/{id}', 'mail\verify_emailController@verified_email')->name('verified_email');
 

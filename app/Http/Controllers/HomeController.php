@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $comment_chapter = DB::table('d_novel_chapter_comment')
+                                    ->leftjoin('d_novel','dn_id','dncc_ref_id')
+                                    ->leftjoin('d_mem','m_id','dncc_comment_by')
+                                    ->where('dncc_creator',Auth::user()->m_id)
+                                    ->get();
+        return view('home',compact('comment_chapter'));
     }
     
 }

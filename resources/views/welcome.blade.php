@@ -463,7 +463,7 @@
                                 </li>
                                 
                             </ul>
-                                <div class="tab-pane active comments" id="review">
+                                <div class="tab-pane active comments" style="padding-top: 0px !important" id="review">
                                     
                                     {{-- <span class="badge badge-primary">Primary</span> --}}
                                     

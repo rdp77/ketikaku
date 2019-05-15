@@ -142,6 +142,11 @@ class write_novelController extends Controller
     public function delete($id)
     {
         $check = DB::table('d_novel')->where('dn_id',$id)->delete();
+        $check_cmnt = DB::table('d_novel_chapter_comment')->where('dncc_ref_id',$id)->delete();
+        $check_cmnt_dt = DB::table('d_novel_chapter_comment')->where('dnccdt_ref_id',$id)->delete();
+        $check_scb = DB::table('d_novel_subscribe')->where('dns_ref_id',$id)->delete();
+        $check_rvw = DB::table('d_novel_rate')->where('dr_ref_id',$id)->delete();
+        $check_rvw_dt = DB::table('d_novel_rate_dt')->where('drdt_ref_id',$id)->delete();
     	$check_dt = DB::table('d_novel_chapter')->where('dnch_ref_id',$id)->delete();
 
     	// if ($check == true) {

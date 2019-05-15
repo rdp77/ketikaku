@@ -107,7 +107,7 @@
                $('.nav-icons').css('display','block');
             }
             
-            $('.search_data').click(function(){
+            $('.search_val').keyup(function(){
                 // window
                 var val = $('.search_val').val();
                 $.ajax({
