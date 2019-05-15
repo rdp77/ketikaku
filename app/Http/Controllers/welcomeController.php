@@ -77,7 +77,8 @@ class welcomeController extends Controller
                                         ->limit(7)
                                         ->orderByRaw('subscriber DESC')
                                         ->get();    
-        return view('welcome',compact('data_latest','data_popular','data_like','review','popular_writter','data_official'));
+        $category_list = DB::table('m_category')->get();
+        return view('welcome',compact('data_latest','data_popular','data_like','review','popular_writter','data_official','category_list'));
     }
     public function comment_ajax()
     {

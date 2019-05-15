@@ -455,19 +455,21 @@
 
                         <aside>
                             <div class="aside-body">
-                                <form class="newsletter">
-                                    <div class="icon">
-                                        <i class="ion-ios-email-outline"></i>
-                                        <h1>Newsletter</h1>
-                                    </div>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control email" placeholder="Your mail">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="ion-paper-airplane"></i></button>
-                                        </div>
-                                    </div>
-                                    <p>By subscribing you will receive new articles in your email.</p>
-                                </form>
+                                <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li class="active">
+                                    <a href="#popular_writter" aria-controls="popular_writter" role="tab" data-toggle="tab">
+                                        <i class="ion-android-star-outline"></i> Category
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                                <div class="tab-pane active comments" id="review">
+                                    
+                                    {{-- <span class="badge badge-primary">Primary</span> --}}
+                                    
+                                        <h4>@foreach ($category_list as $element)<span class="badge badge-default">{{ $element->mc_name }}</span>&nbsp;@endforeach</h4>
+                                    
+                                </div>
                             </div>
                         </aside>
                         

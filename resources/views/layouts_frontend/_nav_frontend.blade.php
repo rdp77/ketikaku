@@ -22,11 +22,11 @@
                                 <div class="help-block">
                                     <div>Genre Popular:</div>
                                     <ul>
-                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Romance</span></a></li>
-                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Horror</span></a></li>
-                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Slice Of Life</span></a></li>
-                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Action</span></a></li>
-                                        <li><a href="#"><span class="label" style="font-size:11px;background-color: grey;">#Comedy</span></a></li>
+                                        <li><a href="#">#Romance</a></li>
+                                        <li><a href="#">#Horror</a></li>
+                                        <li><a href="#">#Slice Of Life</a></li>
+                                        <li><a href="#">#Action</a></li>
+                                        <li><a href="#">#Comedy</a></li>
                                     </ul>
                                 </div>
                             </form>                             
