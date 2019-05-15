@@ -27,7 +27,7 @@
                 margin-top:19px;
             }
         </style>
-        <a href="https://wa.me/6282140644679?text=hai%20admin," target="_blank" class="float">
+        <a href="https://wa.me/6285228802507?text=hai%20admin," target="_blank" class="float">
             <i class="fa fa-comment-dots my-float"></i>
         </a>
     </body>
