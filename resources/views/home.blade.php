@@ -2,7 +2,18 @@
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/normalize.css') }}" /> --}}
 @section('extra_styles')
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/demo.css') }}" /> --}}
+<style type="text/css">
+    .kuning{
+      color: #ffd119;
+      font-size: 14px;
+    }
+    .comment-widgets .comment-row{
+        margin: 0px;
+        padding-top: 3px;
+        padding-bottom: 3px;
 
+    }
+</style>
 {{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/component.css') }}" /> --}}
 
 @endsection
@@ -34,9 +45,9 @@
                         <div class="d-flex align-items-center">
                             <div class="m-r-10">
                                 @if (Auth::user()->u_image == null)
-                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" alt="user" width="60" class="rounded-circle"{{-- width="150" --}} />
+                                    <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" alt="user"  width="50" height="50" class="rounded-circle"{{-- width="150" --}} />
                                 @else
-                                    <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" alt="user" width="60" class="rounded-circle"{{-- width="150" --}} />
+                                    <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" alt="user"  width="50" height="50" class="rounded-circle"{{-- width="150" --}} />
                                 @endif
                             </div>
                             <div>
@@ -50,24 +61,102 @@
         </div>
 
         <div class="row">
+            @if (count($comment_chapter) == 0)
+            @else
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="padding-bottom: 5px;border-bottom: 1px solid #e6e5e5;">
                                 <h4 class="card-title">Recent Comments</h4>
                             </div>
                             <div class="comment-widgets scrollable" style="height:560px;">
                                 <!-- Comment Row -->
                                 @foreach ($comment_chapter as $element)
-                                <div class="d-flex flex-row comment-row">
+                                <div class="d-flex flex-row comment-row" style="border-bottom: 1px solid #e6e5e5;">
                                     <div class="p-2">
-                                        <img src="{{ asset('storage/app/'.$element->m_image) }}" alt="user" width="50" class="rounded-circle">
+                                        <img src="{{ asset('storage/app/'.$element->m_image) }}" style="overflow: hidden;" alt="user" width="50" height="50" class="rounded-circle">
                                     </div>
                                     <div class="comment-text active w-100">
                                         <h6 class="font-medium">{{ $element->m_username }} mengomentari "{{ strtoupper($element->dn_title) }}"</h6>
-                                        <span class="m-b-15 d-block">{!! $element->dncc_message !!}</span>
+                                        <span class="m-b-0 d-block">{!! $element->dncc_message !!}</span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">{{ date('d M,Y h:i a',strtotime($element->dncc_created_at)) }}</span>
-                                            {{-- <span class="label label-success label-rounded">Approved</span> --}}
+                                            {{-- <span class="label label-success label-rounded btn-primary btn">View</span> --}}
+                                            {{-- <span class="action-icons active">
+                                                <a href="javascript:void(0)">
+                                                    <i class="ti-pencil-alt"></i>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <i class="icon-close"></i>
+                                                </a>
+                                                <a href="javascript:void(0)">
+                                                    <i class="ti-heart text-danger"></i>
+                                                </a>
+                                            </span> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endforeach
+                                <!-- Comment Row -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- column -->
+            @endif
+            @if (count($rating_novel) == 0)
+            @else
+                   <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body" style="padding-bottom: 5px;border-bottom: 1px solid #e6e5e5;">
+                                <h4 class="card-title">Recent Rating</h4>
+                            </div>
+                            <div class="comment-widgets scrollable" style="height:560px;">
+                                <!-- Comment Row -->
+                                @foreach ($rating_novel as $element)
+                                <div class="d-flex flex-row comment-row" style="border-bottom: 1px solid #e6e5e5;">
+                                    <div class="p-2">
+                                        <img src="{{ asset('storage/app/'.$element->m_image) }}" alt="user"  width="50" height="50" class="rounded-circle">
+                                    </div>
+                                    <div class="comment-text active w-100">
+                                        <h6 class="font-medium">{{ $element->m_username }} menilai "{{ strtoupper($element->dn_title) }}"</h6>
+                                        <span class="m-b-0 d-block">{!! $element->dr_message !!}</span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">{{ date('d M,Y h:i a',strtotime($element->dr_created_at)) }}</span>
+                                            <span>
+                                                {{-- <p> --}}
+                                                        @if ($element->dr_rate == 1)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 2)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 3)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 4)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="far fa-star kuning"></i>
+                                                        @elseif ($element->dr_rate == 5)
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                            <i class="fas fa-star kuning"></i>
+                                                        @endif
+                                                    {{-- </p> --}}
+                                            </span>
                                             {{-- <span class="action-icons active">
                                                 <a href="javascript:void(0)">
                                                     <i class="ti-pencil-alt"></i>
@@ -83,97 +172,11 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <!-- Comment Row -->
                             </div>
                         </div>
                     </div>
-                    <!-- column -->
-                   <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Recent Rating</h4>
-                            </div>
-                            <div class="comment-widgets scrollable" style="height:560px;">
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row m-t-0">
-                                    <div class="p-2">
-                                        <img src="../../assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">James Anderson</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-rounded label-primary">Pending</span>
-                                            <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-check"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row">
-                                    <div class="p-2">
-                                        <img src="../../assets/images/users/6.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text w-100">
-                                        <h6 class="font-medium">James Anderson</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-rounded label-primary">Pending</span>
-                                            <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-check"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                                <!-- Comment Row -->
-                                <div class="d-flex flex-row comment-row">
-                                    <div class="p-2">
-                                        <img src="../../assets/images/users/2.jpg" alt="user" width="50" class="rounded-circle">
-                                    </div>
-                                    <div class="comment-text active w-100">
-                                        <h6 class="font-medium">Michael Jorden</h6>
-                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
-                                        <div class="comment-footer">
-                                            <span class="text-muted float-right">April 14, 2016</span>
-                                            <span class="label label-success label-rounded">Approved</span>
-                                            <span class="action-icons active">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="icon-close"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart text-danger"></i>
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Comment Row -->
-                            </div>
-                        </div>
-                    </div>
+                @endif
+
                 </div>
 
     

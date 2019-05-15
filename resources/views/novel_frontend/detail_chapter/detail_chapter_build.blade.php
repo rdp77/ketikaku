@@ -105,7 +105,7 @@
                                 </figure>
                                 <div class="details">
                                     <div class="job">{{ $chapter->m_instagram }}</div>
-                                    <h3 class="name">{{ $chapter->m_username }}</h3>
+                                    <h3 class="name"><a href="{{ route('profile_frontend',['name'=>$chapter->m_username]) }}">{{ $chapter->m_username }}</h3>
                                     <p>{!! $chapter->m_desc_short !!}</p>
                                     <ul class="social trp sm">
                                         <li>

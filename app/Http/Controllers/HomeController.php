@@ -29,8 +29,15 @@ class HomeController extends Controller
                                     ->leftjoin('d_novel','dn_id','dncc_ref_id')
                                     ->leftjoin('d_mem','m_id','dncc_comment_by')
                                     ->where('dncc_creator',Auth::user()->m_id)
+                                    ->orderBy('dncc_id','DESC')
                                     ->get();
-        return view('home',compact('comment_chapter'));
+        $rating_novel = DB::table('d_novel_rate')
+                                    ->leftjoin('d_novel','dn_id','dr_ref_id')
+                                    ->leftjoin('d_mem','m_id','dr_rated_by')
+                                    ->where('dn_created_by',Auth::user()->m_id)
+                                    ->orderBy('dr_id','DESC')
+                                    ->get();
+        return view('home',compact('comment_chapter','rating_novel'));
     }
     
 }
