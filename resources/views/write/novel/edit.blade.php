@@ -1,6 +1,17 @@
 @extends('layouts_backend._main_backend')
 
 @section('extra_styles')
+<style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__choice{
+        background-color: #4798e8 !important;
+    }
+    .select2 {
+        width: 100% !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice{
+        background-color:#4798e8 !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -39,6 +50,34 @@
                                         <label for="dn_title" class="col-2 col-form-label">Title</label>
                                         <div class="col-10">
                                             <input class="form-control" value="{{ $data->dn_title }}" type="text" name="dn_title" id="dn_title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dn_title" class="col-2 col-form-label">Genre</label>
+                                        <div class="col-10">
+                                            <select class="form-control select2" name="dn_category">
+                                            @foreach ($cat as $element)
+                                                @if ($data->dn_category == $element->mc_id)
+                                                  <option value="{{ $element->mc_id }}" selected="">{{ $element->mc_name }}</option>
+                                                @else
+                                                  <option value="{{ $element->mc_id }}">{{ $element->mc_name }}</option>
+                                                @endif
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dn_title" class="col-2 col-form-label">Tags</label>
+                                        <div class="col-10">
+                                            <select class="form-control" multiple="" id="select2-with-tags" name="dn_tags[]" style="width: 100%;height: 36px;">
+                                            @foreach ($tags as $element)
+                                              <option value="{{ $element->dnt_name }}" selected="">{{ $element->dnt_name }}</option>
+                                            @endforeach
+                                            </select>
+
+                                            <input type="hidden" class="dn_tags_remove" name="dn_tags_remove[]">
+                                            <input type="hidden" class="dn_tags_add" name="dn_tags_add[]">
+
                                         </div>
                                     </div>
                                     <div class="row clearfix preview_div">
@@ -233,6 +272,7 @@
             ]
         });
         }
+
 
     </script>
 

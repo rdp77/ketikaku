@@ -89,10 +89,12 @@ class write_novelController extends Controller
     }
     public function edit($id)
     {
+        $cat = DB::table('m_category')->get();
     	// $data = DB::table('d_novel')->where('s_id',$id)->first();
         $data =  DB::Table('d_novel')->where('dn_id',$id)->first();
+        $tags =  DB::Table('d_novel_tags')->where('dnt_ref_id',$id)->get();
 
-        return view('write.novel.edit',compact('data'));
+        return view('write.novel.edit',compact('data','tags','cat'));
     }
     public function update(Request $request)
     {
@@ -119,6 +121,7 @@ class write_novelController extends Controller
                 'dn_title'=>$request->dn_title,
                 'dn_status'=>$request->dn_status,
                 'dn_description'=>$request->dn_description,
+                'dn_category'=>$request->dn_category,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
                 'dn_updated_by'=>Auth::user()->m_id,
             ]);
@@ -127,9 +130,17 @@ class write_novelController extends Controller
                 'dn_title'=>$request->dn_title,
                 'dn_status'=>$request->dn_status,
                 'dn_description'=>$request->dn_description,
+                'dn_category'=>$request->dn_category,
                 'dn_updated_at'=>date('Y-m-d h:i:s'),
                 'dn_updated_by'=>Auth::user()->m_id,
             ]);
+        }
+        $deltags = DB::table('d_novel_tags')->where('dnt_ref_id',$request->dn_id)->delete();
+        for ($i=0; $i <count($request->dn_tags) ; $i++) { 
+             $data = DB::table('d_novel_tags')->insert([
+                'dnt_name'=>$request->dn_tags[$i],
+                'dnt_ref_id'=>$request->dn_id,
+             ]);
         }
         
 

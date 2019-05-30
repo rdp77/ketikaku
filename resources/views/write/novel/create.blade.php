@@ -65,7 +65,7 @@
                                         <div class="col-10">
                                             <select class="form-control" multiple="" id="select2-with-tags" name="dn_tags[]" style="width: 100%;height: 36px;">
                                             @foreach ($tags as $element)
-                                              <option value="{{ $element->dnt_name }}">{{ $element->dnt_name }}</option>
+                                              <option value="{{ $element->dnt_name }}" >{{ $element->dnt_name }}</option>
                                             @endforeach
                                             </select>
                                         </div>
