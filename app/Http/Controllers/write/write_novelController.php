@@ -103,18 +103,18 @@ class write_novelController extends Controller
         $file = $request->file('dn_cover');
         $check = DB::table('d_novel')->where('dn_id',$request->dn_id)->get();
         // return $check;
-        if ($request->dn_cover_null == null) {
-            if ($file != null) {
-                if ($photo == null) {
+        if ($request->dn_cover != null) {
+            // if ($file != null) {
+                // if ($photo == null) {
                     $photo = 'novel/cover_'.$check[0]->dn_id.'.png'/*$file->getClientOriginalExtension()*/;
-                    Storage::put($photo,file_get_contents($req->file('dn_cover')));# code...
-                }else{
-                    $photo = $check[0]->dn_cover;
-                Storage::put($photo,file_get_contents($request->file('dn_cover')));
-                }
-            }else{
-            $photo = $check[0]->dn_cover;
-            }
+                    Storage::put($photo,file_get_contents($request->file('dn_cover')));# code...
+                // }else{
+                    // $photo = $check[0]->dn_cover;
+                // Storage::put($photo,file_get_contents($request->file('dn_cover')));
+                // }
+            // }else{
+            // $photo = $check[0]->dn_cover;
+            // }
 
             $data = DB::table('d_novel')->where('dn_id',$request->dn_id)->update([
                 'dn_cover'=>$photo,
