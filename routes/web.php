@@ -26,6 +26,9 @@
    Route::get('/search_user', 'welcomeController@search_user')->name('search_user');
    Route::get('/search_story', 'welcomeController@search_story')->name('search_story');
 
+   Route::get('/search_category/{id}', 'welcomeController@search_category')->name('search_category');
+   Route::get('/list_category_story', 'welcomeController@list_category_story')->name('list_category_story');
+
 
 
 //FRONT END
@@ -115,6 +118,7 @@ Auth::routes();
    Route::post('/master/master_user/save', 'backend\master\master_userController@save')->name('master_user_save');
    Route::get('/master/master_user/update', 'backend\master\master_userController@update')->name('master_user_update');
    Route::get('/master/master_user/delete/{id}', 'backend\master\master_userController@delete')->name('master_user_delete');
+   Route::get('/master/master_user/verif/{id}', 'backend\master\master_userController@verif')->name('master_user_verif');
    // category
    Route::get('/master/master_category', 'backend\master\master_categoryController@index')->name('master_category');
    Route::get('/master/master_category/create', 'backend\master\master_categoryController@create')->name('master_category_create');

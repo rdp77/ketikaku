@@ -27,6 +27,11 @@ class master_userController extends Controller
         $data = d_mem::where('m_id',Auth::user()->m_id)->update($input);
         return response()->json(['status'=>'sukses']);
     }
+    public function verif($id)
+    {
+        $data = d_mem::where('m_id',$id)->update(['m_isactive'=>'Y']);
+        return response()->json(['status'=>'sukses']);
+    }
     public function update_image(Request $request)
     {
     	// dd($request->all());

@@ -52,9 +52,9 @@
                 <div class="row">
                     <div class="col-md-3 col-md-12 col-md-12">
                         @if ($book->dn_cover == null)
-                            <img src="{{ asset('assets/images/noimage.jpg' ) }}" width="200px" height="280px" alt="{{ $book->dn_title }}">
+                            <img src="{{ asset('assets/images/noimage.jpg' ) }}?{{ time() }}" width="200px" height="280px" alt="{{ $book->dn_title }}">
                         @else
-                            <img src="{{ asset('storage/app/'.$book->dn_cover ) }}" width="200px" height="280px" alt="{{ $book->dn_title }}">
+                            <img src="{{ asset('storage/app/'.$book->dn_cover ) }}?{{ time() }}" width="200px" height="280px" alt="{{ $book->dn_title }}">
                         @endif
                     </div>
 

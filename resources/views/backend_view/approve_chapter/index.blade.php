@@ -98,8 +98,7 @@
 @section('extra_scripts')
     <script type="text/javascript">
         $('#zero_config').DataTable();
-
-        $('.delete').on('click', function () {
+        $('.delete').click(function () {
 
        var this_val = $(this).val();
        var ref = $(this).data('ref');

@@ -48,7 +48,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/banner/1.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/banner/1.jpg') }}?{{ time() }}" alt="Sample Article">
                                     </figure>
                                    {{--  <div class="details">
                                         <div class="category"><a href="category.html">Welcome</a></div>
@@ -61,7 +61,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/banner/2.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/banner/2.jpg') }}?{{ time() }}" alt="Sample Article">
                                     </figure>
                                     {{-- <div class="details">
                                         <div class="category"><a href="category.html">Travel</a></div>
@@ -74,7 +74,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="{{ asset('assets/images/banner/3.jpg') }}" alt="Sample Article">
+                                        <img src="{{ asset('assets/images/banner/3.jpg') }}?{{ time() }}" alt="Sample Article">
                                     </figure>
                                     {{-- <div class="details">
                                         <div class="category"><a href="category.html">International</a></div>
@@ -109,9 +109,9 @@
                                             <figure>
                                                 <a href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}">
                                                     @if ($element->dn_cover == null)
-                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @else
-                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @endif
                                                 </a>
                                             </figure>
@@ -179,9 +179,9 @@
                                             <figure>
                                                 <a href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}">
                                                     @if ($element->dn_cover == null)
-                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @else
-                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @endif
                                                 </a>
                                             </figure>
@@ -216,9 +216,9 @@
                                             <figure>
                                                 <a href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}">
                                                     @if ($element->dn_cover == null)
-                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @else
-                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @endif
                                                 </a>
                                             </figure>
@@ -252,9 +252,9 @@
                                             <figure>
                                                 <a href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}">
                                                     @if ($element->dn_cover == null)
-                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('assets/images/noimage.jpg' ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @else
-                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}" height="300px" alt="{{ $element->dn_title }}">
+                                                        <img src="{{ asset('storage/app/'.$element->dn_cover ) }}?{{ time() }}" height="300px" alt="{{ $element->dn_title }}">
                                                     @endif
                                                 </a>
                                             </figure>

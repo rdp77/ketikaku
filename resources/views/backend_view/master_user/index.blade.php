@@ -85,7 +85,9 @@
                                         </td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('profile_backend',['id'=>$element->m_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->m_id }}"><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-success" onclick="verif({{ $element->m_id }})" value=""><i class="fas fa-check-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" onclick="deletes({{ $element->m_id }})" value=""><i class="fas fa-times-circle"></i></button>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -105,19 +107,16 @@
     <script type="text/javascript">
         $('#zero_config').DataTable();
 
-        $('.delete').on('click', function () {
+        function deletes(argument) {
 
-       var this_val = $(this).val();
-       var ref = $(this).data('ref');
-
-       console.log(ref);
+       var this_val = argument;
 
        iziToast.question({
                 theme: 'dark',
                 overlay: true,
                 displayMode: 'once',
                 id: 'question',
-                zindex: 999,
+                // zindex: 999,
                 backgroundColor: '#1f1f22',
                 icon: 'fa fa-info-circle',
                 title: 'Are you Sure!',
@@ -165,7 +164,67 @@
                 }
             });
         
-    });
+    // });
+}
+     function verif(argument) {
+
+       var this_val = argument;
+
+       iziToast.question({
+                theme: 'dark',
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                // zindex: 999,
+                backgroundColor: '#1f1f22',
+                icon: 'fa fa-info-circle',
+                title: 'Are you Sure!',
+                message: '',
+                position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+                progressBarColor: 'rgb(0, 255, 184)',
+                buttons: [
+                    ['<button style="background-color:green;"> Verif </button>', function (instance, toast) {
+
+                        $.ajax({
+                            url  : baseUrl+'/master'+'/master_user/verif/'+this_val,
+                            type :'get',
+                            success:function(data){
+                                if (data.status == 'sukses') {
+                                    iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
+                                    // location.href = baseUrl+'/write'+'/write_chapter/'+id
+                                    location.reload();
+                                }else{
+                                    iziToast.error({position: 'topRight',message: 'Error Check your data! '});
+                                }
+                            },
+                            error:function(data){
+
+                            }
+
+                        })
+
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }, true], // true to focus
+                    ['<button> Cancel </button>', function (instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy){
+                                console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+                            }
+                        }, toast, 'buttonName');
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }]
+                ],
+                onOpening: function(instance, toast){
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy){
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        
+    // });
+}
 
     </script>
 

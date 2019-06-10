@@ -80,6 +80,7 @@
 @section('extra_scripts')
     <script type="text/javascript">
         $('#zero_config').DataTable();
+        $( document ).ready(function() {
 
         $('.delete').on('click', function () {
 
@@ -142,6 +143,7 @@
             });
         
     });
+});
 
     </script>
 

@@ -76,12 +76,14 @@
                                         </td>
                                         <td>{{ date('F ,d Y',strtotime($element->dn_created_at)) }}</td>
                                         <td width="13%">
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-success official" value="{{ $element->dn_id }}"><i class="fas fa-check-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-success official" onclick="official({{ $element->dn_id }})" value="{{ $element->dn_id }}"><i class="fas fa-check-circle"></i></button>
+
                                             @if ($element->dn_type_novel == 1)
+
                                                 <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('approve_novel_edit',['id'=>$element->dn_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
                                             {{-- @else --}}
                                             @endif
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}"><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" onclick="deletes({{ $element->dn_id }})" value="{{ $element->dn_id }}"><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -100,10 +102,10 @@
 @section('extra_scripts')
     <script type="text/javascript">
         $('#zero_config').DataTable();
+        function deletes(argument) {
+            // body...
 
-        $('.delete').on('click', function () {
-
-       var this_val = $(this).val();
+       var this_val = argument;
        var ref = $(this).data('ref');
 
        console.log(ref);
@@ -160,12 +162,12 @@
                     console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
                 }
             });
-     });
+        }
 
 
-    $('.official').on('click', function () {
+        function official(argument) {
 
-       var this_val = $(this).val();
+       var this_val = argument;
        iziToast.question({
                 theme: 'dark',
                 overlay: true,
@@ -218,7 +220,7 @@
                     console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
                 }
             });
-     });
+     }
 
     </script>
 

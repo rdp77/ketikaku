@@ -21,12 +21,11 @@
                                 </div>
                                 <div class="help-block">
                                     <div>Genre Popular:</div>
-                                    <ul>
-                                        <li><a href="#">#Romance</a></li>
+                                    <ul class="drop_here_list">
+                                        {{-- <li><a href="#">#Romance</a></li>
                                         <li><a href="#">#Horror</a></li>
                                         <li><a href="#">#Slice Of Life</a></li>
-                                        <li><a href="#">#Action</a></li>
-                                        <li><a href="#">#Comedy</a></li>
+                                        <li><a href="#">#Action</a></li> --}}
                                     </ul>
                                 </div>
                             </form>                             
@@ -119,7 +118,31 @@
                     }
                 });
             })
-                
+
+            $.ajax({
+                type: "get",
+                url:'{{ route('list_category_story') }}',
+                success:function(data){
+                   $.each(data.list, function(i, value ) {
+                         $('.drop_here_list').append('<li><input class="cat_val" type="hidden" value="'+data.list[i].mc_id+'" ><a class="search_category">'+data.list[i].mc_name+'</a></li>');
+                    });
+                }
+            });
+            
+        $(document).ready (function () {            
+            $('.search_category').click(function(){
+                var val = $('.cat_val').val();
+                alert(val);
+                $.ajax({
+                    type: "get",
+                    url:baseUrl+'/search_category/'+val,
+                    data: '&search='+val,
+                    success:function(data){
+                       $('.home').html(data);
+                    }
+                });
+            })
+        });
 
 
         </script>
