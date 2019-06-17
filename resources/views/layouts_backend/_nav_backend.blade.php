@@ -2,6 +2,21 @@
     .mailbox .message-center{
         height: auto;
     }
+/*    .badge-wrapper {
+     position: relative;
+     }*/
+
+     .badge_notif {
+         position: absolute;
+         top: 8px;
+         font-size: 12px;
+         right: -1px;
+         display: inline-block;
+         width: 20px;
+         height: 20px;
+         border-radius: 50%;
+         background-color: #ff7171;
+     }
 </style>
 <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
@@ -88,7 +103,7 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-heart font-20"></i>
+                                <i class="far fa-heart font-20"> <span class='badge badge_notif badge-secondary'>21</span></i>
 
                             </a>
                             <div class="dropdown-menu mailbox animated bounceInDown">
@@ -115,6 +130,31 @@
                                 </ul>
                             </div>
                         </li>
+
+                       {{--  <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-heart font-20"> <span class='badge badge_notif badge-secondary'>21</span></i>
+
+                            </a>
+                            <div class="dropdown-menu mailbox animated bounceInDown">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="drop-title bg-primary text-white">
+                                            <div class="drop_header_like">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="drop_notif_like">
+                                        </div>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </li> --}}
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
@@ -284,15 +324,30 @@
                     // $('.drop_header').html(data.header);
                     var key = 1;
                     Object.keys(data.notif).forEach(function(){
+                        if (data.notif[key-1].flag == 'upload') {
+                                $a = ' Has Upload</h5>'
+                                $b = ' Upload'
+                        }else if(data.notif[key-1].flag == 'update'){
+                                $a = ' Has Update</h5>'
+                                $b = ' Update'
+                        }else if(data.notif[key-1].flag == 'subsriber'){
+                                $a = ' Has Subsribed</h5>'
+                                $b = ' Subsribed'
+                        }
+                        if (data.notif[key-1].image != null) {
+                            $c = 'storage/app/'+data.notif[key-1].image
+                        }else{
+                            $c = 'assets_backend/images/no_image.png'
+                        }
                         $('.drop_notif').append(
                             '<div class="message-center notifications">'+
                                 '<a href="javascript:void(0)" class="message-item">'+
-                                    '<span class="user-img">'+
-                                        '<img src="storage/app/'+data.notif[key-1].m_image+'" alt="user" class="rounded-circle">'+
+                                    '<span class="user-img">"'+
+                                        '<img src="'+$c+'" alt="user" class="rounded-circle">'+
                                     '</span>'+
                                     '<div class="mail-contnet">'+
-                                        '<h5 class="message-title">'+data.notif[key-1].m_username+' Has Subsribed</h5>'+
-                                        '<span class="mail-desc">Subsribed <b>'+data.notif[key-1].dn_title+'</b></span>'+
+                                        '<h5 class="message-title">'+data.notif[key-1].user+$a+'</h5>'+ 
+                                        '<span class="mail-desc">'+$b+' <b>'+data.notif[key-1].tittles+'</b></span>'+
                                         '<span class="time"></span>'+
                                     '</div>'+
                                 '</a>'+

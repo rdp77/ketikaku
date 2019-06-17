@@ -35,6 +35,19 @@ class write_chapterController extends Controller
             'dnch_created_at'=>date('Y-m-d h:i:s'),
             'dnch_created_by'=>Auth::user()->m_id,
         ]);
+        $check = DB::table('d_novel')
+                        ->join('d_novel_chapter','d_novel_chapter.dnch_ref_id','dn_id')
+                        ->where('dnch_ref_id',$req->dnch_ref_id)->orderBy('dnch_id','DESC')->first();
+        $chek = DB::table('d_novel_subscribe')->where('dns_subscribe_by',Auth::user()->m_id)->get();
+        for ($i=0; $i <count($chek) ; $i++) { 
+            $d = DB::table('d_novel_notif_chapter')->insert([
+                'dnnc_creator'=>Auth::user()->m_id,
+                'dnnc_subscriber'=>$chek[$i]->dns_creator,
+                'dnnc_chapter'=>$check->dnch_id,
+                'dnnc_read'=>'N'
+
+            ]);
+        }
 
         if ($data == true){
         	return response()->json(['status'=>'sukses',]);

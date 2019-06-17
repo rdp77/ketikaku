@@ -72,6 +72,19 @@ class write_novelController extends Controller
                 'dn_created_at'=>date('Y-m-d h:i:s'),
                 'dn_created_by'=>Auth::user()->m_id,
         ]);
+        if ($req->dn_status == 'publish') {
+            $subs = DB::table('d_mem_follow')->where('dmf_follow_by',Auth::user()->m_id)->get();
+            for ($i=0; $i <count($subs) ; $i++) { 
+                $data = DB::table('d_novel_notif')->insert([
+                    'dnn_creator'=>Auth::user()->m_id,
+                    'dnn_subscriber'=>$subs[$i]->dmf_followed,
+                    'dnn_novel'=>$check_incre,
+                    'dnn_read'=>'N'
+                ]);
+                
+            }
+        }
+        
 
         for ($i=0; $i <count($req->dn_tags) ; $i++) { 
              $data = DB::table('d_novel_tags')->insert([

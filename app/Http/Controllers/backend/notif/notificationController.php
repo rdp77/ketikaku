@@ -14,20 +14,42 @@ class notificationController extends Controller
 {
     public function notif_bell()
     {
-    	$notif = DB::table('d_novel_subscribe')
-                    ->select('m_username','dns_created_at','dn_title','m_image')
+    	$notif_subs = DB::table('d_novel_subscribe')
+                    ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image')
+                    ->selectRaw("'subs' as flag")
+                    // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
                     ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
                     ->where('dns_creator',Auth::user()->m_id)
-                    ->limit(5)
-                    ->get();
+                    ->get()->toArray();
+        $notif_upload_novel = DB::table('d_novel_notif')
+                    ->select('m_username as user','dnn_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    // ->select('"upload" as tipe')
+                    ->selectRaw("'upload' as flag")
+                    ->join('d_novel','dnn_novel','dn_id')
+                    ->join('d_mem','dnn_subscriber','m_id')
+                    ->where('dnn_read','N')
+                    ->where('dnn_subscriber',Auth::user()->m_id)
+                    ->get()->toArray();
+        $notif_upload_chapter = DB::table('d_novel_notif_chapter')
+                    ->select('m_username as user','dnnc_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    ->selectRaw("'update' as flag")
+                    // ->select('"update" as tipe')
+                    ->join('d_novel','dnnc_novel','dn_id')
+                    ->join('d_mem','dnnc_subscriber','m_id')
+                    ->where('dnnc_read','N')
+                    ->where('dnnc_subscriber',Auth::user()->m_id)
+                    ->get()->toArray();
+        $data = [];
+        $data = array_merge($notif_subs,$notif_upload_novel,$notif_upload_chapter);
 
-        $check_notif = count($notif);
+
+        $check_notif = count($data);
         if ($check_notif > 0 ) {
             return response()->json([
 
-                                    'notif'=>$notif,
+                                    'notif'=>$data,
                                     'status'=>'sukses',
                                     'header'=>$check_notif.'  &nbsp;'.' Notification'
 
