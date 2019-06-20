@@ -27,27 +27,31 @@ class write_chapterController extends Controller
     public function save(Request $req)
     {
         // dd($req->all());
-        $data = DB::table('d_novel_chapter')->insert([
-            'dnch_ref_id'=>$req->dnch_ref_id,
-            'dnch_title'=>$req->dnch_title,
-            'dnch_status'=>$req->dnch_status,
-            'dnch_content'=>$req->dnch_content,
-            'dnch_created_at'=>date('Y-m-d h:i:s'),
-            'dnch_created_by'=>Auth::user()->m_id,
-        ]);
+        // $data = DB::table('d_novel_chapter')->insert([
+        //     'dnch_ref_id'=>$req->dnch_ref_id,
+        //     'dnch_title'=>$req->dnch_title,
+        //     'dnch_status'=>$req->dnch_status,
+        //     'dnch_content'=>$req->dnch_content,
+        //     'dnch_created_at'=>date('Y-m-d h:i:s'),
+        //     'dnch_created_by'=>Auth::user()->m_id,
+        // ]);
         $check = DB::table('d_novel')
                         ->join('d_novel_chapter','d_novel_chapter.dnch_ref_id','dn_id')
                         ->where('dnch_ref_id',$req->dnch_ref_id)->orderBy('dnch_id','DESC')->first();
+                        
         $chek = DB::table('d_novel_subscribe')->where('dns_subscribe_by',Auth::user()->m_id)->get();
         for ($i=0; $i <count($chek) ; $i++) { 
             $d = DB::table('d_novel_notif_chapter')->insert([
                 'dnnc_creator'=>Auth::user()->m_id,
                 'dnnc_subscriber'=>$chek[$i]->dns_creator,
                 'dnnc_chapter'=>$check->dnch_id,
+                'dnnc_novel'=>$req->dnch_ref_id,
                 'dnnc_read'=>'N'
-
             ]);
         }
+
+        return 'a';
+
 
         if ($data == true){
         	return response()->json(['status'=>'sukses',]);

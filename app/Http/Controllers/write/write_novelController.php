@@ -18,9 +18,9 @@ class write_novelController extends Controller
                                             DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
                                                 WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_like.dnl_ref_id) as liked"),
-                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_creator) FROM d_novel_subscribe
-                                                WHERE d_novel_subscribe.dns_creator = d_mem.m_id
-                                                GROUP BY d_novel_subscribe.dns_creator) as subscriber"),
+                                            DB::raw("(SELECT COUNT(d_novel_subscribe.dns_subscribe_by) FROM d_novel_subscribe
+                                                WHERE d_novel_subscribe.dns_ref_id = d_novel.dn_id
+                                                GROUP BY d_novel_subscribe.dns_subscribe_by) as subscriber"),
                                             DB::raw("(SELECT SUM(d_novel_chapter.dnch_viewer) FROM d_novel_chapter
                                                 WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_chapter.dnch_ref_id) as viewer")
@@ -103,7 +103,6 @@ class write_novelController extends Controller
     public function edit($id)
     {
         $cat = DB::table('m_category')->get();
-    	// $data = DB::table('d_novel')->where('s_id',$id)->first();
         $data =  DB::Table('d_novel')->where('dn_id',$id)->first();
         $tags =  DB::Table('d_novel_tags')->where('dnt_ref_id',$id)->get();
 

@@ -29,6 +29,9 @@
    Route::get('/search_category/{id}', 'welcomeController@search_category')->name('search_category');
    Route::get('/list_category_story', 'welcomeController@list_category_story')->name('list_category_story');
 
+   Route::get('/api', 'welcomeController@api')->name('api');
+
+
 
 
 //FRONT END
