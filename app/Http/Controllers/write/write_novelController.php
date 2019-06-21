@@ -14,7 +14,7 @@ class write_novelController extends Controller
 
     public function index()
     {
-        $data =  DB::Table('d_novel')->select('d_novel.*','d_mem.*',
+        $data =  DB::table('d_novel')->select('d_novel.*','d_mem.*',
                                             DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
                                                 WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_like.dnl_ref_id) as liked"),
