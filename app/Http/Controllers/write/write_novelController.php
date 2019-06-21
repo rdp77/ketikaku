@@ -25,7 +25,7 @@ class write_novelController extends Controller
                                                 WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_chapter.dnch_ref_id) as viewer")
                                     )
-                                    ->join('d_mem','m_id','dn_created_by')
+                                    ->leftjoin('d_mem','m_id','dn_created_by')
                                     ->where('dn_created_by',Auth::user()->m_id)
                                     ->get();
         return view('write.novel.index',compact('data'));
