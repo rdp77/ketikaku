@@ -2,15 +2,15 @@
     .mailbox .message-center{
         height: auto;
     }
-/*    .badge-wrapper {
-     position: relative;
-     }*/
+     .drop-title {
+        padding: 8px !important;
+     }
 
      .badge_notif {
          position: absolute;
-         top: 8px;
+         top: 10px;
          font-size: 12px;
-         right: -1px;
+         right: 4px;
          display: inline-block;
          width: 20px;
          height: 20px;
@@ -73,7 +73,7 @@
                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_bell()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-bell font-20"></i>
+                                <i class="ti-bell font-20"><span class='badge badge_notif badge-secondary'></span></i>
 
                             </a>
                             <div class="dropdown-menu mailbox animated bounceInDown">
@@ -101,7 +101,7 @@
                             </div>
                         </li>
 
-                        <li class="nav-item dropdown">
+                       {{--  <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-heart font-20"> <span class='badge badge_notif badge-secondary'>21</span></i>
 
@@ -121,15 +121,15 @@
                                         <div class="drop_notif_like">
                                         </div>
                                     </li>
-                                    {{-- <li>
+                                    <li>
                                         <a class="nav-link text-center m-b-5 check_all" href="javascript:void(0);">
                                             <strong style="color: black">Check all notifications</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
-                                    </li> --}}
+                                    </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
 
                        {{--  <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -310,8 +310,19 @@
                 </div>
             </nav>
         </header>
+<script src="{{ asset('assets_backend/libs/jquery/dist/jquery.min.js') }}"></script>
 <script type="text/javascript">
-    
+
+    $( document ).ready(function() {
+        $.ajax({
+            type: "get",
+            url:'{{ route('sum_notif_bell') }}',
+            success:function(data){
+                $('.badge_notif').text(data.total);  
+            }
+       });
+   });
+
 
     function check_bell() {
         $('.drop_notif').empty();
@@ -321,91 +332,52 @@
             success:function(data){
                 if (data.status == 'sukses') {
                     $('.check_all').css('display','block');
-                    // $('.drop_header').html(data.header);
                     var key = 1;
                     Object.keys(data.notif).forEach(function(){
+                        $('.drop_header').html(data.header);
                         if (data.notif[key-1].flag == 'upload') {
                                 $a = ' Has Upload</h5>'
-                                $b = ' Upload'
-                        }else if(data.notif[key-1].flag == 'update'){
-                                $a = ' Has Update</h5>'
-                                $b = ' Update'
-                        }else if(data.notif[key-1].flag == 'subsriber'){
-                                $a = ' Has Subsribed</h5>'
-                                $b = ' Subsribed'
+                                $b = ' Upload <b>'+data.notif[key-1].tittles+'</b>'
                         }
+                        if(data.notif[key-1].flag == 'update'){
+                                $a = ' Has Update</h5>'
+                                $b = ' Update <b>'+data.notif[key-1].tittles+'</b>'
+                        }
+                        if(data.notif[key-1].flag == 'subs'){
+                                $a = ' Has Subsribed</h5>'
+                                $b = ' Subsribed <b>'+data.notif[key-1].tittles+'</b>'
+                        }
+                        if(data.notif[key-1].flag == 'follow'){
+                                $a = ' Has Follow</h5>'
+                                $b = ' Follows You'
+                        }
+                        $img = data.notif[key-1].image;
                         if (data.notif[key-1].image != null) {
-                            $c = 'storage/app/'+data.notif[key-1].image
+                            $c = "{{ url('/') }}"+"/storage/app/"+data.notif[key-1].image
+                            {{-- $c = '{{ asset('storage/app/'.$img) }}?{{ time() }}' --}}
                         }else{
-                            $c = 'assets_backend/images/no_image.png'
+                            $c = '{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}'
                         }
                         $('.drop_notif').append(
                             '<div class="message-center notifications">'+
                                 '<a href="javascript:void(0)" class="message-item">'+
                                     '<span class="user-img">"'+
-                                        '<img src="'+$c+'" alt="user" class="rounded-circle">'+
+                                        '<img src="'+$c+'" alt="user" style="height:38px" class="rounded-circle">'+
                                     '</span>'+
                                     '<div class="mail-contnet">'+
                                         '<h5 class="message-title">'+data.notif[key-1].user+$a+'</h5>'+ 
-                                        '<span class="mail-desc">'+$b+' <b>'+data.notif[key-1].tittles+'</b></span>'+
+                                        '<span class="mail-desc">'+$b+' </span>'+
                                         '<span class="time"></span>'+
                                     '</div>'+
                                 '</a>'+
                             '</div>'
-
                         );
                     key++;
                     });
-
                 }else if(data.status == 'kosong'){
                     $('.check_all').css('display','none');
                     // $('.drop_header').html(data.header);
                     $('.drop_notif').html('<div class="drop-title bg-primary text-white">'+data.notif+'</div>');
-                }
-
-            },error:function(){
-              iziToast.error({
-                 icon: 'fa fa-info',
-                 position:'topRight',
-                 title: 'Error!',
-                 message: 'Call Admin To resolve!',
-              });
-          }
-        });
-    }
-    function check_like() {
-        $('.drop_notif_like').empty();
-        $.ajax({
-            type: "get",
-            url:'{{ route('notif_like') }}',
-            success:function(data){
-                if (data.status == 'sukses') {
-                    $('.check_all').css('display','block');
-                    // $('.drop_header_like').html(data.header);
-                    var key = 1;
-                    Object.keys(data.notif).forEach(function(){
-                        $('.drop_notif_like').append(
-                            '<div class="message-center notifications">'+
-                                '<a href="javascript:void(0)" class="message-item">'+
-                                    '<span class="user-img">'+
-                                        '<img src="storage/app/'+data.notif[key-1].m_image+'" alt="user" class="rounded-circle">'+
-                                    '</span>'+
-                                    '<div class="mail-contnet">'+
-                                        '<h5 class="message-title">'+data.notif[key-1].m_username+' Like your Story</h5>'+
-                                        '<span class="mail-desc">Liked <b>'+data.notif[key-1].dn_title+'</b></span>'+
-                                        '<span class="time"></span>'+
-                                    '</div>'+
-                                '</a>'+
-                            '</div>'
-
-                        );
-                    key++;
-                    });
-
-                }else if(data.status == 'kosong'){
-                    $('.check_all').css('display','none');
-                    // $('.drop_header').html(data.header);
-                    $('.drop_notif_like').html('<div class="drop-title bg-primary text-white">'+data.notif+'</div>');
                 }
 
             },error:function(){

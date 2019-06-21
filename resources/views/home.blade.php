@@ -14,8 +14,6 @@
 
     }
 </style>
-{{-- <link rel="stylesheet" type="text/css" href="{{ asset('design_frontend/input_file/css/component.css') }}" /> --}}
-
 @endsection
 
 @section('content')
