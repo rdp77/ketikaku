@@ -96,7 +96,7 @@
                                         <div class="bg-primary drop_title text-white">
                                                 <button class="drop_total_notif" disabled=""></button>
                                                 <button style="margin-left:20px" type="button" class="btn btn-success btn-sm terbaca"><i class="fas fa-check"></i> Terbaca</button>
-                                                <button style="margin-left:2px"  type="button" class="btn btn-info btn-sm more"><i class="fas fa-tasks"></i> More</button>
+                                                {{-- <button style="margin-left:2px"  type="button" class="btn btn-info btn-sm more"><i class="fas fa-tasks"></i> More</button> --}}
                                         </div>
                                     </li>
                                     <li >
