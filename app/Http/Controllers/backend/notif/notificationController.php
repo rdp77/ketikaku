@@ -15,16 +15,17 @@ class notificationController extends Controller
     public function notif_bell()
     {
     	$notif_subs = DB::table('d_novel_subscribe')
-                    ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image')
+                    ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image','dns_read as status')
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
                     ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
+                    ->where('dn_status','publish')
                     ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
-                    ->select('m_username as user','dmf_created_at as upload_date','m_image as image')
+                    ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
                     ->selectRaw("'follow' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_mem','dmf_follow_by','m_id')
@@ -33,20 +34,22 @@ class notificationController extends Controller
                     ->get()->toArray();
 
         $notif_upload_novel = DB::table('d_novel_notif')
-                    ->select('m_username as user','dnn_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    ->select('m_username as user','dnn_created_at as upload_date','dn_title as tittles','dn_cover as image','dnn_read as status')
                     // ->select('"upload" as tipe')
                     ->selectRaw("'upload' as flag")
                     ->join('d_novel','dnn_novel','dn_id')
                     ->join('d_mem','dnn_subscriber','m_id')
+                    ->where('dn_status','publish')
                     ->where('dnn_read','N')
                     ->where('dnn_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_upload_chapter = DB::table('d_novel_notif_chapter')
-                    ->select('m_username as user','dnnc_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    ->select('m_username as user','dnnc_created_at as upload_date','dn_title as tittles','dn_cover as image','dnch_status as status')
                     ->selectRaw("'update' as flag")
-                    // ->select('"update" as tipe')
                     ->join('d_novel','dnnc_novel','dn_id')
+                    ->join('d_novel_chapter','dnch_ref_id','dn_id')
                     ->join('d_mem','dnnc_subscriber','m_id')
+                    ->where('dnch_status','publish')
                     ->where('dnnc_read','N')
                     ->where('dnnc_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
@@ -76,16 +79,17 @@ class notificationController extends Controller
     public function sum_notif_bell()
     {
         $notif_subs = DB::table('d_novel_subscribe')
-                    ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image')
+                    ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image','dns_read as status')
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
                     ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
+                    ->where('dn_status','publish')
                     ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
-                    ->select('m_username as user','dmf_created_at as upload_date','m_image as image')
+                    ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
                     ->selectRaw("'follow' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_mem','dmf_follow_by','m_id')
@@ -94,23 +98,25 @@ class notificationController extends Controller
                     ->get()->toArray();
 
         $notif_upload_novel = DB::table('d_novel_notif')
-                    ->select('m_username as user','dnn_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    ->select('m_username as user','dnn_created_at as upload_date','dn_title as tittles','dn_cover as image','dnn_read as status')
                     // ->select('"upload" as tipe')
                     ->selectRaw("'upload' as flag")
                     ->join('d_novel','dnn_novel','dn_id')
                     ->join('d_mem','dnn_subscriber','m_id')
+                    ->where('dn_status','publish')
                     ->where('dnn_read','N')
                     ->where('dnn_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_upload_chapter = DB::table('d_novel_notif_chapter')
-                    ->select('m_username as user','dnnc_created_at as upload_date','dn_title as tittles','dn_cover as image')
+                    ->select('m_username as user','dnnc_created_at as upload_date','dn_title as tittles','dn_cover as image','dnch_status as status')
                     ->selectRaw("'update' as flag")
-                    // ->select('"update" as tipe')
                     ->join('d_novel','dnnc_novel','dn_id')
+                    ->join('d_novel_chapter','dnch_ref_id','dn_id')
                     ->join('d_mem','dnnc_subscriber','m_id')
+                    ->where('dnch_status','publish')
                     ->where('dnnc_read','N')
                     ->where('dnnc_subscriber',Auth::user()->m_id)
-                    ->get()->toArray();
+                    ->get()->toArray(); 
         $data = [];
         $data = array_merge($notif_subs,$notif_upload_novel,$notif_upload_chapter,$notif_follow);
 
@@ -150,6 +156,24 @@ class notificationController extends Controller
                                 
                                 ]);
         }
+    }
+    public function notif_read(Request $req)
+    {
+
+        $notif_subs = DB::table('d_novel_subscribe')
+                    ->where('dns_creator',Auth::user()->m_id)
+                    ->update(['dns_read'=>'Y']);
+        $notif_follow = DB::table('d_mem_follow')
+                    ->where('dmf_followed',Auth::user()->m_id)
+                    ->update(['dmf_read'=>'Y']);
+        $notif_upload_novel = DB::table('d_novel_notif')
+                    ->where('dnn_subscriber',Auth::user()->m_id)
+                    ->update(['dnn_read'=>'Y']);
+
+        $notif_upload_chapter = DB::table('d_novel_notif_chapter')
+                    ->where('dnnc_subscriber',Auth::user()->m_id)
+                    ->update(['dnnc_read'=>'Y']);
+        
     }
    
 }

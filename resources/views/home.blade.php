@@ -75,21 +75,9 @@
                                     </div>
                                     <div class="comment-text active w-100">
                                         <h6 class="font-medium">{{ $element->m_username }} mengomentari "{{ strtoupper($element->dn_title) }}"</h6>
-                                        <span class="m-b-0 d-block">{!! $element->dncc_message !!}</span>
+                                        <span class="m-b-0 d-block" style="margin-bottom: -10px;">{!! $element->dncc_message !!}</span>
                                         <div class="comment-footer">
                                             <span class="text-muted float-right">{{ date('d M,Y h:i a',strtotime($element->dncc_created_at)) }}</span>
-                                            {{-- <span class="label label-success label-rounded btn-primary btn">View</span> --}}
-                                            {{-- <span class="action-icons active">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="icon-close"></i>
-                                                </a>
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-heart text-danger"></i>
-                                                </a>
-                                            </span> --}}
                                         </div>
                                     </div>
                                 </div>

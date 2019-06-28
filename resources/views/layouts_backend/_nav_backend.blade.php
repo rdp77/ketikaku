@@ -2,8 +2,10 @@
     .mailbox .message-center{
         height: auto;
     }
-     .drop-title {
+     .drop_title {
         padding: 8px !important;
+        min-width: 400px;
+        max-width: 400px;
      }
 
      .badge_notif {
@@ -16,6 +18,15 @@
          height: 20px;
          border-radius: 50%;
          background-color: #ff7171;
+     }
+     .overflow {
+          max-height:400px;
+          overflow-y: scroll;
+     }
+     .drop_total_notif{
+        background-color: transparent;
+        border: transparent;
+        color: white;
      }
 </style>
 <header class="topbar">
@@ -80,169 +91,21 @@
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
-                                <ul class="list-style-none">
+                                <ul class="list-style-none overflow">
                                     <li>
-                                        <div class="drop-title bg-primary text-white">
-                                            <div class="drop_header">
-                                            </div>
+                                        <div class="bg-primary drop_title text-white">
+                                                <button class="drop_total_notif" disabled=""></button>
+                                                <button style="margin-left:20px" type="button" class="btn btn-success btn-sm terbaca"><i class="fas fa-check"></i> Terbaca</button>
+                                                <button style="margin-left:2px"  type="button" class="btn btn-info btn-sm more"><i class="fas fa-tasks"></i> More</button>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="drop_notif">
+                                    <li >
+                                        <div class="drop_notif ">
                                         </div>
                                     </li>
-                                    {{-- <li>
-                                        <a class="nav-link text-center m-b-5 check_all" href="javascript:void(0);">
-                                            <strong style="color: black">Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li> --}}
                                 </ul>
                             </div>
                         </li>
-
-                       {{--  <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-heart font-20"> <span class='badge badge_notif badge-secondary'>21</span></i>
-
-                            </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown">
-                                <span class="with-arrow">
-                                    <span class="bg-primary"></span>
-                                </span>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="drop-title bg-primary text-white">
-                                            <div class="drop_header_like">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="drop_notif_like">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center m-b-5 check_all" href="javascript:void(0);">
-                                            <strong style="color: black">Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-
-                       {{--  <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" onclick="check_like()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-heart font-20"> <span class='badge badge_notif badge-secondary'>21</span></i>
-
-                            </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown">
-                                <span class="with-arrow">
-                                    <span class="bg-primary"></span>
-                                </span>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="drop-title bg-primary text-white">
-                                            <div class="drop_header_like">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="drop_notif_like">
-                                        </div>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                       {{--  <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="font-20 ti-email"></i>
-
-                            </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
-                                <span class="with-arrow">
-                                    <span class="bg-danger"></span>
-                                </span>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="drop-title bg-danger text-white">
-                                            <h4 class="m-b-0 m-t-5">5 New</h4>
-                                            <span class="font-light">Messages</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center message-body">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets_backend/images/users/1.jpg') }}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status online pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets_backend/images/users/2.jpg') }}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Sonu Nigam</h5>
-                                                    <span class="mail-desc">I've sung a song! See you at</span>
-                                                    <span class="time">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets_backend/images/users/3.jpg') }}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status away pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Arijit Sinh</h5>
-                                                    <span class="mail-desc">I am a singer!</span>
-                                                    <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets_backend/images/users/4.jpg') }}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status offline pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center link" href="javascript:void(0);">
-                                            <b style="color: black">See all e-Mails</b>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
-
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -326,6 +189,7 @@
 
     function check_bell() {
         $('.drop_notif').empty();
+        // $('.drop_title').empty();
         $.ajax({
             type: "get",
             url:'{{ route('notif_bell') }}',
@@ -333,8 +197,10 @@
                 if (data.status == 'sukses') {
                     $('.check_all').css('display','block');
                     var key = 1;
+                    var total_notif = 0;
+
+
                     Object.keys(data.notif).forEach(function(){
-                        $('.drop_header').html(data.header);
                         if (data.notif[key-1].flag == 'upload') {
                                 $a = ' Has Upload</h5>'
                                 $b = ' Upload <b>'+data.notif[key-1].tittles+'</b>'
@@ -358,9 +224,15 @@
                         }else{
                             $c = '{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}'
                         }
+                        if (data.notif[key-1].status == 'N') {
+                            total_notif+=Object.keys(data.notif[key-1].status).length;
+                            $bgcolor = '#e7fff7';
+                        }else{
+                            $bgcolor = 'white';
+                        }
                         $('.drop_notif').append(
                             '<div class="message-center notifications">'+
-                                '<a href="javascript:void(0)" class="message-item">'+
+                                '<a href="javascript:void(0)" class="message-item" style="background-color:'+$bgcolor+'" >'+
                                     '<span class="user-img">"'+
                                         '<img src="'+$c+'" alt="user" style="height:38px" class="rounded-circle">'+
                                     '</span>'+
@@ -372,12 +244,16 @@
                                 '</a>'+
                             '</div>'
                         );
-                    key++;
+                        key++;
+                       
+                        
                     });
+                    $('.drop_total_notif').html(total_notif +'  notifikasi baru');
                 }else if(data.status == 'kosong'){
                     $('.check_all').css('display','none');
-                    // $('.drop_header').html(data.header);
-                    $('.drop_notif').html('<div class="drop-title bg-primary text-white">'+data.notif+'</div>');
+                    $('.drop_total_notif').html('Tidak Ada notifikasi');
+                    $('.terbaca').attr('hidden',true);
+                    $('.more').attr('hidden',true);
                 }
 
             },error:function(){
@@ -390,6 +266,15 @@
           }
         });
     }
+
+    $(document).on('click','.terbaca',function(argument) {
+        $.ajax({
+            type: "get",
+            url:'{{ route('notif_read') }}',
+            success:function(data){
+            }
+       });
+    })
 
 
 </script>

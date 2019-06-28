@@ -20,7 +20,8 @@ class welcomeController extends Controller
                                                 GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
                                         ->where('dn_status','publish')
                                         ->where('dn_type_novel',1)
-                                        ->orderBy('dn_id','DESC')->limit(8)->get();
+                                        ->orderBy('dn_id','DESC')
+                                        ->limit(10)->get();
         return response()->json($data_official);
     }
     public function data_all()

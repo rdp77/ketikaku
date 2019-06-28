@@ -1,3 +1,8 @@
+<style type="text/css">
+    .seach_category{
+        cursor: pointer !important;
+    }
+</style>
 <header class="primary">
             <div class="firstbar">
                 <div class="container">
@@ -124,25 +129,22 @@
                 url:'{{ route('list_category_story') }}',
                 success:function(data){
                    $.each(data.list, function(i, value ) {
-                         $('.drop_here_list').append('<li><input class="cat_val" type="hidden" value="'+data.list[i].mc_id+'" ><a class="search_category">'+data.list[i].mc_name+'</a></li>');
+                             $('.drop_here_list').append('<li><input class="cat_val_'+i+'" type="hidden" value="'+data.list[i].mc_id+'" ><a class="search_category" onclick="search_category('+data.list[i].mc_id+')">'+data.list[i].mc_name+'</a></li>');
+                        
                     });
                 }
             });
-            
-        $(document).ready (function () {            
-            $('.search_category').click(function(){
-                var val = $('.cat_val').val();
-                alert(val);
+
+            function search_category(argument) {
                 $.ajax({
                     type: "get",
-                    url:baseUrl+'/search_category/'+val,
-                    data: '&search='+val,
+                    url:baseUrl+'/search_category/'+argument,
+                    data: '&search='+argument,
                     success:function(data){
                        $('.home').html(data);
                     }
-                });
-            })
-        });
+                });  
+            }            
 
 
         </script>
