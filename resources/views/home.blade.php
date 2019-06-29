@@ -45,7 +45,7 @@
                                 @if (Auth::user()->u_image == null)
                                     <img src="{{ asset('assets_backend/images/no_image.png') }}?{{ time() }}" alt="user"  width="50" height="50" class="rounded-circle"{{-- width="150" --}} />
                                 @else
-                                    <img src="{{ asset('assets_backend/images/user/5.jpg') }}?{{ time() }}" alt="user"  width="50" height="50" class="rounded-circle"{{-- width="150" --}} />
+                                    <img src="{{ asset('storage/app/'.$element->u_image) }}" alt="user"  width="50" height="50" class="rounded-circle">
                                 @endif
                             </div>
                             <div>
