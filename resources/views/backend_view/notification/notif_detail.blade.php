@@ -53,7 +53,7 @@
                                                     <img src="{{ asset('storage/app/'.$element->image) }}" style="overflow: hidden;" alt="user" width="50" height="50" class="rounded-circle">
                                                 @endif
                                             </div>
-                                            <a href="#"><b>{{ $element->user }}</b> Has Msubscribe Novel <b>{{ $element->tittles }}</b></a>
+                                            <a href="#"><b>{{ $element->user }}</b> Has Subscribe Novel <b>{{ $element->tittles }}</b></a>
                                             <span class="ml-auto font-12 text-muted">{{ date('d M Y',strtotime($element->upload_date)) }}</span>
                                         </li>
                                        @endforeach
