@@ -8,7 +8,7 @@ class welcomeController extends Controller
 {
     public function api()
     {
-        $data_official = DB::table('d_novel')->select('d_novel.*',
+        $data_latest = DB::table('d_novel')->select('d_novel.*',
                                             DB::raw("(SELECT COUNT(d_novel_like.dnl_ref_id) FROM d_novel_like
                                                 WHERE d_novel_like.dnl_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_like.dnl_ref_id) as liked"),
@@ -19,9 +19,8 @@ class welcomeController extends Controller
                                                 WHERE d_novel_chapter.dnch_ref_id = d_novel.dn_id
                                                 GROUP BY d_novel_chapter.dnch_ref_id) as viewer"))
                                         ->where('dn_status','publish')
-                                        ->where('dn_type_novel',1)
-                                        ->orderBy('dn_id','DESC')
-                                        ->limit(10)->get();
+                                        ->where('dn_type_novel',2)
+                                        ->orderBy('dn_id','DESC')->limit(10)->get();
         return response()->json($data_official);
     }
     public function data_all()
