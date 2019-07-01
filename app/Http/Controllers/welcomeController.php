@@ -21,7 +21,7 @@ class welcomeController extends Controller
                                         ->where('dn_status','publish')
                                         ->where('dn_type_novel',2)
                                         ->orderBy('dn_id','DESC')->limit(10)->get();
-        return response()->json($data_official);
+        return response()->json($data_latest);
     }
     public function data_all()
     {
