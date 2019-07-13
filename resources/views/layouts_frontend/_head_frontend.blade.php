@@ -14,12 +14,12 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_backend/images/favicon.png') }}">
         <title>KETIKAKU</title>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=50564081"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50564081-1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', '50564081');
+          gtag('config', 'UA-50564081-1');
         </script>
     </head>
