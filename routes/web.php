@@ -30,6 +30,10 @@
    Route::get('/list_category_story', 'welcomeController@list_category_story')->name('list_category_story');
 
    Route::get('/api', 'welcomeController@api')->name('api');
+   Route::get('/perkalian', 'welcomeController@perkalian')->name('perkalian');
+   Route::get('/pembagian', 'welcomeController@pembagian')->name('pembagian');
+   Route::get('/penjumlahan', 'welcomeController@penjumlahan')->name('penjumlahan');
+   Route::get('/pengurangan', 'welcomeController@pengurangan')->name('pengurangan');
    Route::get('/api/{id}', 'welcomeController@api_detail')->name('api_detail');
 
 
