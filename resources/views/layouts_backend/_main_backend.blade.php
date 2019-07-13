@@ -4,6 +4,7 @@
     @include('layouts_backend._head_backend')
     @include('layouts_backend._css_backend')
     @yield('extra_styles')
+    
 </head>
 <body>
     <div class="preloader">
