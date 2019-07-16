@@ -6,42 +6,6 @@ use Illuminate\Http\Request;
 use DB;
 class welcomeController extends Controller
 {
-    public function apis($n=5)
-    {
-/*        if ($n==1) {
-            return 1;
-        } else {
-            return $n * $this->apis($n-1);
-        }*/
-        echo "//quick sortn";
-
-    }
-    public function perkalian($y=5)
-    {
-        if ($y==1) {
-            return 1;
-        }else{
-            return $y+$this->perkalian($y-1);
-        }
-    }
-    public function pengurangan($y=5)
-    {
-        if ($y==1) {
-            return 1;
-        }else{
-            return $y-$this->pengurangan($y-1);
-        }
-    }
-    public function pembagian($y=5)
-    {
-        if ($y==1) {
-            return 1;
-        }else{
-            return $y/$this->pembagian($y-1);
-        }
-    }
-
-
 
     public function api(){
 
