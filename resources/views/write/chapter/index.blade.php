@@ -71,7 +71,7 @@
                                         <td>{{ $element->dnch_viewer }}</td>
                                         <td>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" ><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" onclick="deletes({{ $element->dnch_id }},{{ $element->dnch_ref_id }})" ><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -91,12 +91,9 @@
     <script type="text/javascript">
         $('#zero_config').DataTable();
 
-        $('.delete').on('click', function () {
-
-       var this_val = $(this).val();
-       var ref = $(this).data('ref');
-
-       console.log(ref);
+        function deletes(argument,argument2) {
+        var this_val = argument;
+        var ref = argument2;
 
        iziToast.question({
                 theme: 'dark',
@@ -120,7 +117,6 @@
                             success:function(data){
                                 if (data.status == 'sukses') {
                                     iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
-                                    // location.href = baseUrl+'/write'+'/write_chapter/'+id
                                     location.reload();
                                 }else{
                                     iziToast.error({position: 'topRight',message: 'Error Check your data! '});
@@ -152,7 +148,7 @@
                 }
             });
         
-    });
+    };
 
     </script>
 

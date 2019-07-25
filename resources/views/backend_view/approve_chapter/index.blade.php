@@ -79,7 +79,7 @@
                                         <td>{{ date('F ,d Y',strtotime($element->dnch_created_at)) }}</td>
                                         <td width="10%">
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('approve_chapter_edit',['id'=>$element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" data-ref="{{ $element->dn_id }}" value="{{ $element->dnch_id }}"><i class="fas fa-times-circle"></i></button>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" data-ref="{{ $element->dn_id }}" onclick="deletes({{ $element->dnch_id }},{{ $element->dn_id }})" value="{{ $element->dnch_id }}"><i class="fas fa-times-circle"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -98,14 +98,13 @@
 @section('extra_scripts')
     <script type="text/javascript">
         $('#zero_config').DataTable();
-        $('.delete').click(function () {
+        // $('.delete').click(function () {
+        function deletes(argument,argument2) {
+                // body...
+        var this_val = argument;
+        var ref = argument2;
 
-       var this_val = $(this).val();
-       var ref = $(this).data('ref');
-
-       console.log(ref);
-
-       iziToast.question({
+        iziToast.question({
                 theme: 'dark',
                 overlay: true,
                 displayMode: 'once',
@@ -158,8 +157,7 @@
                     console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
                 }
             });
-        
-    });
+    }
 
     </script>
 
