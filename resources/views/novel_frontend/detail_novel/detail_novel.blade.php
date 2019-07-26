@@ -270,7 +270,7 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm baca" 
+                                            <button onclick="baca_chapter('{{ $book->dn_title }}','{{ $element->dnch_title }}',{{ $element->dnch_id }})" class="btn btn-primary btn-sm baca" 
                                             data-name1="{{ $book->dn_title }}" 
                                             data-name="{{ $element->dnch_title }}" 
                                             value="{{ $element->dnch_id }}" ><i class="fa fa-book"></i> Baca</button>
@@ -482,17 +482,22 @@
 
     });
 
-    $('.baca').on('click',function(){
-        // var datas = $(this).data('name');
-        var datass = $(this).data('name');
-        var id = $(this).val();
+     function baca_chapter(creator,datass,id) {
         var creator = ('{{ $book->m_username }}');
-        // var res1 = datas.replace(/\s/g,"-");
-
-        // var res = datass.replace(/\s/g,"-");
         var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
-        window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+id;
-    })
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+id
+     }
+    // $('.baca').on('click',function(){
+    //     // var datas = $(this).data('name');
+    //     var datass = $(this).data('name');
+    //     var id = $(this).val();
+    //     var creator = ('{{ $book->m_username }}');
+    //     // var res1 = datas.replace(/\s/g,"-");
+
+    //     // var res = datass.replace(/\s/g,"-");
+    //     var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
+    //     window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+id;
+    // })
 
     function reply(argument) {
         // console.log(argument);
