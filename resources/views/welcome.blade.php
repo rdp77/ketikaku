@@ -83,6 +83,19 @@
                                     </div> --}}
                                 </article>
                             </div>
+                            <div class="item">
+                                <article class="featured">
+                                    <div class="overlay"></div>
+                                    <figure>
+                                        <img src="{{ asset('assets/images/banner/4.jpg') }}?{{ time() }}" alt="Sample Article">
+                                    </figure>
+                                    {{-- <div class="details">
+                                        <div class="category"><a href="category.html">International</a></div>
+                                        <h1><a href="#">Maecenas accumsan tortor ut velit pharetra mollis</a></h1>
+                                        <div class="time">October 12, 2016</div>
+                                    </div> --}}
+                                </article>
+                            </div>
                            {{--  <div class="item">
                                 <article class="featured">
                                     <div class="overlay"></div>
