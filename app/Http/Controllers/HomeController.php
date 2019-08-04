@@ -39,5 +39,6 @@ class HomeController extends Controller
                                     ->get();
         return view('home',compact('comment_chapter','rating_novel'));
     }
-    
+     
+
 }
