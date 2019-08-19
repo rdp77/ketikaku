@@ -177,7 +177,7 @@ class notificationController extends Controller
     }
     public function notif_more()
     {
-        return $notif_subs = DB::table('d_novel_subscribe')
+        return  $notif_subs = DB::table('d_novel_subscribe')
                     ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image','dns_read as status')
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
@@ -185,7 +185,7 @@ class notificationController extends Controller
                     ->join('d_mem','dns_subscribe_by','m_id')
                     // ->where('dns_read','N')
                     ->where('dn_status','publish')
-                    ->where('dns_subscribe_by',Auth::user()->m_id)
+                    ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
                     ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
