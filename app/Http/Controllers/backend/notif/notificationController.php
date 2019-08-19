@@ -177,7 +177,7 @@ class notificationController extends Controller
     }
     public function notif_more()
     {
-        $notif_subs = DB::table('d_novel_subscribe')
+        return $notif_subs = DB::table('d_novel_subscribe')
                     ->select('m_username as user','dns_created_at as upload_date','dn_title as tittles','m_image as image','dns_read as status')
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
