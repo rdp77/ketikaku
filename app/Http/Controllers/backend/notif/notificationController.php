@@ -19,10 +19,10 @@ class notificationController extends Controller
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
-                    ->join('d_mem','dns_creator','m_id')
+                    ->join('d_mem','dns_subscribe_by','m_id')
                     // ->where('dns_read','N')
                     ->where('dn_status','publish')
-                    ->where('dns_creator',Auth::user()->m_id)
+                    ->where('dns_subscribe_by',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
                     ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
@@ -83,10 +83,10 @@ class notificationController extends Controller
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
-                    ->join('d_mem','dns_creator','m_id')
+                    ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
                     ->where('dn_status','publish')
-                    ->where('dns_creator',Auth::user()->m_id)
+                    ->where('dns_subscribe_by',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
                     ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
@@ -161,7 +161,7 @@ class notificationController extends Controller
     {
 
         $notif_subs = DB::table('d_novel_subscribe')
-                    ->where('dns_creator',Auth::user()->m_id)
+                    ->where('dns_subscribe_by',Auth::user()->m_id)
                     ->update(['dns_read'=>'Y']);
         $notif_follow = DB::table('d_mem_follow')
                     ->where('dmf_followed',Auth::user()->m_id)
@@ -182,10 +182,10 @@ class notificationController extends Controller
                     ->selectRaw("'subs' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_novel','dns_ref_id','dn_id')
-                    ->join('d_mem','dns_creator','m_id')
+                    ->join('d_mem','dns_subscribe_by','m_id')
                     // ->where('dns_read','N')
                     ->where('dn_status','publish')
-                    ->where('dns_creator',Auth::user()->m_id)
+                    ->where('dns_subscribe_by',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
                     ->select('m_username as user','dmf_created_at as upload_date','m_image as image','dmf_read as status')
