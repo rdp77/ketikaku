@@ -14,10 +14,15 @@ class write_chapterController extends Controller
 
     public function index($id)
     {
-        // return $id;
-        $data =  DB::Table('d_novel_chapter')->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')->where('dnch_ref_id',$id)->get();
-        $id = $id;
-        return view('write.chapter.index',compact('data','id'));
+        $data  =  DB::Table('d_novel_chapter')
+                                ->join('d_novel','d_novel.dn_id','=','d_novel_chapter.dnch_ref_id')
+                                ->join('d_mem','d_mem.m_id','=','d_novel_chapter.dnch_created_by')
+                                ->where('dnch_ref_id',$id)
+                                ->get();
+        $id       = $id;
+        $title    = $data[0]->dn_title;
+        $username = $data[0]->m_username;
+        return view('write.chapter.index',compact('data','id','title','username'));
     }
     public function create($id)
     {

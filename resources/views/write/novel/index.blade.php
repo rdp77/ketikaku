@@ -1,13 +1,18 @@
 @extends('layouts_backend._main_backend')
 
 @section('extra_styles')
+<style type="text/css">
+    .borderless td, .borderless th {
+        border: none;
+    }
+</style>
 @endsection
 
 @section('content')
    <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Dashboard</h4>
+                <h4 class="page-title">Karya Tulis</h4>
                 <div class="d-flex align-items-center">
 
                 </div>
@@ -19,7 +24,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">Karya Tulis</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,30 +37,29 @@
         <div class="col-md-12">
             <div class="card border-success">
                 <div class="card-header bg-success">
-                    <h4 class="m-b-0 text-white">Card Title</h4></div>
+                    <h4 class="m-b-0 text-white">Daftar Karya</h4></div>
                 <div class="card-body">
                      <div class="text-right mb-3">
-                    <a href="{{ route('write_novel_create') }}" class="btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus
-    "></i> Create Novel</a>
+                    <a href="{{ route('write_novel_create') }}" class="btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus"></i> Tambahkan Karya</a>
                 </div>
                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered font-weight-bold" width="100%">
+                        <table id="zero_config" class="table table-bordered font-weight-bold" width="100%">
                             <thead>
                                 <tr>
                                     <th width="1%">No</th>
-                                    <th width="25%">Title</th>
-                                    <th width="15%">Created</th>
+                                    <th width="15%">Judul</th>
+                                    <th width="15%">Tgl Dibuat</th>
                                     <th>Status</th>
-                                    <th width="10%">View</th>
-                                    <th width="30%">Photo</th>
-                                    <th width="10%">Action</th>
+                                    <th width="10%">Peminat</th>
+                                    <th width="30%">Foto</th>
+                                    <th width="15%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td align="center">{{ $index+1 }}</td>
-                                        <td><a href="{{ route('write_chapter',['id'=>$element->dn_id]) }}"><span style="font-size: 13px !important;" class="label label-success font-weight-bold">{{ $element->dn_title }}</span></a></td>
+                                        <td>{{ $element->dn_title }}</td>
                                         <td>
                                             {{ date('d M Y',strtotime($element->dn_created_at)) }} 
                                             <br>
@@ -65,30 +69,42 @@
                                         <td align="center">
                                              
                                             @if ($element->dn_status == 'publish')
-                                                <span class="label label-rounded label-success">Published</span>
+                                                <span class="label label-rounded label-success">Diterbitkan</span>
                                             @else
-                                                <span class="label label-rounded label-warning">Draft</span>
+                                                <span class="label label-rounded label-warning">Draf</span>
                                             @endif
                                         </td>
                                         <td class="font-weight-bold">
-                                            Subs : {{ $element->subscriber == null ? '0' : $element->subscriber }}
-                                            <br>
-                                            Liked : {{ $element->liked == null ? '0' : $element->liked }}
-                                            <br>
-                                            View : {{ $element->viewer == null ? '0' : $element->viewer }}
-                                            
+                                            <table class="table table-sm m-b-0 table-borderless">
+                                                <tr>
+                                                    <td>Pengikut</td>
+                                                    <td>:</td>
+                                                    <td>{{ $element->subscriber == null ? '0' : $element->subscriber }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Disukai</td>
+                                                    <td>:</td>
+                                                    <td>{{ $element->liked == null ? '0' : $element->liked }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dilihat</td>
+                                                    <td>:</td>
+                                                    <td>{{ $element->viewer == null ? '0' : $element->viewer }}</td>
+                                                </tr>
+                                            </table>
                                         </td>
                                         <td align="center">
                                             @if ($element->dn_cover == null)
-                                                <span class="label label-rounded label-danger">No Image</span>
+                                                <span class="label label-rounded label-danger">Tidak Ada Gambar</span>
                                             @else
                                                 <img width="30%" src="{{ asset('/storage/app/'.$element->dn_cover) }}?{{ time() }}">
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn waves-effect waves-light btn-sm btn-success" href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}"><i class="fas fa-eye"></i></a>
+                                            <a class="btn waves-effect waves-light btn-sm btn-success" href="{{ asset('/book/'.$element->dn_id.'/'.str_replace(" ","-",$element->dn_title)) }}"><i class="fas fa-book"></i></a>
                                             <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_novel_edit', ['id' => $element->dn_id]) }}"><i class="fas fa-pencil-alt"></i></a>
                                             <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dn_id }}" ><i class="fas fa-times"></i></button>
+                                            <a class="btn waves-effect waves-light btn-sm btn-info" href="{{ route('write_chapter', ['id' => $element->dn_id]) }}">Tambah Bab</a>
                                         </td>
                                     </tr>
                                 @endforeach

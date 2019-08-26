@@ -7,7 +7,7 @@
    <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Dashboard</h4>
+                <h4 class="page-title">Daftar Bab dari Tulisan <b>{{ $title }}</b> </h4>
                 <div class="d-flex align-items-center">
 
                 </div>
@@ -19,7 +19,8 @@
                             <li class="breadcrumb-item">
                                 <a href="#">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item" aria-current="page">Daftar Karya</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Bab</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,14 +33,14 @@
         <div class="col-md-12">
             <div class="card border-success">
                 <div class="card-header bg-success">
-                    <h4 class="m-b-0 text-white">Card Title</h4></div>
+                    <h4 class="m-b-0 text-white">Daftar Bab</h4></div>
                 <div class="card-body">
                 <div class="container-fluid row">
-                    <div class="mb-3 col-sm-11">
-                    <a href="{{ route('write_novel') }}" class="btn waves-effect waves-light btn-md btn-danger"><i class="fas fa-arrow-circle-left"></i> Back</a>
+                    <div class="mb-3 col-sm-10">
+                    <a href="{{ route('write_novel') }}" class="btn waves-effect waves-light btn-md btn-danger"><i class="fas fa-arrow-circle-left"></i> Daftar Karya</a>
                     </div>
-                    <div  class="mb-3 text-right col-sm-1">
-                    <a href="{{ route('write_chapter_create',['id'=>$id]) }}" class=" btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus-circle"></i> Add Data</a>
+                    <div  class="mb-3 text-right col-sm-2">
+                    <a href="{{ route('write_chapter_create',['id'=>$id]) }}" class=" btn waves-effect waves-light btn-md btn-success"><i class="fas fa-plus-circle"></i> Tambahkan Bab Cerita</a>
                     </div>
                 </div>
                    <div class="table-responsive">
@@ -47,31 +48,33 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Title</th>
-                                    <th>Title Chapter</th>
-                                    <th>Create Date</th>
+                                    <th>Judul Bab</th>
+                                    <th>Tgl Dibuat</th>
                                     <th>Status</th>
-                                    <th>View</th>
-                                    <th>Action</th>
+                                    <th>Dilihat</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $index => $element)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $element->dn_title }}</td>
                                         <td>{{ $element->dnch_title }}</td>
                                         <td>{{ date('d F Y  -  h:i:s',strtotime($element->dnch_created_at)) }}</td>
                                         <td>@if ($element->dnch_status == 'publish')
-                                                <span class="label label-rounded label-success">Published</span>
+                                                <span class="label label-rounded label-success">Diterbitkan</span>
                                             @else
-                                                <span class="label label-rounded label-warning">Draft</span>
+                                                <span class="label label-rounded label-warning">Draf</span>
                                             @endif
                                         </td>
                                         <td>{{ $element->dnch_viewer }}</td>
                                         <td>
-                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-chevron-circle-right"></i></a>
-                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" onclick="deletes({{ $element->dnch_id }},{{ $element->dnch_ref_id }})" ><i class="fas fa-times-circle"></i></button>
+                                            <button onclick="baca_chapter('{{ $element->dn_title }}','{{ $element->dnch_title }}',{{ $element->dnch_id }})" class="btn btn-primary btn-sm baca" 
+                                            data-name1="{{ $element->dn_title }}" 
+                                            data-name="{{ $element->dnch_title }}" 
+                                            value="{{ $element->dnch_id }}" ><i class="fa fa-book"></i></button>
+                                            <a class="btn waves-effect waves-light btn-sm btn-warning" href="{{ route('write_chapter_edit', ['id' => $element->dnch_id]) }}"><i class="fas fa-pencil-alt"></i></a>
+                                            <button type="button" class="btn waves-effect waves-light btn-sm btn-danger delete" value="{{ $element->dnch_id }}" data-ref="{{ $element->dnch_ref_id }}" onclick="deletes({{ $element->dnch_id }},{{ $element->dnch_ref_id }})" ><i class="fas fa-times"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -103,12 +106,12 @@
                 zindex: 999,
                 backgroundColor: '#1f1f22',
                 icon: 'fa fa-info-circle',
-                title: 'Are you Sure!',
+                title: 'Apakah anda yakin ?!',
                 message: '',
                 position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
                 progressBarColor: 'rgb(0, 255, 184)',
                 buttons: [
-                    ['<button style="background-color:red;"> Delete </button>', function (instance, toast) {
+                    ['<button style="background-color:red;"> Hapus </button>', function (instance, toast) {
 
                         $.ajax({
                             url  : baseUrl+'/write'+'/write_chapter/delete/'+this_val,
@@ -116,10 +119,10 @@
                             type :'get',
                             success:function(data){
                                 if (data.status == 'sukses') {
-                                    iziToast.success({position: 'topRight',message: 'Successfully Deleted!'});
+                                    iziToast.success({position: 'topRight',message: 'Bab Berhasil Dihapus!'});
                                     location.reload();
                                 }else{
-                                    iziToast.error({position: 'topRight',message: 'Error Check your data! '});
+                                    iziToast.error({position: 'topRight',message: 'Terjadi Kesalahan.Cek Koneksi/Lapor Admin! '});
                                 }
                             },
                             error:function(data){
@@ -130,7 +133,7 @@
 
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
                     }, true], // true to focus
-                    ['<button> Cancel </button>', function (instance, toast) {
+                    ['<button> Batal </button>', function (instance, toast) {
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy){
@@ -149,7 +152,11 @@
             });
         
     };
-
+    function baca_chapter(creator,datass,id) {
+        var creator = ('{{ $username }}');
+        var res = datass.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
+        window.location.href = baseUrl + '/chapter/'+creator+'/'+res+'/'+id
+     }
     </script>
 
 @endsection

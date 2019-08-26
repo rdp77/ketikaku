@@ -7,7 +7,7 @@
    <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Create Novel</h4>
+                <h4 class="page-title">Buat Bab Cerita</h4>
                 <div class="d-flex align-items-center">
 
                 </div>
@@ -35,7 +35,7 @@
                                 <br>
                                 <form id="save">
                                     <div class="form-group row">
-                                        <label for="dn_title" class="col-2 col-form-label">Title Novel</label>
+                                        <label for="dn_title" class="col-2 col-form-label">Judul Karya</label>
                                         <div class="col-10">
                                             <input class="form-control" value="{{ $title->dn_id }}" type="hidden" readonly="" name="dnch_ref_id" id="dnch_ref_id">
                                             <input class="form-control" value="{{ $title->dn_title }}" type="text" readonly="">
@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="dnch_title" class="col-2 col-form-label">Title Chapter</label>
+                                        <label for="dnch_title" class="col-2 col-form-label">Judul Bab</label>
                                         <div class="col-10">
                                             <input class="form-control" type="text" name="dnch_title" id="dnch_title">
                                         </div>
@@ -53,9 +53,13 @@
                                     <textarea id="mymce" name="dnch_content"></textarea>
                                     <br>
 
-                                     <div class="text-right">
-                                        <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Publish</button>
-                                        <button class="btn btn-warning button_click" value="draft" type="button" onclick="save(2)"><i class="fas fa-share"> </i> Draft</button>
+
+                                    <div class="form-group row">
+                                        <a href="{{ route('write_chapter', ['id' => $title->dn_id]) }}" class="btn waves-effect waves-light btn-md btn-danger"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
+                                        <div class="col-11 text-right">
+                                             <button class="btn btn-primary button_click" value="publish" type="button" onclick="save(1)"><i class="fas fa-share"> </i> Terbitkan</button>
+                                            <button class="btn btn-warning button_click" value="draft" type="button" onclick="save(2)"><i class="fas fa-share"> </i> Draf</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
