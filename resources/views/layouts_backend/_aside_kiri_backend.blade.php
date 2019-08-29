@@ -56,13 +56,13 @@
                                     <li class="sidebar-item">
                                         <a href="{{ route('master_user') }}" class="sidebar-link">
                                             <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Master User</span>
+                                            <span class="hide-menu"> Master Pengguna</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-item">
                                         <a href="{{ route('master_category') }}" class="sidebar-link">
                                             <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Master Category</span>
+                                            <span class="hide-menu"> Master Kategori</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -74,7 +74,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('write_novel') }}"
                                    " aria-expanded="false">
                                 <i class="icon-Pen"></i>
-                                <span class="hide-menu">Write</span>
+                                <span class="hide-menu">Tulis</span>
                             </a>
                         </li>
                             
@@ -85,19 +85,19 @@
                                 <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                     <i class="icon-Pen"></i>
 
-                                    <span class="hide-menu"> Control Story</span>
+                                    <span class="hide-menu"> Atur Tulisan</span>
                                 </a>
                                 <ul aria-expanded="false" class="collapse  first-level">
                                     <li class="sidebar-item">
                                         <a href="{{ route('approve_novel') }}" class="sidebar-link">
                                             <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Story Data</span>
+                                            <span class="hide-menu"> Karya Tulis</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-item">
                                         <a href="{{ route('approve_chapter') }}" class="sidebar-link">
                                             <i class="icon-Record"></i>
-                                            <span class="hide-menu"> Chapter Data</span>
+                                            <span class="hide-menu"> Bab Tulis</span>
                                         </a>
                                     </li>
                                 </ul>

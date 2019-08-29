@@ -22,6 +22,7 @@ class notificationController extends Controller
                     ->join('d_mem','dns_subscribe_by','m_id')
                     // ->where('dns_read','N')
                     ->where('dn_status','publish')
+                    ->orderBy('dns_created_at','ASC')
                     ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
@@ -29,6 +30,7 @@ class notificationController extends Controller
                     ->selectRaw("'follow' as flag")
                     // ->select('"subs" as tipe')
                     ->join('d_mem','dmf_follow_by','m_id')
+                    ->orderBy('dmf_created_at','ASC')
                     // ->where('dmf_read','N')
                     ->where('dmf_followed',Auth::user()->m_id)
                     ->get()->toArray();
@@ -40,6 +42,7 @@ class notificationController extends Controller
                     ->join('d_novel','dnn_novel','dn_id')
                     ->join('d_mem','dnn_subscriber','m_id')
                     ->where('dn_status','publish')
+                    ->orderBy('dnn_created_at','ASC')
                     // ->where('dnn_read','N')
                     ->where('dnn_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
@@ -51,6 +54,7 @@ class notificationController extends Controller
                     ->join('d_mem','dnnc_creator','m_id')
                     ->where('dnch_status','publish')
                     // ->where('dnnc_read','N')
+                    ->orderBy('dnnc_created_at','ASC')
                     ->where('dnnc_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
         $data = [];
@@ -86,6 +90,7 @@ class notificationController extends Controller
                     ->join('d_mem','dns_subscribe_by','m_id')
                     ->where('dns_read','N')
                     ->where('dn_status','publish')
+                    ->orderBy('dns_created_at','ASC')
                     ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_follow = DB::table('d_mem_follow')
@@ -94,6 +99,7 @@ class notificationController extends Controller
                     // ->select('"subs" as tipe')
                     ->join('d_mem','dmf_follow_by','m_id')
                     ->where('dmf_read','N')
+                    ->orderBy('dmf_created_at','ASC')
                     ->where('dmf_followed',Auth::user()->m_id)
                     ->get()->toArray();
 
@@ -105,6 +111,7 @@ class notificationController extends Controller
                     ->join('d_mem','dnn_subscriber','m_id')
                     ->where('dn_status','publish')
                     ->where('dnn_read','N')
+                    ->orderBy('dnn_created_at','ASC')
                     ->where('dnn_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_upload_chapter = DB::table('d_novel_notif_chapter')
@@ -115,6 +122,7 @@ class notificationController extends Controller
                     ->join('d_mem','dnnc_creator','m_id')
                     ->where('dnch_status','publish')
                     ->where('dnnc_read','N')
+                    ->orderBy('dnnc_created_at','ASC')
                     ->where('dnnc_subscriber',Auth::user()->m_id)
                     ->get()->toArray(); 
         $data = [];
@@ -184,6 +192,7 @@ class notificationController extends Controller
                     ->join('d_novel','dns_ref_id','dn_id')
                     ->join('d_mem','dns_subscribe_by','m_id')
                     // ->where('dns_read','N')
+                    ->orderBy('dns_created_at','ASC')
                     ->where('dn_status','publish')
                     ->where('dns_creator',Auth::user()->m_id)
                     ->get()->toArray();
@@ -193,6 +202,7 @@ class notificationController extends Controller
                     // ->select('"subs" as tipe')
                     ->join('d_mem','dmf_follow_by','m_id')
                     // ->where('dmf_read','N')
+                    ->orderBy('dmf_created_at','ASC')
                     ->where('dmf_followed',Auth::user()->m_id)
                     ->get()->toArray();
 
@@ -204,6 +214,7 @@ class notificationController extends Controller
                     ->join('d_mem','dnn_subscriber','m_id')
                     ->where('dn_status','publish')
                     // ->where('dnn_read','N')
+                    ->orderBy('dnn_created_at','ASC')
                     ->where('dnn_subscriber',Auth::user()->m_id)
                     ->get()->toArray();
         $notif_upload_chapter = DB::table('d_novel_notif_chapter')
@@ -214,6 +225,7 @@ class notificationController extends Controller
                     ->join('d_mem','dnnc_creator','m_id')
                     ->where('dnch_status','publish')
                     // ->where('dnnc_read','N')
+                    ->orderBy('dnnc_created_at','ASC')
                     ->where('dnnc_subscriber',Auth::user()->m_id)
                     ->get()->toArray(); 
         $data = [];

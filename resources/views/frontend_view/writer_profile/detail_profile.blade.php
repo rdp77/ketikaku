@@ -503,7 +503,7 @@
     function following(argument) {
         $.ajax({
             type: "get",
-            url:'{{ route('profile_novel_frontend') }}',
+            url:'{{ route('profile_following_frontend') }}',
             data: '&id='+argument,
             processData: false,
             contentType: false,
